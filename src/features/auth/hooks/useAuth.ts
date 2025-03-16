@@ -26,7 +26,7 @@ export default function useAuth() {
         }) => {
             const result = validateInputData(registerSchema, { email, password, confirmPassword });
 
-            const response = await fetch("http://localhost:8000/api/v1/auth/register", {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
