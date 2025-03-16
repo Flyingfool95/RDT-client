@@ -79,10 +79,7 @@ export default function useAuth() {
         },
         onSuccess: (data: IUser) => {
             console.log(data);
-            // Set user to user data
             setUser(data);
-            // Redirect to dashboard
-
             navigate("/");
         },
         onError: (error) => {
@@ -93,8 +90,8 @@ export default function useAuth() {
     async function updateUser() {
         // Update logic
     }
+    
     async function logoutUser() {
-        //Clear httpcookie
         const results = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/logout`, {
             method: "GET",
             credentials: "include",
