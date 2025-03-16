@@ -1,10 +1,33 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
     const location = useLocation();
-    const { user } = useAuthStore((state) => state);
+
+    const { user, setUser, isAuthChecked, setIsAuthChecked } = useAuthStore((state) => state);
+
+    const handleCheckAuth = async () => {
+        const result = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/auth-check`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+        });
+
+        const res = await result.json();
+        setIsAuthChecked(true);
+        if (!res.success) return setUser(null);
+        setUser(res.data);
+    };
+    useEffect(() => {
+        handleCheckAuth();
+    }, []);
+
+    if (!isAuthChecked) {
+        return <h1>Checking auth....</h1>; /* Add loading spinner */
+    }
 
     if (isProtected && !user) {
         return <Navigate to="/login" state={{ from: location }} replace />;

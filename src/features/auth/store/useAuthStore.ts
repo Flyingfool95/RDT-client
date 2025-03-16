@@ -8,6 +8,12 @@ const useAuthStore = create<IAuthStore>((set) => ({
             user: newUser,
         }));
     },
+    isAuthChecked: false,
+    setIsAuthChecked: (newState: boolean) => {
+        set(() => ({
+            isAuthChecked: newState,
+        }));
+    },
 }));
 
 export default useAuthStore;
