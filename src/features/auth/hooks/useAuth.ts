@@ -57,21 +57,21 @@ export default function useAuth() {
 
     const loginUser = useMutation({
         mutationFn: async ({ email, password }: { email: string; password: string }) => {
-            const result = validateInputData(loginSchema, { email, password });
+            const validatedData = validateInputData(loginSchema, { email, password });
 
             /* Simulated API response */
-            const response = {
-                status: 200,
-                data: {
-                    id: "123abc",
-                    email: "johannes@hernehult.com",
-                    roles: ["admin"],
+            const result = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
                 },
-            };
+                body: JSON.stringify(validatedData),
+            });
 
-            if (response.status >= 400) {
-                throw new Error(`Something went wrong. Error code: ${response.status}`);
+            if (result.status >= 400) {
+                throw new Error(`Something went wrong. Error code: ${result.status}`);
             }
+            const response = await result.json();
 
             addNotification({ message: "Logged in", type: "success", duration: 5000 });
 
