@@ -1,6 +1,6 @@
+import { Suspense, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
-import { Suspense, useEffect } from "react";
 
 export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
     const location = useLocation();

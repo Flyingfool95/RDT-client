@@ -1,7 +1,7 @@
-import { IUser } from "../../../../types/auth";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
+import { IUser } from "../../../../types/auth";
 import { loginSchema, registerSchema } from "../../../../zod/auth";
 import { validateInputData } from "../../../../helpers/auth";
 
