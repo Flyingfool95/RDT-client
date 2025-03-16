@@ -59,12 +59,12 @@ export default function useAuth() {
         mutationFn: async ({ email, password }: { email: string; password: string }) => {
             const validatedData = validateInputData(loginSchema, { email, password });
 
-            /* Simulated API response */
             const result = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
+                credentials: "include",
                 body: JSON.stringify(validatedData),
             });
 
@@ -95,8 +95,15 @@ export default function useAuth() {
     }
     async function logoutUser() {
         //Clear httpcookie
-        setUser(null);
-        addNotification({ message: "Logged out", type: "info", duration: 5000 });
+        const results = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/logout`, {
+            method: "GET",
+            credentials: "include",
+        });
+
+        if (results.status === 200) {
+            setUser(null);
+            addNotification({ message: "Logged out", type: "info", duration: 5000 });
+        }
     }
     async function deleteUser() {
         // Delete user

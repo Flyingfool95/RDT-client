@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { IAuthStore, IUser } from "../../../../../shared/types/auth";
+import { IAuthStore, IUser } from "../../../../types/auth";
 
 const useAuthStore = create<IAuthStore>((set) => ({
     user: null,
