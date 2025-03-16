@@ -40,8 +40,6 @@ export default function useAuth() {
 
             const data = response.json();
 
-            console.log(data);
-
             addNotification({ message: "User registered", type: "success", duration: 5000 });
 
             return data;
@@ -59,7 +57,7 @@ export default function useAuth() {
         mutationFn: async ({ email, password }: { email: string; password: string }) => {
             const validatedData = validateInputData(loginSchema, { email, password });
 
-            const result = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`, {
+            const results = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -68,17 +66,16 @@ export default function useAuth() {
                 body: JSON.stringify(validatedData),
             });
 
-            if (result.status >= 400) {
-                throw new Error(`Something went wrong. Error code: ${result.status}`);
+            if (results.status >= 400) {
+                throw new Error(`Something went wrong. Error code: ${results.status}`);
             }
-            const response = await result.json();
+            const data = await results.json();
 
             addNotification({ message: "Logged in", type: "success", duration: 5000 });
 
-            return response.data;
+            return data.data;
         },
         onSuccess: (data: IUser) => {
-            console.log(data);
             setUser(data);
             navigate("/");
         },
@@ -90,17 +87,19 @@ export default function useAuth() {
     async function updateUser() {
         // Update logic
     }
-    
+
     async function logoutUser() {
         const results = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/logout`, {
             method: "GET",
             credentials: "include",
         });
 
-        if (results.status === 200) {
-            setUser(null);
-            addNotification({ message: "Logged out", type: "info", duration: 5000 });
+        if (results.status >= 400) {
+            throw new Error(`Something went wrong. Error code: ${results.status}`);
         }
+
+        setUser(null);
+        addNotification({ message: "Logged out", type: "info", duration: 5000 });
     }
     async function deleteUser() {
         // Delete user
