@@ -1,5 +1,5 @@
-import "../styles/LoginForm.css"
 import { useState } from "react";
+import "../styles/LoginForm.css"
 import useAuth from "../hooks/useAuth";
 
 export default function LoginForm() {
@@ -10,7 +10,6 @@ export default function LoginForm() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         loginUser.mutate({ email, password });
     };
 

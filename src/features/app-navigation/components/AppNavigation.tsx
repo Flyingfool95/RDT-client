@@ -10,7 +10,7 @@ export default function AppNavigation() {
             <nav>
                 <NavLink to={"/"}>Dashboard</NavLink>
                 <NavLink to={"/profile"}>Profile</NavLink>
-                <button onClick={logoutUser}>Logout</button>
+                <button onClick={() => logoutUser.mutate()}>Logout</button>
             </nav>
             <Outlet />
         </>
