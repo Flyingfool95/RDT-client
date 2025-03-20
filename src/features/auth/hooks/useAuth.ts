@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
 import { IUser } from "../../../../types/auth";
-import { loginSchema, registerSchema } from "../../../../zod/auth";
+import { loginSchema, registerSchema, updateUserSchema } from "../../../../zod/auth";
 import { validateInputData } from "../../../../helpers/auth";
 
 import useAuthStore from "../store/useAuthStore";
@@ -84,28 +84,39 @@ export default function useAuth() {
     });
 
     const updateUser = useMutation({
-        mutationFn: async (updateData: Partial<IUser>) => {
+        mutationFn: async (updateData: {
+            currentPassword?: string;
+            newPassword?: string;
+            email?: string;
+            name?: string;
+        }) => {
+            // Add client-side validation schema for updates
+            const validatedData = validateInputData(updateUserSchema, updateData);
+
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/update`, {
                 method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 credentials: "include",
-                body: JSON.stringify(updateData),
+                body: JSON.stringify(validatedData),
             });
 
-            if (response.status >= 400) {
-                throw new Error(`Something went wrong. Error code: ${response.status}`);
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.message || "Update failed");
             }
 
             return await response.json();
         },
         onSuccess: (data: IUser) => {
             setUser(data);
-            addNotification({ message: "User updated successfully", type: "success" });
+            addNotification({ message: "Profile updated successfully", type: "success" });
         },
         onError: (error) => {
-            addNotification({ message: error.message, type: "error", duration: 7000 });
+            addNotification({
+                message: error.message || "Failed to update profile",
+                type: "error",
+                duration: 7000,
+            });
         },
     });
 
