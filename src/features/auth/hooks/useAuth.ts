@@ -24,27 +24,26 @@ export default function useAuth() {
             password: string;
             confirmPassword: string;
         }) => {
-            const result = validateInputData(registerSchema, { email, password, confirmPassword });
+            const validatedInputData = validateInputData(registerSchema, { email, password, confirmPassword });
 
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(result),
+                body: JSON.stringify(validatedInputData),
             });
 
             if (response.status >= 400) {
                 throw new Error(`Something went wrong. Error code: ${response.status}`);
             }
 
-            const data = await response.json();
+            const results = await response.json();
 
-            addNotification({ message: "User registered", type: "success" });
-
-            return data;
+            return results;
         },
         onSuccess: () => {
+            addNotification({ message: "User registered", type: "success" });
             navigate("/login");
         },
         onError: (error) => {
@@ -56,7 +55,7 @@ export default function useAuth() {
         mutationFn: async ({ email, password }: { email: string; password: string }) => {
             const validatedData = validateInputData(loginSchema, { email, password });
 
-            const results = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -65,17 +64,16 @@ export default function useAuth() {
                 body: JSON.stringify(validatedData),
             });
 
-            if (results.status >= 400) {
-                throw new Error(`Something went wrong. Error code: ${results.status}`);
+            if (response.status >= 400) {
+                throw new Error(`Something went wrong. Error code: ${response.status}`);
             }
-            const data = await results.json();
+            const results = await response.json();
 
-            addNotification({ message: "Logged in", type: "success" });
-
-            return data.data;
+            return results;
         },
-        onSuccess: (data: IUser) => {
-            setUser(data);
+        onSuccess: (results) => {
+            setUser(results.data);
+            addNotification({ message: results.message, type: "success" });
             navigate("/");
         },
         onError: (error) => {
@@ -90,7 +88,6 @@ export default function useAuth() {
             email?: string;
             name?: string;
         }) => {
-            // Add client-side validation schema for updates
             const validatedData = validateInputData(updateUserSchema, updateData);
 
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/update`, {
@@ -105,11 +102,12 @@ export default function useAuth() {
                 throw new Error(error.message || "Update failed");
             }
 
-            return await response.json();
+            const results = await response.json();
+            return results;
         },
-        onSuccess: (data: IUser) => {
-            setUser(data);
-            addNotification({ message: "Profile updated successfully", type: "success" });
+        onSuccess: (results) => {
+            setUser(results.data);
+            addNotification({ message: results.message, type: "success" });
         },
         onError: (error) => {
             addNotification({

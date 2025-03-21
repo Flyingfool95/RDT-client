@@ -20,15 +20,18 @@ export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
                 credentials: "include",
                 signal: controller.signal,
             });
-            
+
             const res = await result.json();
+
             setIsAuthChecked(true);
+
             if (!res.success) return setUser(null);
+
             clearTimeout(timeoutId);
             setUser(res.data);
         } catch (error) {
-            clearTimeout(timeoutId);
             setIsAuthChecked(true);
+            clearTimeout(timeoutId);
             setUser(null);
         }
     };
