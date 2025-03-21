@@ -19,10 +19,10 @@ export const registerSchema = loginSchema
 
 export const updateUserSchema = z
     .object({
-        email: z.string().email().optional(),
-        name: z.string().min(2).optional(),
+        email: z.string().email("Invalid email format").optional(),
+        name: z.string().min(2, "Name must be at least 2 characters").optional(),
         currentPassword: z.string().min(8).optional(),
-        newPassword: z.string().min(8).optional(),
+        newPassword: z.string().min(8, "New password must be at least 8 characters").optional(),
     })
     .refine((data) => {
         if (data.newPassword && !data.currentPassword) return false;

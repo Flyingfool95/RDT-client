@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
-import { IUser } from "../../../../types/auth";
 import { loginSchema, registerSchema, updateUserSchema } from "../../../../zod/auth";
 import { validateInputData } from "../../../../helpers/auth";
 
@@ -34,26 +33,27 @@ export default function useAuth() {
                 body: JSON.stringify(validatedInputData),
             });
 
-            if (response.status >= 400) {
-                throw new Error(`Something went wrong. Error code: ${response.status}`);
-            }
-
             const results = await response.json();
+
+            if (response.status >= 400) {
+                throw new Error(results.errors);
+            }
 
             return results;
         },
-        onSuccess: () => {
-            addNotification({ message: "User registered", type: "success" });
+        onSuccess: (results) => {
+            addNotification({ message: results.message, type: "success" });
             navigate("/login");
         },
         onError: (error) => {
+            console.log(error);
             addNotification({ message: error.message, type: "error", duration: 7000 });
         },
     });
 
     const loginUser = useMutation({
         mutationFn: async ({ email, password }: { email: string; password: string }) => {
-            const validatedData = validateInputData(loginSchema, { email, password });
+            const validatedInputData = validateInputData(loginSchema, { email, password });
 
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`, {
                 method: "POST",
@@ -61,13 +61,15 @@ export default function useAuth() {
                     "Content-Type": "application/json",
                 },
                 credentials: "include",
-                body: JSON.stringify(validatedData),
+                body: JSON.stringify(validatedInputData),
             });
 
-            if (response.status >= 400) {
-                throw new Error(`Something went wrong. Error code: ${response.status}`);
-            }
             const results = await response.json();
+
+            if (response.status >= 400) {
+                console.log(results);
+                throw new Error(results.errors);
+            }
 
             return results;
         },
@@ -77,6 +79,8 @@ export default function useAuth() {
             navigate("/");
         },
         onError: (error) => {
+            console.log(error);
+
             addNotification({ message: error.message, type: "error", duration: 7000 });
         },
     });
@@ -88,21 +92,22 @@ export default function useAuth() {
             email?: string;
             name?: string;
         }) => {
-            const validatedData = validateInputData(updateUserSchema, updateData);
+            const validatedInputData = validateInputData(updateUserSchema, updateData);
 
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/update`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
-                body: JSON.stringify(validatedData),
+                body: JSON.stringify(validatedInputData),
             });
 
-            if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.message || "Update failed");
+            const results = await response.json();
+
+            if (response.status >= 400) {
+                console.log(results);
+                throw new Error(results.errors);
             }
 
-            const results = await response.json();
             return results;
         },
         onSuccess: (results) => {
@@ -111,7 +116,7 @@ export default function useAuth() {
         },
         onError: (error) => {
             addNotification({
-                message: error.message || "Failed to update profile",
+                message: error.message,
                 type: "error",
                 duration: 7000,
             });
@@ -120,18 +125,23 @@ export default function useAuth() {
 
     const logoutUser = useMutation({
         mutationFn: async () => {
-            const results = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/logout`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/logout`, {
                 method: "GET",
                 credentials: "include",
             });
 
-            if (results.status >= 400) {
-                throw new Error(`Something went wrong. Error code: ${results.status}`);
+            const results = await response.json();
+
+            if (response.status >= 400) {
+                console.log(results);
+                throw new Error(results.errors);
             }
+
+            return results;
         },
-        onSuccess: () => {
+        onSuccess: (results) => {
             setUser(null);
-            addNotification({ message: "Logged out", type: "info" });
+            addNotification({ message: results.message, type: "info" });
             navigate("/login");
         },
         onError: (error) => {
@@ -143,7 +153,7 @@ export default function useAuth() {
         mutationFn: async () => {
             if (!user) throw new Error("User does not exist");
 
-            const results = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/delete`, {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/delete`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -152,13 +162,18 @@ export default function useAuth() {
                 body: JSON.stringify({ id: user.id }),
             });
 
-            if (results.status !== 200) {
-                throw new Error("Something went wrong when deleting user");
+            const results = await response.json();
+
+            if (response.status >= 400) {
+                console.log(results);
+                throw new Error(results.errors);
             }
+
+            return results;
         },
-        onSuccess: () => {
+        onSuccess: (results) => {
             setUser(null);
-            addNotification({ message: "User deleted successfully", type: "success" });
+            addNotification({ message: results.message, type: "success" });
             navigate("/login");
         },
         onError: (error) => {
