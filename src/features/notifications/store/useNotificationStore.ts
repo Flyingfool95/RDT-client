@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { INotificationStore, INewNotification } from "../../../../../shared/types/notifications";
+import { INotificationStore, INewNotification } from "../../../../types/notifications";
 
 const useNotificationStore = create<INotificationStore>((set, get) => ({
     notifications: [],
