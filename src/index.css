@@ -1,1 +1,23 @@
 /* System */
+:root {
+    --size-base: 16px;
+
+    --size-0: 0;
+
+    /* Text */
+    --text-body-small: calc(var(--size-base) * 0.875);
+    --text-body-medium: calc(var(--size-base) * 1);
+    --text-body-large: calc(var(--size-base) * 1.25);
+
+    --text-heading-small: calc(var(--size-base) * 1.5);
+    --text-heading-medium: calc(var(--size-base) * 2);
+    --text-heading-large: calc(var(--size-base) * 3);
+    --text-heading-xl: calc(var(--size-base) * 4);
+
+    /* Spacing */
+    --spacing-xs: calc(var(--size-base) * 0.25);
+    --spacing-small: calc(var(--size-base) * 0.5);
+    --spacing-medium: calc(var(--size-base) * 1);
+    --spacing-large: calc(var(--size-base) * 1.5);
+    --spacing-xl: calc(var(--size-base) * 2);
+}
