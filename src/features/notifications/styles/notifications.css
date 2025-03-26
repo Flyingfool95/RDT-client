@@ -16,8 +16,8 @@
     position: relative;
     padding: 1rem;
     padding-right: 2.5rem;
-    box-shadow: 0 0 4px 0 #00000030;
-    border-radius: 2px;
+    box-shadow: 1px 1px 3px 0 #00000040;
+    border-radius: var(--spacing-xs);
     max-width: 540px;
     width: 100%;
 
@@ -61,16 +61,52 @@
     }
 
     &.error {
-        border-color: lightcoral;
+        border-color: var(--color-error-base);
+        color: var(--color-error-dark);
+        background-color: var(--color-error-light);
+
+        button {
+            &::after,
+            &::before {
+                background-color: var(--color-error-dark);
+            }
+        }
     }
     &.info {
-        border-color: lightskyblue;
+        border-color: var(--color-info-base);
+        color: var(--color-info-dark);
+        background-color: var(--color-info-light);
+
+        button {
+            &::after,
+            &::before {
+                background-color: var(--color-info-dark);
+            }
+        }
     }
     &.warning {
-        border-color: orange;
+        border-color: var(--color-warning-base);
+        color: var(--color-warning-dark);
+        background-color: var(--color-warning-light);
+
+        button {
+            &::after,
+            &::before {
+                background-color: var(--color-warning-dark);
+            }
+        }
     }
     &.success {
-        border-color: green;
+        border-color: var(--color-success-base);
+        color: var(--color-success-dark);
+        background-color: var(--color-success-light);
+
+        button {
+            &::after,
+            &::before {
+                background-color: var(--color-success-dark);
+            }
+        }
     }
 }
 

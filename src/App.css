@@ -51,21 +51,15 @@ form {
         font-size: 14px;
     }
 
-    input {
-        &:focus {
-            background-color: #00008010;
-            outline-color: #00008010;
-        }
-    }
-
     input:not(input[type="submit"]) {
         padding: var(--spacing-small);
         border-radius: var(--spacing-xs);
         border: none;
-        box-shadow: inset 1px 1px 3px 0 #00000040;
+        box-shadow: 1px 1px 3px 0 #00000040;
+        border-left: 4px solid transparent;
 
         &:focus {
-            box-shadow: inset 1px 1px 3px 0 #00008080;
+            border-color: var(--color-info-base);
             outline: none;
         }
     }
