@@ -30,12 +30,12 @@ p {
 
 a:not(nav a) {
     color: var(--color-info-dark);
-    text-decoration-color: var(--color-info-dark);
-    text-decoration-thickness: var(--spacing-xs);
+    text-decoration: none;
+    box-shadow: 0px 2px 0px 0 var(--color-info-dark);
 
     &:hover {
+        box-shadow: 0px 2px 0px 0 var(--color-info-base);
         color: var(--color-info-base);
-        text-decoration-color: var(--color-info-base);
     }
 }
 
