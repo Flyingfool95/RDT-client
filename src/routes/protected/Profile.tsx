@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../features/auth/hooks/useAuth";
 import useAuthStore from "../../features/auth/store/useAuthStore";
 
@@ -11,6 +11,15 @@ export default function Profile() {
     const [newPassword, setNewPassword] = useState<string | undefined>(undefined);
 
     const { deleteUser, updateUser } = useAuth();
+
+    useEffect(() => {
+        if (currentPassword === "") {
+            setCurrentPassword(undefined);
+        }
+        if (newPassword === "") {
+            setNewPassword(undefined);
+        }
+    }, [currentPassword, newPassword]);
 
     const handleUpdate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -27,15 +36,24 @@ export default function Profile() {
         <main>
             <h1>Profile</h1>
             <form onSubmit={(e) => handleUpdate(e)}>
-                <label htmlFor="name">
+                <label
+                    htmlFor="name"
+                    className={updateUser.error?.message.toLowerCase().includes("name") ? "zod-error" : ""}
+                >
                     Name
                     <input type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} />
                 </label>
-                <label htmlFor="email">
+                <label
+                    htmlFor="email"
+                    className={updateUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
+                >
                     Email
                     <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} value={email} />
                 </label>
-                <label htmlFor="current-password">
+                <label
+                    htmlFor="current-password"
+                    className={updateUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
+                >
                     Current Password
                     <input
                         type="text"
@@ -44,7 +62,10 @@ export default function Profile() {
                         value={currentPassword}
                     />
                 </label>
-                <label htmlFor="new-password">
+                <label
+                    htmlFor="new-password"
+                    className={updateUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
+                >
                     New Password
                     <input
                         type="text"

@@ -17,7 +17,7 @@ export default function LoginForm() {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="email">
+                <label htmlFor="email"  className={loginUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}>
                     Email
                     <input
                         type="email"
@@ -28,7 +28,7 @@ export default function LoginForm() {
                     />
                 </label>
 
-                <label htmlFor="password">
+                <label htmlFor="password" className={loginUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}>
                     Password
                     <input
                         type="password"

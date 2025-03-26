@@ -60,6 +60,8 @@ form {
 
         &:focus {
             border-color: var(--color-info-base);
+            background-color: var(--color-info-light);
+            box-shadow: 1px 1px 3px 0 var(--color-info-dark-50);
             outline: none;
         }
     }
@@ -75,5 +77,16 @@ form {
 
         align-items: center;
         width: fit-content;
+    }
+
+    label.zod-error {
+        color: var(--color-error-base) !important;
+
+        input {
+            color: var(--color-error-dark) !important;
+            border-color: var(--color-error-base) !important;
+            background-color: var(--color-error-light) !important;
+            box-shadow: 1px 1px 3px 0 var(--color-error-dark-50) !important;
+        }
     }
 }

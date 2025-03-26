@@ -19,7 +19,10 @@ export default function RegisterForm() {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="email">
+                <label
+                    htmlFor="email"
+                    className={registerUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
+                >
                     Email
                     <input
                         type="email"
@@ -30,7 +33,10 @@ export default function RegisterForm() {
                     />
                 </label>
 
-                <label htmlFor="password">
+                <label
+                    htmlFor="password"
+                    className={registerUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
+                >
                     Password
                     <input
                         type="password"
@@ -40,7 +46,10 @@ export default function RegisterForm() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
-                <label htmlFor="confirm-password">
+                <label
+                    htmlFor="confirm-password"
+                    className={registerUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
+                >
                     Confirm Password
                     <input
                         type="password"
