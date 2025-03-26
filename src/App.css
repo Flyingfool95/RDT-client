@@ -34,3 +34,52 @@ input[type="submit"] {
     cursor: pointer;
     border-radius: var(--spacing-xs);
 }
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: var(--spacing-medium);
+
+    width: 100%;
+    max-width: 400px;
+
+    label {
+        flex-basis: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+    }
+
+    input {
+        &:focus {
+            background-color: #00008010;
+            outline-color: #00008010;
+        }
+    }
+
+    input:not(input[type="submit"]) {
+        padding: var(--spacing-small);
+        border-radius: var(--spacing-xs);
+        border: none;
+        box-shadow: inset 1px 1px 3px 0 #00000040;
+
+        &:focus {
+            box-shadow: inset 1px 1px 3px 0 #00008080;
+            outline: none;
+        }
+    }
+
+    input[type="submit"] {
+        width: fit-content;
+        padding: var(--spacing-xs) var(--spacing-large);
+    }
+
+    span {
+        display: flex;
+        gap: var(--spacing-small);
+
+        align-items: center;
+        width: fit-content;
+    }
+}

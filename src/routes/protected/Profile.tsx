@@ -27,24 +27,32 @@ export default function Profile() {
         <main>
             <h1>Profile</h1>
             <form onSubmit={(e) => handleUpdate(e)}>
-                <label htmlFor="name">Name</label>
-                <input type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} />
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} value={email} />
-                <label htmlFor="current-password">Current Password</label>
-                <input
-                    type="text"
-                    name="current-password"
-                    onChange={(e) => setCurrentPassword(e.target.value)}
-                    value={currentPassword}
-                />
-                <label htmlFor="new-password">New Password</label>
-                <input
-                    type="text"
-                    name="new-password"
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    value={newPassword}
-                />
+                <label htmlFor="name">
+                    Name
+                    <input type="text" name="name" onChange={(e) => setName(e.target.value)} value={name} />
+                </label>
+                <label htmlFor="email">
+                    Email
+                    <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} value={email} />
+                </label>
+                <label htmlFor="current-password">
+                    Current Password
+                    <input
+                        type="text"
+                        name="current-password"
+                        onChange={(e) => setCurrentPassword(e.target.value)}
+                        value={currentPassword}
+                    />
+                </label>
+                <label htmlFor="new-password">
+                    New Password
+                    <input
+                        type="text"
+                        name="new-password"
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        value={newPassword}
+                    />
+                </label>
                 <input type="submit" value="Update" />
             </form>
             <button onClick={() => deleteUser.mutate()}>Delete my account</button>
