@@ -24,21 +24,25 @@
     /* Colors */
     --color-info-light: hsl(203, 99%, 99%);
     --color-info-base: hsl(203, 92%, 75%);
-    --color-info-dark: hsl(203, 100%, 15%);
-    --color-info-dark-50: hsla(203, 100%, 15%, 0.5);
+    --color-info-dark: hsl(203, 95%, 35%);
+    --color-info-darkest: hsl(203, 100%, 15%);
+    --color-info-darkest-50: hsla(203, 100%, 15%, 0.5);
 
     --color-success-light: hsl(120, 99%, 99%);
     --color-success-base: hsl(120, 66%, 75%);
-    --color-success-dark: hsl(120, 100%, 10%);
-    --color-success-dark-50: hsl(120, 100%, 15%, 0.5);
+    --color-success-dark: hsl(120, 95%, 20%);
+    --color-success-darkest: hsl(120, 100%, 10%);
+    --color-success-darkest-50: hsl(120, 100%, 15%, 0.5);
 
     --color-error-light: hsl(0, 99%, 99%);
     --color-error-base: hsl(0, 92%, 75%);
-    --color-error-dark: hsl(0, 100%, 15%);
-    --color-error-dark-50: hsl(0, 100%, 15%, 0.5);
+    --color-error-dark: hsl(0, 95%, 25%);
+    --color-error-darkest: hsl(0, 100%, 15%);
+    --color-error-darkest-50: hsl(0, 100%, 15%, 0.5);
 
     --color-warning-light: hsl(39, 99%, 99%);
     --color-warning-base: hsl(39, 92%, 75%);
-    --color-warning-dark: hsl(39, 100%, 15%);
-    --color-warning-dark-50: hsl(39, 100%, 15%, 0.5);
+    --color-warning-dark: hsl(39, 95%, 25%);
+    --color-warning-darkest: hsl(39, 100%, 15%);
+    --color-warning-darkest-50: hsl(39, 100%, 15%, 0.5);
 }

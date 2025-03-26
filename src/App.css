@@ -28,6 +28,17 @@ p {
     margin-bottom: 0.5em;
 }
 
+a:not(nav a) {
+    color: var(--color-info-dark);
+    text-decoration-color: var(--color-info-dark);
+    text-decoration-thickness: var(--spacing-xs);
+
+    &:hover {
+        color: var(--color-info-base);
+        text-decoration-color: var(--color-info-base);
+    }
+}
+
 button,
 input[type="submit"] {
     border: none;
