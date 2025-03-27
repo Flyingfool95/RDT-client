@@ -1,6 +1,7 @@
 import { Suspense, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
+import Loader from "../../loader/components/Loader";
 
 export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
     const location = useLocation();
@@ -41,7 +42,7 @@ export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
     }, []);
 
     if (!isAuthChecked) {
-        return <h1>Checking auth....</h1>; /* Add loading spinner */
+        return <Loader />;
     }
 
     if (isProtected && !user) {
@@ -53,7 +54,7 @@ export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
     }
 
     return (
-        <Suspense fallback={<h1>Loading....</h1> /* Add loading spinner */}>
+        <Suspense fallback={<Loader />}>
             <Outlet />
         </Suspense>
     );

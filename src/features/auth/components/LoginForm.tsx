@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/LoginForm.css";
 import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
+import Loader from "../../loader/components/Loader";
 
 export default function LoginForm() {
     const { loginUser } = useAuth();
@@ -17,7 +18,10 @@ export default function LoginForm() {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="email"  className={loginUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}>
+                <label
+                    htmlFor="email"
+                    className={loginUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
+                >
                     Email
                     <input
                         type="email"
@@ -28,7 +32,10 @@ export default function LoginForm() {
                     />
                 </label>
 
-                <label htmlFor="password" className={loginUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}>
+                <label
+                    htmlFor="password"
+                    className={loginUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
+                >
                     Password
                     <input
                         type="password"
@@ -45,7 +52,7 @@ export default function LoginForm() {
                 </span>
             </form>
 
-            {loginUser.isPending && <h1>Loging in...</h1>}
+            {loginUser.isPending && <Loader />}
         </>
     );
 }
