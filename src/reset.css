@@ -39,5 +39,5 @@ button,
 textarea,
 select {
     font-family: inherit;
-    font-size: inherit;
+    font-size: var(--text-body-medium);
 }

@@ -22,6 +22,12 @@
     --spacing-xl: calc(var(--size-base) * 2);
 
     /* Colors */
+    --color-primary-light: hsl(276, 100%, 95%);
+    --color-primary-base: hsl(276, 92%, 75%);
+    --color-primary-dark: hsl(276, 95%, 45%);
+    --color-primary-darkest: hsl(276, 100%, 15%);
+    --color-primary-darkest-50: hsl(276, 100%, 15%, 0.5);
+
     --color-info-light: hsl(203, 99%, 99%);
     --color-info-base: hsl(203, 92%, 75%);
     --color-info-dark: hsl(203, 95%, 35%);
