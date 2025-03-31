@@ -189,8 +189,6 @@ export default function useAuth() {
 
     const resetPassword = useMutation({
         mutationFn: async ({ token, password }: { token: string; password: string }) => {
-            console.log(token);
-            console.log(password);
             const validatedInputData = validateInputData(resetPasswordSchema, { token, password });
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/reset-password`, {
                 method: "POST",
@@ -203,18 +201,18 @@ export default function useAuth() {
 
             const results = await response.json();
 
-            if (response.status >= 400) {
-                console.log(results);
+            if (!results.success) {
                 throw new Error(results.errors);
             }
 
-            console.log(results);
+            return results;
         },
         onSuccess: (results: any) => {
             addNotification({ message: results.message, type: "success" });
             navigate("/login");
         },
         onError: (error) => {
+            console.log(error);
             addNotification({ message: error.message, type: "error", duration: 7000 });
         },
     });
@@ -239,7 +237,7 @@ export default function useAuth() {
                 throw new Error(results.errors);
             }
 
-            console.log(results);
+            return results;
         },
         onSuccess: (results: any) => {
             addNotification({ message: results.message, type: "success" });
