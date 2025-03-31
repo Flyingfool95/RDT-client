@@ -8,6 +8,7 @@ import NotificationList from "./features/notifications/components/NotificationLi
 import Login from "./routes/auth/Login";
 import AppNavigation from "./features/app-navigation/components/AppNavigation";
 import Register from "./routes/auth/Register";
+import ResetPassword from "./routes/auth/ResetPassword";
 
 const Dashboard = lazy(() => import("./routes/protected/Dashboard"));
 const Profile = lazy(() => import("./routes/protected/Profile"));
@@ -20,6 +21,7 @@ function App() {
                 <Route element={<RouteGuard isProtected={false} />}>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
                 </Route>
 
                 {/* Protected Routes */}

@@ -50,6 +50,9 @@ export default function LoginForm() {
                 <span>
                     Not a user yet? <Link to="/register">Register here!</Link>
                 </span>
+                <span>
+                    Forgotten your password? <Link to="/reset-password">Reset it here!</Link>
+                </span>
             </form>
 
             {loginUser.isPending && <Loader />}

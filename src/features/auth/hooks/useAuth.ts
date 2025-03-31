@@ -1,7 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
-import { loginSchema, registerSchema, updateUserSchema } from "../../../../zod/auth";
+import {
+    loginSchema,
+    registerSchema,
+    resetPasswordSchema,
+    sendResetEmailSchema,
+    updateUserSchema,
+} from "../../../../zod/auth";
 import { validateInputData } from "../../../../helpers/auth";
 
 import useAuthStore from "../store/useAuthStore";
@@ -181,11 +187,76 @@ export default function useAuth() {
         },
     });
 
+    const resetPassword = useMutation({
+        mutationFn: async ({ token, password }: { token: string; password: string }) => {
+            console.log(token);
+            console.log(password);
+            const validatedInputData = validateInputData(resetPasswordSchema, { token, password });
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/reset-password`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify(validatedInputData),
+            });
+
+            const results = await response.json();
+
+            if (response.status >= 400) {
+                console.log(results);
+                throw new Error(results.errors);
+            }
+
+            console.log(results);
+        },
+        onSuccess: (results: any) => {
+            addNotification({ message: results.message, type: "success" });
+            navigate("/login");
+        },
+        onError: (error) => {
+            addNotification({ message: error.message, type: "error", duration: 7000 });
+        },
+    });
+
+    const sendResetEmail = useMutation({
+        mutationFn: async (email: string) => {
+            const validatedInputData = validateInputData(sendResetEmailSchema, email);
+
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/send-reset-email`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify(validatedInputData),
+            });
+
+            const results = await response.json();
+
+            if (response.status >= 400) {
+                console.log(results);
+                throw new Error(results.errors);
+            }
+
+            console.log(results);
+        },
+        onSuccess: (results: any) => {
+            addNotification({ message: results.message, type: "success" });
+            navigate("/login");
+        },
+        onError: (error) => {
+            addNotification({ message: error.message, type: "error", duration: 7000 });
+        },
+    });
+
     return {
         registerUser,
         loginUser,
         updateUser,
         logoutUser,
         deleteUser,
+        resetPassword,
+        sendResetEmail,
     };
 }
