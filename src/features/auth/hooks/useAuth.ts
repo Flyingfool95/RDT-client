@@ -12,6 +12,7 @@ import { validateInputData } from "../../../../helpers/auth";
 
 import useAuthStore from "../store/useAuthStore";
 import useNotificationStore from "../../notifications/store/useNotificationStore";
+import { useFetch } from "../../shared/helpers";
 
 export default function useAuth() {
     const { addNotification } = useNotificationStore((state) => state);
@@ -31,19 +32,7 @@ export default function useAuth() {
         }) => {
             const validatedInputData = validateInputData(registerSchema, { email, password, confirmPassword });
 
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/register`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(validatedInputData),
-            });
-
-            const results = await response.json();
-
-            if (response.status >= 400) {
-                throw new Error(results.errors);
-            }
+            const results = await useFetch("/api/v1/auth/register", "POST", false, validatedInputData);
 
             return results;
         },
@@ -61,21 +50,7 @@ export default function useAuth() {
         mutationFn: async ({ email, password }: { email: string; password: string }) => {
             const validatedInputData = validateInputData(loginSchema, { email, password });
 
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/login`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify(validatedInputData),
-            });
-
-            const results = await response.json();
-
-            if (response.status >= 400) {
-                console.log(results);
-                throw new Error(results.errors);
-            }
+            const results = await useFetch("/api/v1/auth/login", "POST", true, validatedInputData);
 
             return results;
         },
@@ -100,19 +75,7 @@ export default function useAuth() {
         }) => {
             const validatedInputData = validateInputData(updateUserSchema, updateData);
 
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/update`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify(validatedInputData),
-            });
-
-            const results = await response.json();
-
-            if (response.status >= 400) {
-                console.log(results);
-                throw new Error(results.errors);
-            }
+            const results = await useFetch("/api/v1/auth/update", "PUT", true, validatedInputData);
 
             return results;
         },
@@ -127,17 +90,7 @@ export default function useAuth() {
 
     const logoutUser = useMutation({
         mutationFn: async () => {
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/logout`, {
-                method: "GET",
-                credentials: "include",
-            });
-
-            const results = await response.json();
-
-            if (response.status >= 400) {
-                console.log(results);
-                throw new Error(results.errors);
-            }
+            const results = await useFetch("/api/v1/auth/logout", "GET", true);
 
             return results;
         },
@@ -155,21 +108,7 @@ export default function useAuth() {
         mutationFn: async () => {
             if (!user) throw new Error("User does not exist");
 
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/delete`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify({ id: user.id }),
-            });
-
-            const results = await response.json();
-
-            if (response.status >= 400) {
-                console.log(results);
-                throw new Error(results.errors);
-            }
+            const results = await useFetch("/api/v1/auth/delete", "DELETE", true, JSON.stringify({ id: user.id }));
 
             return results;
         },
@@ -186,20 +125,8 @@ export default function useAuth() {
     const resetPassword = useMutation({
         mutationFn: async ({ token, password }: { token: string; password: string }) => {
             const validatedInputData = validateInputData(resetPasswordSchema, { token, password });
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/reset-password`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify(validatedInputData),
-            });
 
-            const results = await response.json();
-
-            if (!results.success) {
-                throw new Error(results.errors);
-            }
+            const results = await useFetch("/api/v1/auth/reset-password", "POST", false, validatedInputData);
 
             return results;
         },
@@ -216,23 +143,10 @@ export default function useAuth() {
     const sendResetEmail = useMutation({
         mutationFn: async (email: string) => {
             const validatedInputData = validateInputData(sendResetEmailSchema, email);
-
-            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/send-reset-email`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify(validatedInputData),
-            });
-
-            const results = await response.json();
-
-            if (response.status >= 400) {
-                console.log(results);
-                throw new Error(results.errors);
-            }
-
+            
+            const results = await useFetch("/api/v1/auth/send-reset-email", "POST", false, validatedInputData);
+            console.log(results)
+            
             return results;
         },
         onSuccess: (results: any) => {
