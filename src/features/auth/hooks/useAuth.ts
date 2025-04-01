@@ -48,12 +48,12 @@ export default function useAuth() {
             return results;
         },
         onSuccess: (results) => {
-            addNotification({ message: results.message, type: "success" });
+            addNotification(results.message, "success");
             navigate("/login");
         },
         onError: (error) => {
             console.log(error);
-            addNotification({ message: error.message, type: "error", duration: 7000 });
+            addNotification(error.message, "error", 7000);
         },
     });
 
@@ -81,13 +81,13 @@ export default function useAuth() {
         },
         onSuccess: (results) => {
             setUser(results.data);
-            addNotification({ message: results.message, type: "success" });
+            addNotification(results.message, "success");
             navigate("/");
         },
         onError: (error) => {
             console.log(error);
 
-            addNotification({ message: error.message, type: "error", duration: 7000 });
+            addNotification(error.message, "error", 7000);
         },
     });
 
@@ -118,14 +118,10 @@ export default function useAuth() {
         },
         onSuccess: (results) => {
             setUser(results.data);
-            addNotification({ message: results.message, type: "success" });
+            addNotification(results.message, "success");
         },
         onError: (error) => {
-            addNotification({
-                message: error.message,
-                type: "error",
-                duration: 7000,
-            });
+            addNotification(error.message, "error", 7000);
         },
     });
 
@@ -147,11 +143,11 @@ export default function useAuth() {
         },
         onSuccess: (results) => {
             setUser(null);
-            addNotification({ message: results.message, type: "info" });
+            addNotification(results.message, "info");
             navigate("/login");
         },
         onError: (error) => {
-            addNotification({ message: error.message, type: "error", duration: 7000 });
+            addNotification(error.message, "error", 7000);
         },
     });
 
@@ -179,11 +175,11 @@ export default function useAuth() {
         },
         onSuccess: (results) => {
             setUser(null);
-            addNotification({ message: results.message, type: "success" });
+            addNotification(results.message, "success");
             navigate("/login");
         },
         onError: (error) => {
-            addNotification({ message: error.message, type: "error", duration: 7000 });
+            addNotification(error.message, "error", 7000);
         },
     });
 
@@ -208,12 +204,12 @@ export default function useAuth() {
             return results;
         },
         onSuccess: (results: any) => {
-            addNotification({ message: results.message, type: "success" });
+            addNotification(results.message, "success");
             navigate("/login");
         },
         onError: (error) => {
             console.log(error);
-            addNotification({ message: error.message, type: "error", duration: 7000 });
+            addNotification(error.message, "error", 7000);
         },
     });
 
@@ -240,11 +236,11 @@ export default function useAuth() {
             return results;
         },
         onSuccess: (results: any) => {
-            addNotification({ message: results.message, type: "success" });
+            addNotification(results.message, "success");
             navigate("/login");
         },
         onError: (error) => {
-            addNotification({ message: error.message, type: "error", duration: 7000 });
+            addNotification(error.message, "error", 7000);
         },
     });
 
