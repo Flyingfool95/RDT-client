@@ -8,12 +8,9 @@ export async function useFetch(endpoint: string, method: string = "GET", credent
         body: JSON.stringify(data),
     });
 
-    console.log(response);
-
     const results = await response.json();
 
     if (!results.success) {
-        console.log(results);
         throw new Error(results.errors);
     }
 
