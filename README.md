@@ -1,50 +1,77 @@
-# React + TypeScript + Vite
+# RDT Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application built with **Vite**, **React**, and **TypeScript**. This project provides a responsive and efficient client-side interface, featuring modular design and scalable architecture. Out of the box compatible with [RDT - Server](https://github.com/Flyingfool95/RDT-server).
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚡️ Lightning-fast bundling with **Vite**
+- 🎯 Type-safe development using **TypeScript**
+- 🧱 Modular components and feature-based architecture
+- 🧭 Built-in app navigation
+- 🌐 Environment configuration support
+- ✨ CSS styling with resets and modular styles
 
-## Expanding the ESLint configuration
+## 📁 Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+RDT-client-main/
+├── public/                 # Static assets
+├── src/                    # Main application source
+│   ├── features/           # Feature modules
+│   ├── App.tsx            # Root component
+│   ├── main.tsx           # App entry point
+│   └── styles/             # App-wide styles
+├── helpers/               # Utility and helper functions
+├── .env.example           # Environment variable template
+├── vite.config.ts         # Vite configuration
+├── tsconfig.json          # TypeScript configuration
+└── ...
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🛠️ Getting Started
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Prerequisites
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+- [Node.js](https://nodejs.org/) (v16+ recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Installation
+
+```bash
+git clone https://github.com/your-username/RDT-client.git
+cd RDT-client
+npm install
 ```
+
+### Running the App
+
+```bash
+npm run dev
+```
+
+The app should now be running at `http://localhost:5173`.
+
+## 🧪 Scripts
+
+- `npm run dev` – Start development server
+- `npm run build` – Create a production build
+
+## 🧰 Tech Stack
+
+- **Framework**: React
+- **Language**: TypeScript
+- **Bundler**: Vite
+- **Linting**: ESLint
+- **Styling**: CSS
+
+## 📄 Environment Variables
+
+Create a `.env` file in the root directory using `.env.example` as a reference:
+
+```env
+VITE_API_URL=https://api.example.com
+```
+
+## 📃 License
+
+[MIT](LICENSE)
