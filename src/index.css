@@ -51,4 +51,7 @@
     --color-warning-dark: hsl(39, 95%, 25%);
     --color-warning-darkest: hsl(39, 100%, 15%);
     --color-warning-darkest-50: hsl(39, 100%, 15%, 0.5);
+
+    /* Animations and transitions */
+    --transition: 150ms ease-in-out;
 }

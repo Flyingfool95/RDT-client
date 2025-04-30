@@ -7,8 +7,6 @@ export default function ResetPassword() {
     const queryParams = new URLSearchParams(search);
     const token = queryParams.get("token");
 
-    console.log(token);
-
     return (
         <main className="reset-password">
             {token ? <ResetPasswordForm token={token as string} /> : <SendResetEmailForm />}

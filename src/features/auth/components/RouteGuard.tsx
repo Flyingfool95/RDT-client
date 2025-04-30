@@ -2,8 +2,11 @@ import { Suspense, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
 import Loader from "../../loader/components/Loader";
+import { convertPixelDataToImage } from "../../shared/helpers";
 
 export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
+    const publicOnlyPaths = ["/login", "/register"];
+
     const location = useLocation();
 
     const { user, setUser, isAuthChecked, setIsAuthChecked } = useAuthStore((state) => state);
@@ -24,22 +27,31 @@ export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
 
             const res = await result.json();
 
-            setIsAuthChecked(true);
-
-            if (!res.success) return setUser(null);
-
             clearTimeout(timeoutId);
-            setUser(res.data);
+
+            if (!res.success) {
+                setUser(null);
+            } else {
+                setUser({
+                    id: res.data.id,
+                    name: res.data.name,
+                    email: res.data.email,
+                    image: await convertPixelDataToImage(res.data.image),
+                });
+            }
         } catch (error) {
-            setIsAuthChecked(true);
             clearTimeout(timeoutId);
             setUser(null);
+        } finally {
+            setIsAuthChecked(true);
         }
     };
 
     useEffect(() => {
-        handleCheckAuth();
-    }, []);
+        if (!isAuthChecked) {
+            handleCheckAuth();
+        }
+    }, [isAuthChecked]);
 
     if (!isAuthChecked) {
         return <Loader />;
@@ -49,7 +61,7 @@ export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    if (!isProtected && user) {
+    if (!isProtected && user && publicOnlyPaths.includes(location.pathname)) {
         return <Navigate to="/" replace />;
     }
 

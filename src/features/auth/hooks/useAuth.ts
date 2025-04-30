@@ -6,9 +6,8 @@ import {
     registerSchema,
     resetPasswordSchema,
     sendResetEmailSchema,
-    updateUserSchema,
 } from "../../../../zod/auth";
-import { validateInputData } from "../../../../helpers/auth";
+import { convertPixelDataToImage, validateInputData } from "../../shared/helpers";
 
 import useAuthStore from "../store/useAuthStore";
 import useNotificationStore from "../../notifications/store/useNotificationStore";
@@ -54,36 +53,18 @@ export default function useAuth() {
 
             return results;
         },
-        onSuccess: (results) => {
-            setUser(results.data);
+        onSuccess: async (results) => {
+            setUser({
+                id: results.data.id,
+                name: results.data.name,
+                email: results.data.email,
+                image: await convertPixelDataToImage(results.data.image),
+            });
             addNotification(results.message, "success");
             navigate("/");
         },
         onError: (error) => {
             console.log(error);
-
-            addNotification(error.message, "error", 7000);
-        },
-    });
-
-    const updateUser = useMutation({
-        mutationFn: async (updateData: {
-            currentPassword?: string;
-            newPassword?: string;
-            email?: string;
-            name?: string;
-        }) => {
-            const validatedInputData = validateInputData(updateUserSchema, updateData);
-
-            const results = await useFetch("/api/v1/auth/update", "PUT", true, validatedInputData);
-
-            return results;
-        },
-        onSuccess: (results) => {
-            setUser(results.data);
-            addNotification(results.message, "success");
-        },
-        onError: (error) => {
             addNotification(error.message, "error", 7000);
         },
     });
@@ -143,10 +124,9 @@ export default function useAuth() {
     const sendResetEmail = useMutation({
         mutationFn: async (email: string) => {
             const validatedInputData = validateInputData(sendResetEmailSchema, email);
-            
+
             const results = await useFetch("/api/v1/auth/send-reset-email", "POST", false, validatedInputData);
-            console.log(results)
-            
+
             return results;
         },
         onSuccess: (results: any) => {
@@ -161,7 +141,6 @@ export default function useAuth() {
     return {
         registerUser,
         loginUser,
-        updateUser,
         logoutUser,
         deleteUser,
         resetPassword,
