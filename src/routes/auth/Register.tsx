@@ -1,4 +1,4 @@
-import "../styles/register.css";
+import "../styles/Register.css";
 
 import RegisterForm from "../../features/auth/components/RegisterForm";
 
