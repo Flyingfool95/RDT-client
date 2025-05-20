@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { useFetch, validateInputData } from "../../shared/helpers";
+import { convertPixelDataToImage, useFetch, validateInputData } from "../../shared/helpers";
 import { updateImageSchema } from "../../../../zod/profile";
 import useNotificationStore from "../../notifications/store/useNotificationStore";
 import { updateUserSchema } from "../../../../zod/auth";
@@ -39,8 +39,13 @@ export default function useProfile() {
 
             return results;
         },
-        onSuccess: (results) => {
-            setUser(results.data);
+        onSuccess: async (results) => {
+            setUser({
+                id: results.data.id,
+                name: results.data.name,
+                email: results.data.email,
+                image: await convertPixelDataToImage(results.data.image),
+            });
             addNotification(results.message, "success");
         },
         onError: (error) => {
