@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import { IAuthStore, IUser } from "../../../../types/auth";
+import { TypeAuthStore, TypeUser } from "../types";
 
-const useAuthStore = create<IAuthStore>((set) => ({
+const useAuthStore = create<TypeAuthStore>((set) => ({
     user: null,
-    setUser: (newUser: IUser | null) => {
+    setUser: (newUser: TypeUser | null) => {
         set(() => ({
             user: newUser,
         }));

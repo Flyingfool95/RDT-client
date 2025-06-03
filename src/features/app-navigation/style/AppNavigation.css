@@ -16,4 +16,7 @@ nav {
         color: var(--color-primary-light);
         border-bottom: 2px solid var(--color-primary-light);
     }
+    .logo{
+        margin-right: auto;
+    }
 }

@@ -1,0 +1,62 @@
+import { useEffect, useState } from "react";
+import "../styles/ImageInput.css";
+import { optimizeImage } from "../helpers";
+
+/* TODO */
+//Remove image btn
+//Fix feedback messages to be local to this component
+/*  */
+
+type WithImage = { image: string | null };
+
+export default function ImageInput<T extends WithImage | null>({ data }: { data: T }) {
+    const [imageFile, setImageFile] = useState<Blob | MediaSource | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string | null>(data?.image || null);
+
+    useEffect(() => {
+        if (!imageFile) return;
+
+        console.log(imageFile);
+        setPreviewUrl(URL.createObjectURL(imageFile));
+
+        return () => {
+            if (!previewUrl) return;
+            URL.revokeObjectURL(previewUrl);
+        };
+    }, [imageFile]);
+
+    const handleInputUpdate = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (!e.target.files) return;
+
+        const file = e.target.files[0];
+        if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
+            const optimizedImage = await optimizeImage(file);
+            setImageFile(optimizedImage);
+        } else {
+            //Fix feedback to render in the ui instead
+            alert("Only JPG or PNG files are allowed.");
+            e.target.value = "";
+        }
+    };
+
+    return (
+        <div
+            className="image-input"
+            style={{
+                backgroundImage: previewUrl ? `url(${previewUrl})` : "none",
+            }}
+        >
+            <label htmlFor="image" className="image-label">
+                Image
+            </label>
+            <input
+                type="file"
+                name="image"
+                id="image"
+                accept="image/jpeg, image/png"
+                onChange={(e) => handleInputUpdate(e)}
+                className="visual-hide"
+            />
+        </div>
+    );
+}

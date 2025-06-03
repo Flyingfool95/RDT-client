@@ -1,7 +1,11 @@
-.profile-image {
+.image-input {
     position: relative;
     border-radius: var(--spacing-xs);
-    margin-bottom: var(--spacing-medium);
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+    max-width: 100px;
+    aspect-ratio: 1;
 
     .image-label {
         border-radius: var(--spacing-xs);

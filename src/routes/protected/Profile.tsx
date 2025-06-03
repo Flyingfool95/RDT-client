@@ -1,16 +1,14 @@
 import useAuth from "../../features/auth/hooks/useAuth";
-import Image from "../../features/profile/components/Image";
-import Details from "../../features/profile/components/Details";
+import ProfileDetails from "../../features/profile/components/ProfileDetails";
 import Modal from "../../features/shared/components/Modal";
 
 export default function Profile() {
     const { deleteUser } = useAuth();
 
     return (
-        <main>
+        <main className="profile">
             <h1>Profile</h1>
-            <Image />
-            <Details />
+            <ProfileDetails />
             <Modal buttonContent="Delete Profile">
                 <button onClick={() => deleteUser.mutate()}>Delete my account</button>
             </Modal>

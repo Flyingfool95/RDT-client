@@ -1,17 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
-import {
-    loginSchema,
-    registerSchema,
-    resetPasswordSchema,
-    sendResetEmailSchema,
-} from "../../../../zod/auth";
+import { loginSchema, registerSchema, resetPasswordSchema, sendResetEmailSchema } from "../validation";
 import { convertPixelDataToImage, validateInputData } from "../../shared/helpers";
 
 import useAuthStore from "../store/useAuthStore";
 import useNotificationStore from "../../notifications/store/useNotificationStore";
-import { useFetch } from "../../shared/helpers";
+import { customFetch } from "../../shared/helpers";
+import { TypeUserResponse } from "../types";
 
 export default function useAuth() {
     const { addNotification } = useNotificationStore((state) => state);
@@ -31,7 +27,9 @@ export default function useAuth() {
         }) => {
             const validatedInputData = validateInputData(registerSchema, { email, password, confirmPassword });
 
-            const results = await useFetch("/api/v1/auth/register", "POST", false, validatedInputData);
+            const results = await customFetch("/api/v1/auth/register", "POST", false, validatedInputData);
+
+            console.log(results);
 
             return results;
         },
@@ -49,16 +47,16 @@ export default function useAuth() {
         mutationFn: async ({ email, password }: { email: string; password: string }) => {
             const validatedInputData = validateInputData(loginSchema, { email, password });
 
-            const results = await useFetch("/api/v1/auth/login", "POST", true, validatedInputData);
+            const results: TypeUserResponse = await customFetch("/api/v1/auth/login", "POST", true, validatedInputData);
 
             return results;
         },
         onSuccess: async (results) => {
             setUser({
-                id: results.data.id,
-                name: results.data.name,
-                email: results.data.email,
-                image: await convertPixelDataToImage(results.data.image),
+                id: results.data.user.id,
+                name: results.data.user.name,
+                email: results.data.user.email,
+                image: await convertPixelDataToImage(results.data.user.image),
             });
             addNotification(results.message, "success");
             navigate("/");
@@ -71,7 +69,7 @@ export default function useAuth() {
 
     const logoutUser = useMutation({
         mutationFn: async () => {
-            const results = await useFetch("/api/v1/auth/logout", "GET", true);
+            const results = await customFetch("/api/v1/auth/logout", "GET", true);
 
             return results;
         },
@@ -89,7 +87,7 @@ export default function useAuth() {
         mutationFn: async () => {
             if (!user) throw new Error("User does not exist");
 
-            const results = await useFetch("/api/v1/auth/delete", "DELETE", true, JSON.stringify({ id: user.id }));
+            const results = await customFetch("/api/v1/auth/delete", "DELETE", true, JSON.stringify({ id: user.id }));
 
             return results;
         },
@@ -107,7 +105,7 @@ export default function useAuth() {
         mutationFn: async ({ token, password }: { token: string; password: string }) => {
             const validatedInputData = validateInputData(resetPasswordSchema, { token, password });
 
-            const results = await useFetch("/api/v1/auth/reset-password", "POST", false, validatedInputData);
+            const results = await customFetch("/api/v1/auth/reset-password", "POST", false, validatedInputData);
 
             return results;
         },
@@ -122,10 +120,10 @@ export default function useAuth() {
     });
 
     const sendResetEmail = useMutation({
-        mutationFn: async (email: string) => {
-            const validatedInputData = validateInputData(sendResetEmailSchema, email);
+        mutationFn: async (data: { email: string }) => {
+            const validatedInputData = validateInputData(sendResetEmailSchema, data);
 
-            const results = await useFetch("/api/v1/auth/send-reset-email", "POST", false, validatedInputData);
+            const results = await customFetch("/api/v1/auth/send-reset-email", "POST", false, validatedInputData);
 
             return results;
         },

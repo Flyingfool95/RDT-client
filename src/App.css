@@ -49,11 +49,14 @@ input[type="submit"] {
 form {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
     gap: var(--spacing-medium);
 
     width: 100%;
     max-width: 400px;
+
+    > div {
+        flex-basis: 100%;
+    }
 
     label {
         flex-basis: 100%;
@@ -90,15 +93,14 @@ form {
         width: fit-content;
     }
 
-    label.zod-error {
+    .zod-error label {
         color: var(--color-error-base) !important;
-
-        input {
-            color: var(--color-error-dark) !important;
-            border-color: var(--color-error-base) !important;
-            background-color: var(--color-error-light) !important;
-            box-shadow: 1px 1px 3px 0 var(--color-error-dark-50) !important;
-        }
+    }
+    .zod-error input {
+        color: var(--color-error-dark) !important;
+        border-color: var(--color-error-base) !important;
+        background-color: var(--color-error-light) !important;
+        box-shadow: 1px 1px 3px 0 var(--color-error-dark-50) !important;
     }
 }
 

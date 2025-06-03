@@ -10,7 +10,7 @@ export default function SendResetEmailForm() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        sendResetEmail.mutate(email);
+        sendResetEmail.mutate({ email: email });
     };
 
     return (

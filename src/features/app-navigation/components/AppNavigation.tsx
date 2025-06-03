@@ -1,5 +1,5 @@
-import { NavLink, Outlet } from "react-router-dom";
 import "../style/AppNavigation.css";
+import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../../auth/hooks/useAuth";
 
 export default function AppNavigation() {
@@ -8,6 +8,7 @@ export default function AppNavigation() {
     return (
         <>
             <nav>
+                <img src="#" alt="Logo" className="logo"/>
                 <NavLink to={"/"}>Dashboard</NavLink>
                 <NavLink to={"/profile"}>Profile</NavLink>
                 <button onClick={() => logoutUser.mutate()}>Logout</button>
