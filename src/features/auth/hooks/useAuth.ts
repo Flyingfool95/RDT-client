@@ -2,12 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
 import { loginSchema, registerSchema, resetPasswordSchema, sendResetEmailSchema } from "../validation";
-import { convertPixelDataToImage, validateInputData } from "../../shared/helpers";
+import { convertPixelDataToImage, validateInputData } from "../../shared/helpers/helpers";
 
 import useAuthStore from "../store/useAuthStore";
 import useNotificationStore from "../../notifications/store/useNotificationStore";
-import { customFetch } from "../../shared/helpers";
 import { TypeUserResponse } from "../types";
+import { TypeResponse } from "../../shared/types";
+import { customFetch } from "../../shared/helpers/customFetch";
 
 export default function useAuth() {
     const { addNotification } = useNotificationStore((state) => state);
@@ -27,13 +28,12 @@ export default function useAuth() {
         }) => {
             const validatedInputData = validateInputData(registerSchema, { email, password, confirmPassword });
 
-            const results = await customFetch("/api/v1/auth/register", "POST", false, validatedInputData);
-
-            console.log(results);
+            const results: TypeResponse = await customFetch("/api/v1/auth/register", "POST", false, validatedInputData);
 
             return results;
         },
         onSuccess: (results) => {
+            console.log(results);
             addNotification(results.message, "success");
             navigate("/login");
         },
@@ -69,7 +69,7 @@ export default function useAuth() {
 
     const logoutUser = useMutation({
         mutationFn: async () => {
-            const results = await customFetch("/api/v1/auth/logout", "GET", true);
+            const results: TypeResponse = await customFetch("/api/v1/auth/logout", "GET", true);
 
             return results;
         },
@@ -87,7 +87,12 @@ export default function useAuth() {
         mutationFn: async () => {
             if (!user) throw new Error("User does not exist");
 
-            const results = await customFetch("/api/v1/auth/delete", "DELETE", true, JSON.stringify({ id: user.id }));
+            const results: TypeResponse = await customFetch(
+                "/api/v1/auth/delete",
+                "DELETE",
+                true,
+                JSON.stringify({ id: user.id })
+            );
 
             return results;
         },
@@ -105,11 +110,16 @@ export default function useAuth() {
         mutationFn: async ({ token, password }: { token: string; password: string }) => {
             const validatedInputData = validateInputData(resetPasswordSchema, { token, password });
 
-            const results = await customFetch("/api/v1/auth/reset-password", "POST", false, validatedInputData);
+            const results: TypeResponse = await customFetch(
+                "/api/v1/auth/reset-password",
+                "POST",
+                false,
+                validatedInputData
+            );
 
             return results;
         },
-        onSuccess: (results: any) => {
+        onSuccess: (results) => {
             addNotification(results.message, "success");
             navigate("/login");
         },
@@ -123,11 +133,16 @@ export default function useAuth() {
         mutationFn: async (data: { email: string }) => {
             const validatedInputData = validateInputData(sendResetEmailSchema, data);
 
-            const results = await customFetch("/api/v1/auth/send-reset-email", "POST", false, validatedInputData);
+            const results: TypeResponse = await customFetch(
+                "/api/v1/auth/send-reset-email",
+                "POST",
+                false,
+                validatedInputData
+            );
 
             return results;
         },
-        onSuccess: (results: any) => {
+        onSuccess: (results) => {
             addNotification(results.message, "success");
             navigate("/login");
         },

@@ -9,6 +9,7 @@ import Login from "./routes/auth/Login";
 import AppNavigation from "./features/app-navigation/components/AppNavigation";
 import Register from "./routes/auth/Register";
 import ResetPassword from "./routes/auth/ResetPassword";
+import Domain from "./routes/protected/Domain";
 
 const Dashboard = lazy(() => import("./routes/protected/Dashboard"));
 const Profile = lazy(() => import("./routes/protected/Profile"));
@@ -29,6 +30,7 @@ function App() {
                     <Route element={<AppNavigation />}>
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/profile" element={<Profile />} />
+                        <Route path="/domain" element={<Domain />} />
                     </Route>
                 </Route>
             </Routes>

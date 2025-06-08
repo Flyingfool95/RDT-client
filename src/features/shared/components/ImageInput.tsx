@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/ImageInput.css";
-import { optimizeImage } from "../helpers";
+import { optimizeImage } from "../helpers/helpers";
 
 /* TODO */
 //Remove image btn

@@ -1,9 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
-import { convertPixelDataToImage, customFetchFormData, getFilteredFormData } from "../../shared/helpers";
+import { convertPixelDataToImage, getFilteredFormData } from "../../shared/helpers/helpers";
 import useNotificationStore from "../../notifications/store/useNotificationStore";
 import useAuthStore from "../../auth/store/useAuthStore";
 import { TypeUserResponse } from "../../auth/types";
 import useAuth from "../../auth/hooks/useAuth";
+import { customFetchFormData } from "../../shared/helpers/customFetch";
 
 export default function useProfile() {
     const { addNotification } = useNotificationStore((state) => state);

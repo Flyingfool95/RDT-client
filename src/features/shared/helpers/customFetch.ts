@@ -1,6 +1,3 @@
-import { ZodSchema, ZodType } from "zod";
-import imageCompression from "browser-image-compression";
-
 export async function customFetch<T = unknown>(
     endpoint: string,
     method: string = "GET",
@@ -60,10 +57,9 @@ export async function fetchWithAuthRetry<T = unknown>(url: string, options: Requ
     };
 
     try {
-        let result: any = await fetchJson(url, baseOptions);
+        let results: any = await fetchJson(url, baseOptions);
 
-        if (!result.success && result.errors?.[0] === "Invalid access token") {
-            // Refresh tokens with a new AbortController
+        if (!results.success && results.errors?.[0] === "Invalid access token") {
             const refreshController = new AbortController();
             const refreshTimeout = setTimeout(() => refreshController.abort(), 3000);
             try {
@@ -78,91 +74,21 @@ export async function fetchWithAuthRetry<T = unknown>(url: string, options: Requ
                     throw new Error(refreshJson.errors.join(", "));
                 }
 
-                result = await fetchJson(url, baseOptions);
+                results = await fetchJson(url, baseOptions);
             } finally {
                 clearTimeout(refreshTimeout);
             }
         }
 
-        if (!result.success) {
-            throw new Error(result.errors?.join(", ") || "Unknown error");
+        if (!results.success) {
+            throw new Error(results.errors?.join(", ") || "Unknown error");
         }
 
-        return result as T;
-    } catch (error) {
-        console.error("fetchWithAuthRetry error:", error.message);
+        return results as T;
+    } catch (error: any) {
+        console.error(error.message);
         throw error;
     } finally {
         clearTimeout(timeoutId);
     }
-}
-
-export function validateInputData(schema: ZodSchema, data: unknown) {
-    const result = schema.safeParse(data);
-
-    if (!result.success) {
-        throw new Error(result.error.issues.map((err) => err.message).join("\n"));
-    }
-
-    return result.data;
-}
-
-export function zodValidator(schema: ZodType, formData: FormData) {
-    const rawData = Object.fromEntries(formData.entries());
-
-    const result = schema.safeParse(rawData);
-
-    if (result.success) {
-        return { success: true, data: formData };
-    } else {
-        return {
-            success: false,
-            errors: result.error.flatten(),
-        };
-    }
-}
-
-export async function convertPixelDataToImage(pixeldata: any) {
-    const pixelValues = Object.values(pixeldata);
-    const pixelArray = new Uint8Array(pixelValues as any);
-
-    const blob = new Blob([pixelArray], { type: "iamge/jpeg" });
-    const imageUrl = URL.createObjectURL(blob);
-
-    return imageUrl;
-}
-
-export async function optimizeImage(imageData: any) {
-    const options = {
-        maxSizeMB: 0.2,
-        maxWidthOrHeight: 320,
-        useWebWorker: true,
-    };
-    try {
-        return (await imageCompression(imageData, options)) as Blob | MediaSource;
-    } catch (error) {
-        console.log(error);
-        return imageData;
-    }
-}
-
-export function getFilteredFormData(formData: FormData): FormData {
-    const filteredFormData = new FormData();
-
-    for (const [key, value] of formData.entries()) {
-        if (value instanceof File) {
-            if (value.name) {
-                filteredFormData.append(key, value);
-            }
-        } else if (typeof value === "string" && value.trim() !== "") {
-            filteredFormData.append(key, value.trim());
-        }
-    }
-
-    const entriesArray = Array.from(filteredFormData.entries());
-    if (entriesArray.length === 0) {
-        throw new Error("No valid fields provided to update");
-    }
-
-    return filteredFormData;
 }
