@@ -6,7 +6,7 @@ Its purpose is to provide a starting point for web applications with the followi
 
 ---
 
-## ✅ Client Features
+## Client Features
 
 -   **[Vite](https://vitejs.dev/)** – Fast development build tool and dev server
 -   **TypeScript** – Strongly typed codebase for better developer experience
