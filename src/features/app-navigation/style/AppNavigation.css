@@ -25,6 +25,10 @@ nav {
         &:hover:not(.active) {
             background-color: var(--color-primary-lightest-50);
         }
+
+        &:last-of-type{
+            margin-bottom: var(--size-4);
+        }
     }
 
     .active {
