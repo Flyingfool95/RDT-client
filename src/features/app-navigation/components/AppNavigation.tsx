@@ -11,7 +11,6 @@ export default function AppNavigation() {
                 <img src="#" alt="Logo" className="logo" />
                 <NavLink to={"/"}>Dashboard</NavLink>
                 <NavLink to={"/profile"}>Profile</NavLink>
-                <NavLink to={"/domain"}>Domain</NavLink>
                 <button onClick={() => logoutUser.mutate()}>Logout</button>
             </nav>
             <Outlet />
