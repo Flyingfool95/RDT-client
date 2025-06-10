@@ -18,7 +18,7 @@ main {
     min-height: 100%;
     padding: 1rem;
 
-    background-color: var(--color-primary-lightest);
+    background-color: var(--color-primary-lightest-50);
 }
 
 h1,
@@ -51,9 +51,20 @@ a:not(nav a) {
 
 button,
 input[type="submit"] {
+    width: fit-content;
     border: none;
     cursor: pointer;
     border-radius: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-medium);
+    transition: var(--transition);
+
+    background-color: var(--color-primary-light);
+    color: var(--color-primary-darkest);
+
+    &:hover {
+        background-color: var(--color-primary-dark);
+        color: var(--color-primary-lightest);
+    }
 }
 
 form {
@@ -88,11 +99,6 @@ form {
             box-shadow: 1px 1px 3px 0 var(--color-info-darkest-50);
             outline: none;
         }
-    }
-
-    input[type="submit"] {
-        width: fit-content;
-        padding: var(--spacing-xs) var(--spacing-large);
     }
 
     span {

@@ -4,6 +4,7 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: var(--spacing-medium);
 
     background-color: var(--color-primary-light);
@@ -28,7 +29,7 @@ nav {
             background-color: var(--color-primary-lightest-50);
         }
 
-        &:last-of-type{
+        &:last-of-type {
             margin-bottom: var(--size-4);
         }
     }
