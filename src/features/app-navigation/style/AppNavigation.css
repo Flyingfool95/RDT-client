@@ -22,6 +22,8 @@ nav {
         padding-left: 1rem;
         padding-right: var(--spacing-medium);
 
+        border-radius: var(--spacing-xs);
+
         &:hover:not(.active) {
             background-color: var(--color-primary-lightest-50);
         }
