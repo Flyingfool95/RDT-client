@@ -4,7 +4,7 @@ export type TypeUser = {
     id: string;
     name: string;
     email: string;
-    image: File | Blob | MediaSource | Uint8Array | string;
+    image: string | null;
 };
 
 export type TypeUserResponse = TypeResponse<{

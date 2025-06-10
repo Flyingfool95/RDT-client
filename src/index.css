@@ -29,6 +29,9 @@
     --size-5: calc(var(--size-base) * 16);
     --size-6: calc(var(--size-base) * 18);
     --size-7: calc(var(--size-base) * 20);
+    --size-8: calc(var(--size-base) * 25);
+    --size-9: calc(var(--size-base) * 30);
+    --size-10: calc(var(--size-base) * 40);
 
     /* Colors */
     --color-primary-lightest-50: hsl(230, 100%, 95%, 0.5);
