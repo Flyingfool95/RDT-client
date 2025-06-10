@@ -6,9 +6,19 @@ html {
     line-height: 1.5;
 }
 
+#app {
+    min-height: 100dvh;
+    margin: 0;
+    display: flex;
+    flex-grow: 1;
+}
+
 main {
+    flex-grow: 1;
     min-height: 100%;
     padding: 1rem;
+
+    background-color: var(--color-primary-lightest);
 }
 
 h1,
@@ -29,13 +39,13 @@ p {
 }
 
 a:not(nav a) {
-    color: var(--color-info-dark);
+    color: var(--color-info-base);
     text-decoration: none;
-    box-shadow: 0px 2px 0px 0 var(--color-info-dark);
+    box-shadow: 0px 2px 0px 0 var(--color-info-base);
 
     &:hover {
-        box-shadow: 0px 2px 0px 0 var(--color-info-base);
-        color: var(--color-info-base);
+        color: var(--color-info-dark);
+        box-shadow: 0px 2px 0px 0 var(--color-info-dark);
     }
 }
 
@@ -74,8 +84,8 @@ form {
 
         &:focus {
             border-color: var(--color-info-base);
-            background-color: var(--color-info-light);
-            box-shadow: 1px 1px 3px 0 var(--color-info-dark-50);
+            background-color: var(--color-info-lightest);
+            box-shadow: 1px 1px 3px 0 var(--color-info-darkest-50);
             outline: none;
         }
     }
@@ -97,10 +107,10 @@ form {
         color: var(--color-error-base) !important;
     }
     .zod-error input {
-        color: var(--color-error-dark) !important;
+        color: var(--color-error-darkest) !important;
         border-color: var(--color-error-base) !important;
-        background-color: var(--color-error-light) !important;
-        box-shadow: 1px 1px 3px 0 var(--color-error-dark-50) !important;
+        background-color: var(--color-error-lightest) !important;
+        box-shadow: 1px 1px 3px 0 var(--color-error-darkest-50) !important;
     }
 }
 

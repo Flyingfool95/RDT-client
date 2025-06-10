@@ -1,22 +1,41 @@
 nav {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
+    flex-basis: var(--size-2);
 
-    background-color: var(--color-primary-darkest-50);
-    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing-medium);
+
+    background-color: var(--color-primary-light);
+    padding: var(--spacing-medium);
 
     a {
+        transition: var(--transition);
         color: var(--color-primary-darkest);
         text-decoration: none;
         font-weight: bold;
+        text-align: center;
+        width: 100%;
+
+        padding-top: var(--spacing-small);
+        padding-bottom: var(--spacing-small);
+        padding-left: 1rem;
+        padding-right: var(--spacing-medium);
+
+        &:hover:not(.active) {
+            background-color: var(--color-primary-lightest-50);
+        }
     }
 
     .active {
-        color: var(--color-primary-light);
-        border-bottom: 2px solid var(--color-primary-light);
+        background-color: var(--color-primary-lightest);
+        color: var(--color-primary-dark);
     }
+
     .logo {
-        margin-right: auto;
+        margin-bottom: auto;
+    }
+    button {
+        margin-top: auto;
     }
 }

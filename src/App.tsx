@@ -15,7 +15,7 @@ const Profile = lazy(() => import("./routes/protected/Profile"));
 
 function App() {
     return (
-        <>
+        <div id="app">
             <Routes>
                 {/* Public Routes */}
                 <Route element={<RouteGuard isProtected={false} />}>
@@ -33,7 +33,7 @@ function App() {
                 </Route>
             </Routes>
             <NotificationList />
-        </>
+        </div>
     );
 }
 
