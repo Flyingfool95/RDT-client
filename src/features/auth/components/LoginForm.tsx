@@ -1,50 +1,33 @@
-import { useState } from "react";
 import "../styles/LoginForm.css";
 import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 import Loader from "../../loader/components/Loader";
+import FormInput from "../../shared/components/FormInput";
 
 export default function LoginForm() {
     const { loginUser } = useAuth();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        loginUser.mutate({ email, password });
+        loginUser.mutate(e.currentTarget);
     };
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <label
-                    htmlFor="email"
-                    className={loginUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
-                >
-                    Email
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </label>
-
-                <label
-                    htmlFor="password"
-                    className={loginUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
-                >
-                    Password
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </label>
+            <form onSubmit={(e) => handleLogin(e)}>
+                <FormInput
+                    classNames={loginUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
+                    label="Email"
+                    name="email"
+                    type="email"
+                    placeholder="my@email.com"
+                />
+                <FormInput
+                    classNames={loginUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
+                    label="Password"
+                    name="password"
+                    type="password"
+                />
 
                 <input type="submit" value="Login" />
                 <span>

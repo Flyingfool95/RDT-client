@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
 import { loginSchema, registerSchema, resetPasswordSchema, sendResetEmailSchema } from "../validation";
-import { convertPixelDataToImage, validateInputData } from "../../shared/helpers/helpers";
+import { convertPixelDataToImage, getFilteredFormData, validateInputData } from "../../shared/helpers/helpers";
 
 import useAuthStore from "../store/useAuthStore";
 import useNotificationStore from "../../notifications/store/useNotificationStore";
 import { TypeUserResponse } from "../types";
 import { TypeResponse } from "../../shared/types";
-import { customFetch } from "../../shared/helpers/customFetch";
+import { customFetch, customFetchFormData } from "../../shared/helpers/customFetch";
 
 export default function useAuth() {
     const { addNotification } = useNotificationStore((state) => state);
@@ -44,11 +44,20 @@ export default function useAuth() {
     });
 
     const loginUser = useMutation({
-        mutationFn: async ({ email, password }: { email: string; password: string }) => {
-            const validatedInputData = validateInputData(loginSchema, { email, password });
+        mutationFn: async (e: any) => {
+            const email = e.email.value;
+            const password = e.password.value;
+            validateInputData(loginSchema, {
+                email,
+                password,
+            });
 
-            const results: TypeUserResponse = await customFetch("/api/v1/auth/login", "POST", true, validatedInputData);
+            let formData = new FormData(e);
+            //Change backend to handle formData
 
+            console.log(formData);
+            const results: TypeUserResponse = await customFetchFormData("/api/v1/auth/login", "POST", true, formData);
+            console.log(results);
             return results;
         },
         onSuccess: async (results) => {

@@ -1,3 +1,4 @@
+import "../styles/FormInput.css";
 import { ChangeEvent } from "react";
 
 interface FormInputProps {
