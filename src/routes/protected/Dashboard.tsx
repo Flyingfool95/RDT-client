@@ -1,7 +1,7 @@
 export default function Dashboard() {
     return (
-        <main className="dashboard">
+        <div className="dashboard">
             <h1>Dashboard</h1>
-        </main>
+        </div>
     );
 }
