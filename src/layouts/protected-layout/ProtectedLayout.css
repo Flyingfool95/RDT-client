@@ -19,5 +19,6 @@
 
     img {
         max-width: calc(var(--size-1) - var(--spacing-medium));
+        border-radius: var(--spacing-xs);
     }
 }
