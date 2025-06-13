@@ -30,7 +30,7 @@ export default function ProfileDetails() {
 
     return (
         <form onSubmit={(e) => handleUpdate(e)} ref={formRef}>
-            <ImageInput<TypeUser | null> data={user} />
+            <ImageInput<any> data={user} />
 
             <FormInput
                 classNames={updateUser.error?.message.toLowerCase().includes("name") ? "zod-error" : ""}
