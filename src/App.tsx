@@ -34,6 +34,7 @@ function App() {
                         </Route>
                     </Route>
                 </Route>
+                <Route path="/*" element={<h1>404</h1>} />
             </Routes>
             <NotificationList />
         </div>
