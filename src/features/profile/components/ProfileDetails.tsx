@@ -1,3 +1,4 @@
+import "../styles/ProfileDetails.css";
 import { useRef } from "react";
 import useAuthStore from "../../auth/store/useAuthStore";
 import useProfile from "../hooks/useProfile";

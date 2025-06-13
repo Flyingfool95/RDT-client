@@ -2,11 +2,6 @@ import { useEffect, useState } from "react";
 import "../styles/ImageInput.css";
 import { optimizeImage } from "../helpers/helpers";
 
-/* TODO */
-//Remove image btn
-//Fix feedback messages to be local to this component
-/*  */
-
 type WithImage = { image: string | null };
 
 export default function ImageInput<T extends WithImage | null>({ data }: { data: T }) {

@@ -6,12 +6,12 @@ import Modal from "../../features/shared/components/Modal";
 
 export default function Profile() {
     return (
-        <>
+        <div className="profile">
             <ProfileDetails />
             <Modal triggerText="Delete Profile" triggerType="button" triggerClass="button-delete">
                 <DeleteProfile />
             </Modal>
-        </>
+        </div>
     );
 }
 

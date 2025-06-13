@@ -1,0 +1,23 @@
+.layout {
+    display: grid;
+    grid-template-columns: repeat(1fr, 12);
+    grid-template-rows: var(--size-1) auto;
+    gap: var(--spacing-medium);
+}
+
+.layout-header {
+    grid-column: span 12;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+
+    background-color: var(--color-primary-light);
+    padding: var(--spacing-medium);
+    border-radius: var(--spacing-small);
+
+    img {
+        max-width: calc(var(--size-1) - var(--spacing-medium));
+    }
+}

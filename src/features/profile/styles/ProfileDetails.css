@@ -1,0 +1,10 @@
+.profile {
+    position: relative;
+    grid-column: span 12;
+
+    .button-delete {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

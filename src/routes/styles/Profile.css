@@ -1,4 +1,5 @@
 .delete-profile-container {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,5 +13,9 @@
 
     button {
         display: block;
+    }
+
+    .button-delete {
+        position: inherit !important;
     }
 }

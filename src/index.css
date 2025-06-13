@@ -2,8 +2,6 @@
 :root {
     --size-base: 16px;
 
-    --size-0: 0;
-
     /* Text */
     --text-body-small: calc(var(--size-base) * 0.875);
     --text-body-medium: calc(var(--size-base) * 1);
@@ -22,13 +20,14 @@
     --spacing-xl: calc(var(--size-base) * 2);
 
     /* Sizes */
-    --size-1: calc(var(--size-base) * 8);
-    --size-2: calc(var(--size-base) * 10);
-    --size-3: calc(var(--size-base) * 12);
-    --size-4: calc(var(--size-base) * 14);
+    --size-0: 0;
+    --size-1: calc(var(--size-base) * 6);
+    --size-2: calc(var(--size-base) * 8);
+    --size-3: calc(var(--size-base) * 10);
+    --size-4: calc(var(--size-base) * 13);
     --size-5: calc(var(--size-base) * 16);
-    --size-6: calc(var(--size-base) * 18);
-    --size-7: calc(var(--size-base) * 20);
+    --size-6: calc(var(--size-base) * 19);
+    --size-7: calc(var(--size-base) * 22);
     --size-8: calc(var(--size-base) * 25);
     --size-9: calc(var(--size-base) * 30);
     --size-10: calc(var(--size-base) * 40);
