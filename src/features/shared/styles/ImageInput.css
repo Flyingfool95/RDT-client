@@ -25,4 +25,8 @@
             cursor: pointer;
         }
     }
+
+    input {
+        padding: 0 !important;
+    }
 }

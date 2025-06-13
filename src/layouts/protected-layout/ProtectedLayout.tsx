@@ -1,6 +1,6 @@
 import "./ProtectedLayout.css";
 import { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import useAuthStore from "../../features/auth/store/useAuthStore";
 
 export default function ProtectedLayout() {
@@ -26,7 +26,9 @@ export default function ProtectedLayout() {
         <main className={`layout ${pageHeading.toLowerCase()}`}>
             <div className="layout-header">
                 <h1>{pageHeading}</h1>
-                {pageHeading !== "Profile" && <img src={user?.image} alt="Profile Image" />}
+                <Link to="/profile">
+                    <img src={user?.image} alt="Profile Image" />
+                </Link>
             </div>
             <Outlet />
         </main>

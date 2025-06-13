@@ -17,8 +17,13 @@
     padding: var(--spacing-medium);
     border-radius: var(--spacing-small);
 
-    img {
+    a {
         max-width: calc(var(--size-1) - var(--spacing-medium));
         border-radius: var(--spacing-xs);
+        box-shadow: none;
+
+        &:hover {
+            box-shadow: none;
+        }
     }
 }

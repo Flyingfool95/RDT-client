@@ -67,7 +67,7 @@
     &.error {
         border-color: var(--color-error-base);
         color: var(--color-error-darkest);
-        background-color: var(--color-error-lightest-50);
+        background-color: var(--color-error-lightest);
         box-shadow: 1px 1px 3px 0 var(--color-error-darkest-50);
 
         button {
@@ -80,7 +80,7 @@
     &.info {
         border-color: var(--color-info-base);
         color: var(--color-info-darkest);
-        background-color: var(--color-info-lightest-50);
+        background-color: var(--color-info-lightest);
         box-shadow: 1px 1px 3px 0 var(--color-info-darkest-50);
 
         button {
@@ -93,7 +93,7 @@
     &.warning {
         border-color: var(--color-warning-base);
         color: var(--color-warning-darkest);
-        background-color: var(--color-warning-lightest-50);
+        background-color: var(--color-warning-lightest);
         box-shadow: 1px 1px 3px 0 var(--color-warning-darkest-50);
 
         button {
@@ -106,7 +106,7 @@
     &.success {
         border-color: var(--color-success-base);
         color: var(--color-success-darkest);
-        background-color: var(--color-success-lightest-50);
+        background-color: var(--color-success-lightest);
         box-shadow: 1px 1px 3px 0 var(--color-success-darkest-50);
 
         button {
