@@ -4,3 +4,8 @@ export type TypeResponse<T = unknown> = {
     message: string;
     success: boolean;
 };
+
+export type TypeUseModalStore = {
+    showModal: boolean;
+    setShowModal: (isShow: boolean) => void;
+};

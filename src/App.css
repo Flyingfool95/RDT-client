@@ -65,6 +65,18 @@ input[type="submit"] {
         background-color: var(--color-primary-dark);
         color: var(--color-primary-lightest);
     }
+    &.button-secondary {
+        filter: saturate(0.5);
+    }
+    &.button-delete {
+        background-color: var(--color-error-base);
+        color: var(--color-error-darkest);
+
+        &:hover {
+            background-color: var(--color-error-dark);
+            color: var(--color-error-light);
+        }
+    }
 }
 
 form {

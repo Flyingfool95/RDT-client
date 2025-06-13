@@ -1,0 +1,16 @@
+.delete-profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: var(--spacing-medium);
+
+    p {
+        flex-basis: 100%;
+        text-align: center;
+    }
+
+    button {
+        display: block;
+    }
+}
