@@ -4,7 +4,7 @@ export type TypeUser = {
     id: string;
     name: string;
     email: string;
-    image: string | null;
+    image: string | undefined;
 };
 
 export type TypeUserResponse = TypeResponse<{
@@ -12,15 +12,15 @@ export type TypeUserResponse = TypeResponse<{
 }>;
 
 export type TypeAuthStore = {
-    user: TypeUser | null;
-    setUser: (newUser: TypeUser | null) => void;
+    user: TypeUser | undefined;
+    setUser: (newUser: TypeUser | undefined) => void;
     isAuthChecked: boolean;
     setIsAuthChecked: (newState: boolean) => void;
 };
 
 export type TypeRegisterUser = {
-    user: TypeUser | null;
-    setUser: (newUser: TypeUser | null) => void;
+    user: TypeUser | undefined;
+    setUser: (newUser: TypeUser | undefined) => void;
     isAuthChecked: boolean;
     setIsAuthChecked: (newState: boolean) => void;
 };

@@ -1,3 +1,5 @@
+import useAuth from "../../auth/hooks/useAuth";
+
 export async function customFetch<T = unknown>(
     endpoint: string,
     method: string = "GET",
@@ -45,7 +47,7 @@ async function fetchJson(url: string, options: RequestInit) {
 }
 export async function fetchWithAuthRetry<T = unknown>(url: string, options: RequestInit = {}): Promise<T> {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const timeoutId = setTimeout(() => controller.abort(), 7000);
 
     const baseOptions: RequestInit = {
         ...options,
@@ -61,7 +63,7 @@ export async function fetchWithAuthRetry<T = unknown>(url: string, options: Requ
 
         if (!results.success && results.errors?.[0] === "Invalid access token") {
             const refreshController = new AbortController();
-            const refreshTimeout = setTimeout(() => refreshController.abort(), 3000);
+            const refreshTimeout = setTimeout(() => refreshController.abort(), 7000);
             try {
                 const refreshJson = await fetchJson(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/refresh-tokens`, {
                     method: "GET",

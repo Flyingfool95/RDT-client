@@ -2,8 +2,8 @@ import { create } from "zustand";
 import { TypeAuthStore, TypeUser } from "../types";
 
 const useAuthStore = create<TypeAuthStore>((set) => ({
-    user: null,
-    setUser: (newUser: TypeUser | null) => {
+    user: undefined,
+    setUser: (newUser: TypeUser | undefined) => {
         set(() => ({
             user: newUser,
         }));

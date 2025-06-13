@@ -24,7 +24,7 @@ export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
                 image: await convertPixelDataToImage(results.data.user.image),
             });
         } catch (error) {
-            setUser(null);
+            setUser(undefined);
         } finally {
             clearTimeout(timeoutId);
             setIsAuthChecked(true);

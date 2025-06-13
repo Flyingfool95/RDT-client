@@ -74,7 +74,7 @@ export default function useAuth() {
             return results;
         },
         onSuccess: (results) => {
-            setUser(null);
+            setUser(undefined);
             addNotification(results.message, "info");
             navigate("/login");
         },
@@ -97,7 +97,7 @@ export default function useAuth() {
             return results;
         },
         onSuccess: (results) => {
-            setUser(null);
+            setUser(undefined);
             addNotification(results.message, "success");
             navigate("/login");
         },

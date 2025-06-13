@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import useAuthStore from "../../features/auth/store/useAuthStore";
 
 export default function ProtectedLayout() {
-    const [pageHeading, setPageHeading] = useState("");
-
     const location = useLocation();
+    const [pageHeading, setPageHeading] = useState("");
+    const { user } = useAuthStore((state) => state);
 
     useEffect(() => {
         if (location.pathname === "/") {
@@ -19,9 +20,13 @@ export default function ProtectedLayout() {
         }
         return () => {};
     }, [location]);
+
     return (
-        <main className={`protected-layout ${pageHeading.toLowerCase()}`}>
-            <h1>{pageHeading}</h1>
+        <main className={`layout ${pageHeading.toLowerCase()}`}>
+            <div className="layout-header">
+                <h1>{pageHeading}</h1>
+                <img src={user?.image} alt="Profile Image" />
+            </div>
             <Outlet />
         </main>
     );
