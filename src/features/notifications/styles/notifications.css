@@ -16,7 +16,7 @@
     position: relative;
     padding: 1rem;
     padding-right: 2.5rem;
-    box-shadow: 1px 1px 3px 0 var(--color-primary-darkest-50);
+    box-shadow: 1px 1px 3px 0 var(--color-primary-1);
     border-radius: var(--spacing-xs);
     max-width: 540px;
     width: 100%;
@@ -65,54 +65,54 @@
     }
 
     &.error {
-        border-color: var(--color-error-base);
-        color: var(--color-error-darkest);
-        background-color: var(--color-error-lightest);
-        box-shadow: 1px 1px 3px 0 var(--color-error-darkest-50);
+        border-color: var(--color-error-5);
+        color: var(--color-error-1);
+        background-color: var(--color-error-10);
+        box-shadow: 1px 1px 3px 0 var(--color-error-1);
 
         button {
             &::after,
             &::before {
-                background-color: var(--color-error-darkest);
+                background-color: var(--color-error-10);
             }
         }
     }
     &.info {
-        border-color: var(--color-info-base);
-        color: var(--color-info-darkest);
-        background-color: var(--color-info-lightest);
-        box-shadow: 1px 1px 3px 0 var(--color-info-darkest-50);
+        border-color: var(--color-info-5);
+        color: var(--color-info-1);
+        background-color: var(--color-info-10);
+        box-shadow: 1px 1px 3px 0 var(--color-info-1);
 
         button {
             &::after,
             &::before {
-                background-color: var(--color-info-darkest);
+                background-color: var(--color-info-1);
             }
         }
     }
     &.warning {
-        border-color: var(--color-warning-base);
-        color: var(--color-warning-darkest);
-        background-color: var(--color-warning-lightest);
-        box-shadow: 1px 1px 3px 0 var(--color-warning-darkest-50);
+        border-color: var(--color-warning-5);
+        color: var(--color-warning-1);
+        background-color: var(--color-warning-10);
+        box-shadow: 1px 1px 3px 0 var(--color-warning-1);
 
         button {
             &::after,
             &::before {
-                background-color: var(--color-warning-darkest);
+                background-color: var(--color-warning-1);
             }
         }
     }
     &.success {
-        border-color: var(--color-success-base);
-        color: var(--color-success-darkest);
-        background-color: var(--color-success-lightest);
-        box-shadow: 1px 1px 3px 0 var(--color-success-darkest-50);
+        border-color: var(--color-success-5);
+        color: var(--color-success-1);
+        background-color: var(--color-success-10);
+        box-shadow: 1px 1px 3px 0 var(--color-success-1);
 
         button {
             &::after,
             &::before {
-                background-color: var(--color-success-darkest);
+                background-color: var(--color-success-1);
             }
         }
     }

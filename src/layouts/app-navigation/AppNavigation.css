@@ -7,12 +7,12 @@ nav {
     align-items: center;
     gap: var(--spacing-medium);
 
-    background-color: var(--color-primary-light);
+    background-color: var(--color-neutral-8);
     padding: var(--spacing-medium);
 
     a {
         transition: var(--transition);
-        color: var(--color-primary-darkest);
+        color: var(--color-neutral-1);
         text-decoration: none;
         font-weight: bold;
         text-align: center;
@@ -26,22 +26,23 @@ nav {
         border-radius: var(--spacing-xs);
 
         &:hover:not(.active) {
-            background-color: var(--color-primary-lightest-50);
+            background-color: var(--color-neutral-9);
         }
 
         &:last-of-type {
-            margin-bottom: var(--size-4);
+            margin-bottom: var(--size-3);
         }
     }
 
     .active {
-        background-color: var(--color-primary-lightest);
-        color: var(--color-primary-dark);
+        background-color: var(--color-neutral-5);
+        color: var(--color-neutral-10);
     }
 
     .logo {
         margin-bottom: auto;
     }
+
     button {
         margin-top: auto;
     }

@@ -12,7 +12,7 @@ export default function AppNavigation() {
                 <img src={Logo} alt="Logo" className="logo" />
                 <NavLink to={"/"}>Dashboard</NavLink>
                 <NavLink to={"/profile"}>Profile</NavLink>
-                <button onClick={() => logoutUser.mutate()}>Logout</button>
+                <button onClick={() => logoutUser.mutate()} className="button-secondary">Logout</button>
             </nav>
             <Outlet />
         </>
