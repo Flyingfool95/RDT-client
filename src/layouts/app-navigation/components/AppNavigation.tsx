@@ -1,7 +1,7 @@
 import "../style/AppNavigation.css";
 import { NavLink, Outlet } from "react-router-dom";
-import useAuth from "../../auth/hooks/useAuth";
 import Logo from "../../../../assets/rdt-logo.png";
+import useAuth from "../../../features/auth/hooks/useAuth";
 
 export default function AppNavigation() {
     const { logoutUser } = useAuth();

@@ -2,13 +2,13 @@ import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import RouteGuard from "./features/auth/components/RouteGuard";
 import NotificationList from "./features/notifications/components/NotificationList";
 
 import Login from "./routes/auth/Login";
-import AppNavigation from "./features/app-navigation/components/AppNavigation";
 import Register from "./routes/auth/Register";
 import ResetPassword from "./routes/auth/ResetPassword";
+import AppNavigation from "./layouts/app-navigation/components/AppNavigation";
+import RouteGuard from "./layouts/route-guard/RouteGuard";
 
 const Dashboard = lazy(() => import("./routes/protected/Dashboard"));
 const Profile = lazy(() => import("./routes/protected/Profile"));

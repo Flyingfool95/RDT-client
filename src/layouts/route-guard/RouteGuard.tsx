@@ -1,10 +1,10 @@
 import { Suspense, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import useAuthStore from "../store/useAuthStore";
-import Loader from "../../loader/components/Loader";
-import { convertPixelDataToImage } from "../../shared/helpers/helpers";
-import { TypeUserResponse } from "../types";
-import { customFetch } from "../../shared/helpers/customFetch";
+import useAuthStore from "../../features/auth/store/useAuthStore";
+import { TypeUserResponse } from "../../features/auth/types";
+import { customFetch } from "../../features/shared/helpers/customFetch";
+import { convertPixelDataToImage } from "../../features/shared/helpers/helpers";
+import Loader from "../../features/loader/components/Loader";
 
 export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
     const publicOnlyPaths = ["/login", "/register"];
