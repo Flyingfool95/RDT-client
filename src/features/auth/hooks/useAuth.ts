@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
 import { loginSchema, registerSchema, resetPasswordSchema, sendResetEmailSchema } from "../validation";
-import { convertPixelDataToImage, getFilteredFormData, validateInputData } from "../../shared/helpers/helpers";
+import { convertPixelDataToImage, validateInputData } from "../../shared/helpers/helpers";
 
 import useAuthStore from "../store/useAuthStore";
 import useNotificationStore from "../../notifications/store/useNotificationStore";
