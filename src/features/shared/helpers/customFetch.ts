@@ -18,7 +18,7 @@ export async function customFetch<T = unknown>(
     if (enableRefetch) {
         return fetchWithAuthRetry<T>(url, options);
     } else {
-        return fetchJson(url, options);
+        return fetchJson<T>(url, options);
     }
 }
 
@@ -39,12 +39,13 @@ export async function customFetchFormData<T = unknown>(
     return fetchWithAuthRetry<T>(url, options);
 }
 
-async function fetchJson(url: string, options: RequestInit) {
+async function fetchJson<T = unknown>(url: string, options: RequestInit): Promise<T> {
     const res = await fetch(url, options);
 
     try {
         const results = await res.json();
         if (!results.success) throw new Error(`${results.message}: ${results.errors.join(", ")}`);
+        return results;
     } catch (error: any) {
         throw new Error(error.message);
     }
