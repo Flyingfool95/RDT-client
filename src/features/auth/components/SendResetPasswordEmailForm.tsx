@@ -18,13 +18,7 @@ export default function SendResetEmailForm() {
                     className={sendResetEmail.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
                 >
                     Email
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                    <input type="email" name="email" id="email" />
                 </label>
 
                 <input type="submit" value="Send email" />

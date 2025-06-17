@@ -41,10 +41,12 @@ export async function customFetchFormData<T = unknown>(
 
 async function fetchJson(url: string, options: RequestInit) {
     const res = await fetch(url, options);
+
     try {
-        return await res.json();
-    } catch {
-        throw new Error("Failed to parse JSON response");
+        const results = await res.json();
+        if (!results.success) throw new Error(`${results.message}: ${results.errors.join(", ")}`);
+    } catch (error: any) {
+        throw new Error(error.message);
     }
 }
 export async function fetchWithAuthRetry<T = unknown>(url: string, options: RequestInit = {}): Promise<T> {
@@ -67,12 +69,15 @@ export async function fetchWithAuthRetry<T = unknown>(url: string, options: Requ
             const refreshController = new AbortController();
             const refreshTimeout = setTimeout(() => refreshController.abort(), 7000);
             try {
-                const refreshJson = await fetchJson(`${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/refresh-tokens`, {
-                    method: "GET",
-                    credentials: "include",
-                    headers: { "Content-Type": "application/json" },
-                    signal: refreshController.signal,
-                });
+                const refreshJson: any = await fetchJson(
+                    `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/refresh-tokens`,
+                    {
+                        method: "GET",
+                        credentials: "include",
+                        headers: { "Content-Type": "application/json" },
+                        signal: refreshController.signal,
+                    }
+                );
 
                 if (!refreshJson.success) {
                     throw new Error(refreshJson.errors.join(", "));
@@ -91,7 +96,7 @@ export async function fetchWithAuthRetry<T = unknown>(url: string, options: Requ
         return results as T;
     } catch (error: any) {
         console.error(error.message);
-        throw error;
+        throw new Error(error);
     } finally {
         clearTimeout(timeoutId);
     }

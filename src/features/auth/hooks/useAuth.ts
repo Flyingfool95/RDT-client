@@ -140,11 +140,10 @@ export default function useAuth() {
                 "/api/v1/auth/send-reset-email",
                 "POST",
                 false,
-
                 validatedInputData,
-
                 false
             );
+
             return results;
         },
         onSuccess: (results) => {
