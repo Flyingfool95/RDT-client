@@ -1,13 +1,11 @@
-import useAuth from "../../auth/hooks/useAuth";
-
 export async function customFetch<T = unknown>(
     endpoint: string,
     method: string = "GET",
     credentials: boolean = false,
-    data?: unknown
+    data?: unknown,
+    enableRefetch = true
 ): Promise<T> {
     const url = `${import.meta.env.VITE_API_BASE_URL}${endpoint}`;
-
     const options: RequestInit = {
         method: method.toUpperCase(),
         credentials: credentials ? "include" : "same-origin",
@@ -17,7 +15,11 @@ export async function customFetch<T = unknown>(
         body: data ? JSON.stringify(data) : undefined,
     };
 
-    return fetchWithAuthRetry<T>(url, options);
+    if (enableRefetch) {
+        return fetchWithAuthRetry<T>(url, options);
+    } else {
+        return fetchJson(url, options);
+    }
 }
 
 export async function customFetchFormData<T = unknown>(

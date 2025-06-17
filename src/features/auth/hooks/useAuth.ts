@@ -8,7 +8,7 @@ import useAuthStore from "../store/useAuthStore";
 import useNotificationStore from "../../notifications/store/useNotificationStore";
 import { TypeUserResponse } from "../types";
 import { TypeResponse } from "../../shared/types";
-import { customFetch, customFetchFormData } from "../../shared/helpers/customFetch";
+import { customFetch } from "../../shared/helpers/customFetch";
 
 export default function useAuth() {
     const { addNotification } = useNotificationStore((state) => state);
@@ -17,15 +17,11 @@ export default function useAuth() {
     const navigate = useNavigate();
 
     const registerUser = useMutation({
-        mutationFn: async ({
-            email,
-            password,
-            confirmPassword,
-        }: {
-            email: string;
-            password: string;
-            confirmPassword: string;
-        }) => {
+        mutationFn: async (e: any) => {
+            const email = e["email"].value;
+            const password = e["password"].value;
+            const confirmPassword = e["confirm-password"].value;
+
             const validatedInputData = validateInputData(registerSchema, { email, password, confirmPassword });
 
             const results: TypeResponse = await customFetch("/api/v1/auth/register", "POST", false, validatedInputData);
@@ -45,19 +41,17 @@ export default function useAuth() {
 
     const loginUser = useMutation({
         mutationFn: async (e: any) => {
-            const email = e.email.value;
-            const password = e.password.value;
+            const email = e["email"].value;
+            const password = e["password"].value;
             validateInputData(loginSchema, {
                 email,
                 password,
             });
 
-            let formData = new FormData(e);
-            //Change backend to handle formData
-
-            console.log(formData);
-            const results: TypeUserResponse = await customFetchFormData("/api/v1/auth/login", "POST", true, formData);
-            console.log(results);
+            const results: TypeUserResponse = await customFetch("/api/v1/auth/login", "POST", true, {
+                email,
+                password,
+            });
             return results;
         },
         onSuccess: async (results) => {
@@ -139,16 +133,18 @@ export default function useAuth() {
     });
 
     const sendResetEmail = useMutation({
-        mutationFn: async (data: { email: string }) => {
-            const validatedInputData = validateInputData(sendResetEmailSchema, data);
-
+        mutationFn: async (e: any) => {
+            const email = e["email"].value;
+            const validatedInputData = validateInputData(sendResetEmailSchema, { email });
             const results: TypeResponse = await customFetch(
                 "/api/v1/auth/send-reset-email",
                 "POST",
                 false,
-                validatedInputData
-            );
 
+                validatedInputData,
+
+                false
+            );
             return results;
         },
         onSuccess: (results) => {

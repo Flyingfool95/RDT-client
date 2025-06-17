@@ -26,9 +26,11 @@ export default function ProtectedLayout() {
         <main className={`layout ${pageHeading.toLowerCase()}`}>
             <div className="layout-header">
                 <h1>{pageHeading}</h1>
-                <Link to="/profile">
-                    <img src={user?.image} alt="Profile Image" />
-                </Link>
+                {pageHeading !== "Profile" && (
+                    <Link to="/profile">
+                        <img src={user?.image} alt="Profile Image" />
+                    </Link>
+                )}
             </div>
             <Outlet />
         </main>

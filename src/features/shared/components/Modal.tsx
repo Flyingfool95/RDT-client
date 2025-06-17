@@ -38,6 +38,12 @@ function Modal({
         };
     }, [showModal]);
 
+    useEffect(() => {
+        return () => {
+            setShowModal(false);
+        };
+    }, []);
+
     if (triggerType === "button") {
         trigger = (
             <button onClick={open} className={triggerClass}>

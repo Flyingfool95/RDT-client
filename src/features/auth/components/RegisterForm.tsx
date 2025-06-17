@@ -13,7 +13,7 @@ export default function RegisterForm() {
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        registerUser.mutate({ email, password, confirmPassword });
+        registerUser.mutate(e.currentTarget);
     };
 
     return (
