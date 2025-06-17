@@ -11,7 +11,6 @@ export default function ImageInput<T extends WithImage | null>({ data }: { data:
     useEffect(() => {
         if (!imageFile) return;
 
-        console.log(imageFile);
         setPreviewUrl(URL.createObjectURL(imageFile));
 
         return () => {

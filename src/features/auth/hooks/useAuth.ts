@@ -29,7 +29,6 @@ export default function useAuth() {
             return results;
         },
         onSuccess: (results) => {
-            console.log(results);
             addNotification(results.message, "success");
             navigate("/login");
         },
