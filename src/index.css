@@ -44,6 +44,17 @@
     --color-primary-9: hsl(261, 68%, 84%);
     --color-primary-10: hsl(262, 61%, 93%);
 
+    --color-primary-1-50: hsla(263, 85%, 18%, 0.5);
+    --color-primary-2-50: hsla(262, 72%, 25%, 0.5);
+    --color-primary-3-50: hsla(262, 69%, 31%, 0.5);
+    --color-primary-4-50: hsla(262, 60%, 38%, 0.5);
+    --color-primary-5-50: hsla(262, 48%, 46%, 0.5);
+    --color-primary-6-50: hsla(262, 43%, 51%, 0.5);
+    --color-primary-7-50: hsla(261, 47%, 58%, 0.5);
+    --color-primary-8-50: hsla(261, 54%, 68%, 0.5);
+    --color-primary-9-50: hsla(261, 68%, 84%, 0.5);
+    --color-primary-10-50: hsla(262, 61%, 93%, 0.5);
+
     --color-neutral-1: hsl(42, 15%, 13%);
     --color-neutral-2: hsl(40, 13%, 23%);
     --color-neutral-3: hsl(37, 11%, 28%);
@@ -54,6 +65,17 @@
     --color-neutral-8: hsl(40, 15%, 80%);
     --color-neutral-9: hsl(43, 13%, 90%);
     --color-neutral-10: hsl(40, 23%, 97%);
+
+    --color-neutral-1-50: hsla(42, 15%, 13%, 0.5);
+    --color-neutral-2-50: hsla(40, 13%, 23%, 0.5);
+    --color-neutral-3-50: hsla(37, 11%, 28%, 0.5);
+    --color-neutral-4-50: hsla(41, 9%, 35%, 0.5);
+    --color-neutral-5-50: hsla(41, 8%, 48%, 0.5);
+    --color-neutral-6-50: hsla(41, 8%, 61%, 0.5);
+    --color-neutral-7-50: hsla(39, 11%, 69%, 0.5);
+    --color-neutral-8-50: hsla(40, 15%, 80%, 0.5);
+    --color-neutral-9-50: hsla(43, 13%, 90%, 0.5);
+    --color-neutral-10-50: hsla(40, 23%, 97%, 0.5);
 
     --color-info-1: hsl(184, 91%, 17%);
     --color-info-2: hsl(185, 84%, 25%);

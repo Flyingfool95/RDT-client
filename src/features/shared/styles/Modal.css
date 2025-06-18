@@ -9,12 +9,12 @@
     justify-content: center;
     align-items: center;
 
-    background-color: var(--color-primary-1);
+    background-color: var(--color-neutral-1-50);
     backdrop-filter: blur(var(--spacing-xs));
 }
 
 .modal-content {
-    background-color: var(--color-primary-10);
+    background-color: var(--color-neutral-8);
     width: 100%;
     max-width: var(--size-10);
     min-height: var(--size-4);
