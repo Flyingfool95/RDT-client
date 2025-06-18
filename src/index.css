@@ -11,25 +11,25 @@
     --text-heading-large: calc(var(--size-base) * 3);
     --text-heading-xl: calc(var(--size-base) * 4);
 
-    /* Spacing */
-    --spacing-xs: calc(var(--size-base) * 0.25);
-    --spacing-small: calc(var(--size-base) * 0.5);
-    --spacing-medium: calc(var(--size-base) * 1);
-    --spacing-large: calc(var(--size-base) * 1.5);
-    --spacing-xl: calc(var(--size-base) * 2);
-
     /* Sizes */
     --size-0: 0;
-    --size-1: calc(var(--size-base) * 6);
-    --size-2: calc(var(--size-base) * 8);
-    --size-3: calc(var(--size-base) * 10);
-    --size-4: calc(var(--size-base) * 13);
-    --size-5: calc(var(--size-base) * 16);
-    --size-6: calc(var(--size-base) * 19);
-    --size-7: calc(var(--size-base) * 22);
-    --size-8: calc(var(--size-base) * 25);
-    --size-9: calc(var(--size-base) * 30);
-    --size-10: calc(var(--size-base) * 40);
+    --size-1: calc(var(--size-base) * 0.25);
+    --size-2: calc(var(--size-base) * 0.5);
+    --size-3: calc(var(--size-base) * 1);
+    --size-4: calc(var(--size-base) * 1.5);
+    --size-5: calc(var(--size-base) * 2);
+    --size-6: calc(var(--size-base) * 3);
+    --size-7: calc(var(--size-base) * 4);
+    --size-8: calc(var(--size-base) * 6);
+    --size-9: calc(var(--size-base) * 8);
+    --size-10: calc(var(--size-base) * 10);
+    --size-11: calc(var(--size-base) * 13);
+    --size-12: calc(var(--size-base) * 16);
+    --size-13: calc(var(--size-base) * 19);
+    --size-14: calc(var(--size-base) * 22);
+    --size-15: calc(var(--size-base) * 25);
+    --size-16: calc(var(--size-base) * 30);
+    --size-17: calc(var(--size-base) * 40);
 
     /* Colors */
     --color-primary-1: hsl(263, 85%, 18%);

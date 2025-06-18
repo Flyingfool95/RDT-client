@@ -1,8 +1,8 @@
 .layout {
     display: grid;
     grid-template-columns: repeat(1fr, 12);
-    grid-template-rows: var(--size-1) auto;
-    gap: var(--spacing-medium);
+    grid-template-rows: var(--size-7) auto;
+    gap: var(--size-3);
 }
 
 .layout-header {
@@ -14,12 +14,12 @@
     flex-grow: 1;
 
     background-color: var(--color-neutral-8);
-    padding: var(--spacing-medium);
-    border-radius: var(--spacing-small);
+    padding: var(--size-3);
+    border-radius: var(--size-2);
 
     a {
-        max-width: calc(var(--size-1) - var(--spacing-medium));
-        border-radius: var(--spacing-xs);
+        max-width: calc(var(--size-7) - var(--size-3));
+        border-radius: var(--size-1);
         box-shadow: none;
 
         &:hover {

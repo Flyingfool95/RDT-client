@@ -1,6 +1,6 @@
 .image-input {
     position: relative;
-    border-radius: var(--spacing-xs);
+    border-radius: var(--size-1);
     background-size: cover;
     background-position: center;
     border: 1px solid #ccc;
@@ -8,7 +8,7 @@
     aspect-ratio: 1;
 
     .image-label {
-        border-radius: var(--spacing-xs);
+        border-radius: var(--size-1);
         position: absolute;
         width: 100%;
         height: 100%;

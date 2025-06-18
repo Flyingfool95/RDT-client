@@ -53,8 +53,8 @@ input[type="submit"] {
     width: fit-content;
     border: none;
     cursor: pointer;
-    border-radius: var(--spacing-xs);
-    padding: var(--spacing-xs) var(--spacing-medium);
+    border-radius: var(--size-1);
+    padding: var(--size-1) var(--size-3);
     transition: var(--transition);
 
     background-color: var(--color-primary-6);
@@ -84,10 +84,10 @@ input[type="submit"] {
 form {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-medium);
+    gap: var(--size-3);
 
     width: 100%;
-    max-width: var(--size-8);
+    max-width: var(--size-15);
 
     > div {
         flex-basis: 100%;
@@ -107,8 +107,8 @@ form {
     input:not(input[type="submit"]) {
         width: 100%;
         background-color: var(--color-neutral-10);
-        padding: var(--spacing-small);
-        border-radius: var(--spacing-xs);
+        padding: var(--size-2);
+        border-radius: var(--size-1);
         border: none;
         box-shadow: 1px 1px 3px 0 var(--color-nuetral-10);
         border-left: 4px solid transparent;
@@ -131,7 +131,7 @@ form {
 
     span {
         display: flex;
-        gap: var(--spacing-small);
+        gap: var(--size-2);
 
         align-items: center;
         width: fit-content;

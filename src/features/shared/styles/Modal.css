@@ -10,17 +10,17 @@
     align-items: center;
 
     background-color: var(--color-neutral-1-50);
-    backdrop-filter: blur(var(--spacing-xs));
+    backdrop-filter: blur(var(--size-1));
 }
 
 .modal-content {
     background-color: var(--color-neutral-8);
     width: 100%;
-    max-width: var(--size-10);
-    min-height: var(--size-4);
-    border-radius: var(--spacing-xs);
+    max-width: var(--size-15);
+    min-height: var(--size-10);
+    border-radius: var(--size-1);
 
-    padding: var(--spacing-medium);
+    padding: var(--size-3);
 
     display: grid;
     place-items: center;
