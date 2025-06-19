@@ -148,10 +148,5 @@ form {
     }
 }
 
-/* Utils */
 
-.visual-hide {
-    height: 0;
-    width: 0;
-    font-size: 0;
-}
+

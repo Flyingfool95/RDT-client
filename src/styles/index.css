@@ -126,7 +126,7 @@
     /* Animations and transitions */
     --transition: 90ms ease-in-out;
 
-    /* Breakpoints */
+    /* Global breakpoints */
     --breakpoint-small: var(--size-14);
     --breakpoint-medium: var(--size-18);
     --breakpoint-large: var(--size-20);

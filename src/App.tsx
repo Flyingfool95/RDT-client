@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./styles/App.css";
+import "./styles/Utils.css";
 
 import NotificationList from "./features/notifications/components/NotificationList";
 
