@@ -1,6 +1,6 @@
 import "../styles/LoginForm.css";
-import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 import Loader from "../../loader/components/Loader";
 import FormInput from "../../shared/components/FormInput";
 

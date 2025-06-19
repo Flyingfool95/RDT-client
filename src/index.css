@@ -30,6 +30,9 @@
     --size-15: calc(var(--size-base) * 25);
     --size-16: calc(var(--size-base) * 30);
     --size-17: calc(var(--size-base) * 40);
+    --size-18: calc(var(--size-base) * 50);
+    --size-19: calc(var(--size-base) * 60);
+    --size-20: calc(var(--size-base) * 75);
 
     /* Colors */
     --color-primary-1: hsl(263, 85%, 18%);
@@ -122,4 +125,9 @@
 
     /* Animations and transitions */
     --transition: 90ms ease-in-out;
+
+    /* Breakpoints */
+    --breakpoint-small: var(--size-14);
+    --breakpoint-medium: var(--size-18);
+    --breakpoint-large: var(--size-20);
 }
