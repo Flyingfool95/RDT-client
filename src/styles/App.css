@@ -23,13 +23,37 @@ main {
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+h4 {
     line-height: 1.2;
     letter-spacing: 1.5px;
     margin-top: 0.25em;
     margin-bottom: 0.25em;
+}
+
+h1 {
+    font-size: var(--size-5);
+}
+
+h2 {
+    font-size: var(--size-4);
+}
+
+h3 {
+    font-size: var(--size-3);
+}
+
+p,
+span,
+a,
+label,
+input,
+textarea,
+select,
+small,
+figcaption,
+button,
+::placeholder {
+    font-size: var(--size-3);
 }
 
 p {
@@ -40,11 +64,11 @@ p {
 a:not(nav a) {
     color: var(--color-primary-3);
     text-decoration: none;
-    box-shadow: 0px 2px 0px 0 var(--color-primary-3);
+    box-shadow: 0px 2px 0px 0 var(--color-primary-3-50);
 
     &:hover {
         color: var(--color-primary-8);
-        box-shadow: 0px 2px 0px 0 var(--color-primary-8);
+        box-shadow: 0px 2px 0px 0 var(--color-primary-8-50);
     }
 }
 
@@ -81,13 +105,20 @@ input[type="submit"] {
     }
 }
 
+form,
+.form-extra {
+    width: 100%;
+    max-width: var(--size-16);
+}
+
+.form-extra {
+    text-align: center;
+}
+
 form {
     display: flex;
     flex-wrap: wrap;
     gap: var(--size-3);
-
-    width: 100%;
-    max-width: var(--size-15);
 
     > div {
         flex-basis: 100%;
@@ -110,7 +141,7 @@ form {
         padding: var(--size-2);
         border-radius: var(--size-1);
         border: none;
-        box-shadow: 1px 1px 3px 0 var(--color-nuetral-10);
+        box-shadow: 1px 1px 3px 0 var(--color-neutral-6-50);
         border-left: 4px solid transparent;
 
         &::placeholder {
@@ -120,7 +151,7 @@ form {
         &:focus {
             border-color: var(--color-primary-5);
             background-color: var(--color-primary-10);
-            box-shadow: 1px 1px 3px 0 var(--color-primary-1);
+            box-shadow: 1px 1px 3px 0 var(--color-primary-6-50);
             outline: none;
 
             &::placeholder {
@@ -140,13 +171,11 @@ form {
     .zod-error label {
         color: var(--color-error-5) !important;
     }
+
     .zod-error input {
         color: var(--color-error-1) !important;
         border-color: var(--color-error-5) !important;
         background-color: var(--color-error-10) !important;
-        box-shadow: 1px 1px 3px 0 var(--color-error-1) !important;
+        box-shadow: 1px 1px 3px 0 var(--color-error-6-50) !important;
     }
 }
-
-
-

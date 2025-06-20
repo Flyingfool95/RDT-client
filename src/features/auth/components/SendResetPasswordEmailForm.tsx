@@ -22,12 +22,11 @@ export default function SendResetEmailForm() {
                 </label>
 
                 <input type="submit" value="Send email" />
-
-                <p>
-                    Fill your accounts email above and click the <i>"Send email"</i> button to recieve the reset
-                    password email to your inbox.
-                </p>
             </form>
+            <span className="form-extra">
+                Enter your account email above and click <i>"Send email"</i> to receive a password reset link in your
+                inbox.
+            </span>
 
             {sendResetEmail.isPending && <Loader />}
         </>

@@ -90,6 +90,17 @@
     --color-info-9: hsl(185, 94%, 87%);
     --color-info-10: hsl(186, 100%, 94%);
 
+    --color-info-1-50: hsla(184, 91%, 17%, 0.5);
+    --color-info-2-50: hsla(185, 84%, 25%, 0.5);
+    --color-info-3-50: hsla(185, 81%, 29%, 0.5);
+    --color-info-4-50: hsla(184, 77%, 34%, 0.5);
+    --color-info-5-50: hsla(185, 62%, 45%, 0.5);
+    --color-info-6-50: hsla(185, 57%, 50%, 0.5);
+    --color-info-7-50: hsla(184, 65%, 59%, 0.5);
+    --color-info-8-50: hsla(184, 80%, 74%, 0.5);
+    --color-info-9-50: hsla(185, 94%, 87%, 0.5);
+    --color-info-10-50: hsla(186, 100%, 94%, 0.5);
+
     --color-success-1: hsl(125, 97%, 14%);
     --color-success-2: hsl(125, 86%, 20%);
     --color-success-3: hsl(125, 79%, 26%);
@@ -100,6 +111,17 @@
     --color-success-8: hsl(124, 63%, 74%);
     --color-success-9: hsl(127, 65%, 85%);
     --color-success-10: hsl(125, 65%, 93%);
+
+    --color-success-1-50: hsla(125, 97%, 14%, 0.5);
+    --color-success-2-50: hsla(125, 86%, 20%, 0.5);
+    --color-success-3-50: hsla(125, 79%, 26%, 0.5);
+    --color-success-4-50: hsla(122, 80%, 29%, 0.5);
+    --color-success-5-50: hsla(122, 73%, 35%, 0.5);
+    --color-success-6-50: hsla(123, 57%, 45%, 0.5);
+    --color-success-7-50: hsla(123, 53%, 55%, 0.5);
+    --color-success-8-50: hsla(124, 63%, 74%, 0.5);
+    --color-success-9-50: hsla(127, 65%, 85%, 0.5);
+    --color-success-10-50: hsla(125, 65%, 93%, 0.5);
 
     --color-error-1: hsl(348, 94%, 20%);
     --color-error-2: hsl(350, 94%, 28%);
@@ -112,6 +134,17 @@
     --color-error-9: hsl(360, 100%, 87%);
     --color-error-10: hsl(360, 100%, 95%);
 
+    --color-error-1-50: hsla(348, 94%, 20%, 0.5);
+    --color-error-2-50: hsla(350, 94%, 28%, 0.5);
+    --color-error-3-50: hsla(352, 90%, 35%, 0.5);
+    --color-error-4-50: hsla(354, 85%, 44%, 0.5);
+    --color-error-5-50: hsla(356, 75%, 53%, 0.5);
+    --color-error-6-50: hsla(360, 83%, 62%, 0.5);
+    --color-error-7-50: hsla(360, 91%, 69%, 0.5);
+    --color-error-8-50: hsla(360, 100%, 80%, 0.5);
+    --color-error-9-50: hsla(360, 100%, 87%, 0.5);
+    --color-error-10-50: hsla(360, 100%, 95%, 0.5);
+
     --color-warning-1: hsl(43, 86%, 17%);
     --color-warning-2: hsl(43, 77%, 27%);
     --color-warning-3: hsl(43, 72%, 37%);
@@ -123,11 +156,17 @@
     --color-warning-9: hsl(45, 90%, 88%);
     --color-warning-10: hsl(45, 100%, 96%);
 
+    --color-warning-1-50: hsla(43, 86%, 17%, 0.5);
+    --color-warning-2-50: hsla(43, 77%, 27%, 0.5);
+    --color-warning-3-50: hsla(43, 72%, 37%, 0.5);
+    --color-warning-4-50: hsla(42, 63%, 48%, 0.5);
+    --color-warning-5-50: hsla(42, 78%, 60%, 0.5);
+    --color-warning-6-50: hsla(43, 89%, 70%, 0.5);
+    --color-warning-7-50: hsla(43, 90%, 76%, 0.5);
+    --color-warning-8-50: hsla(45, 86%, 81%, 0.5);
+    --color-warning-9-50: hsla(45, 90%, 88%, 0.5);
+    --color-warning-10-50: hsla(45, 100%, 96%, 0.5);
+
     /* Animations and transitions */
     --transition: 90ms ease-in-out;
-
-    /* Global breakpoints */
-    --breakpoint-small: var(--size-14);
-    --breakpoint-medium: var(--size-18);
-    --breakpoint-large: var(--size-20);
 }

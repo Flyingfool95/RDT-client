@@ -1,5 +1,5 @@
-import { useState } from "react";
 import "../styles/RegisterForm.css";
+import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import { Link } from "react-router-dom";
 
@@ -18,7 +18,7 @@ export default function RegisterForm() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="register-form">
                 <label
                     htmlFor="email"
                     className={registerUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
@@ -61,10 +61,10 @@ export default function RegisterForm() {
                 </label>
 
                 <input type="submit" value="Register" />
-                <span>
-                    Allready a user? <Link to="/login">Login here!</Link>
-                </span>
             </form>
+            <span className="form-extra">
+                Already have an account? <Link to="/login">Log in here!</Link>
+            </span>
         </>
     );
 }

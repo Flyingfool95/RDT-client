@@ -14,7 +14,7 @@ export default function LoginForm() {
 
     return (
         <>
-            <form onSubmit={(e) => handleLogin(e)}>
+            <form onSubmit={(e) => handleLogin(e)} className="login-form">
                 <FormInput
                     classNames={loginUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
                     label="Email"
@@ -30,13 +30,16 @@ export default function LoginForm() {
                 />
 
                 <input type="submit" value="Login" />
-                <span>
-                    Not a user yet? <Link to="/register">Register here!</Link>
-                </span>
-                <span>
-                    Forgotten your password? <Link to="/reset-password">Reset it here!</Link>
-                </span>
+                {loginUser.error && (
+                    <span>
+                        Forgot your password? <Link to="/reset-password">Recover it</Link>
+                    </span>
+                )}
             </form>
+
+            <span className="form-extra">
+                Don’t have an account? <Link to="/register">Sign up</Link>
+            </span>
 
             {loginUser.isPending && <Loader />}
         </>

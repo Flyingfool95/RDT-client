@@ -40,9 +40,9 @@ export async function customFetchFormData<T = unknown>(
 }
 
 async function fetchJson<T = unknown>(url: string, options: RequestInit): Promise<T> {
-    const res = await fetch(url, options);
-
     try {
+        const res = await fetch(url, options);
+
         const results = await res.json();
         if (!results.success) throw new Error(`${results.message}: ${results.errors.join(", ")}`);
         return results;

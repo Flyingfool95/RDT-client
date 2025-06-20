@@ -143,6 +143,8 @@ export default function useAuth() {
                 false
             );
 
+            console.log(results);
+
             return results;
         },
         onSuccess: (results) => {

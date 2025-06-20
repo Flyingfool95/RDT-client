@@ -1,3 +1,4 @@
+import "../styles/ResetPassword.css";
 import { useLocation } from "react-router-dom";
 import ResetPasswordForm from "../../features/auth/components/ResetPasswordForm";
 import SendResetEmailForm from "../../features/auth/components/SendResetPasswordEmailForm";

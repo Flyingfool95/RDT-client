@@ -1,0 +1,12 @@
+.login-form {
+    background-color: var(--color-neutral-10-50);
+    padding: var(--size-5);
+    border-radius: var(--size-2);
+}
+
+@media (max-width: 540px) {
+    .login-form {
+        padding: var(--size-3);
+        gap: var(--size-2);
+    }
+}
