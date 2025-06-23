@@ -12,26 +12,24 @@ export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
     const { user, setUser, isAuthChecked, setIsAuthChecked } = useAuthStore((state) => state);
 
     const handleCheckAuth = async () => {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000);
         try {
-            const results: TypeUserResponse = await customFetch(`/api/v1/auth/auth-check`, "GET", true);
+            const result: TypeUserResponse = await customFetch(`/api/v1/auth/auth-check`, "GET", true);
 
             setUser({
-                id: results.data.user.id,
-                name: results.data.user.name,
-                email: results.data.user.email,
-                image: await convertPixelDataToImage(results.data.user.image),
+                id: result.data.user.id,
+                name: result.data.user.name,
+                email: result.data.user.email,
+                image: await convertPixelDataToImage(result.data.user.image),
             });
         } catch (error) {
             setUser(undefined);
         } finally {
-            clearTimeout(timeoutId);
             setIsAuthChecked(true);
         }
     };
 
     useEffect(() => {
+        /* Strict mode will double run this so looks like a bug when missing access token */
         if (!isAuthChecked) {
             handleCheckAuth();
         }

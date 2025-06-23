@@ -2,9 +2,10 @@ export async function customFetch<T = unknown>(
     endpoint: string,
     method: string = "GET",
     credentials: boolean = false,
-    data?: unknown,
-    enableRefetch = true
-): Promise<T> {
+    data?: unknown
+) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 7000);
     const url = `${import.meta.env.VITE_API_BASE_URL}${endpoint}`;
     const options: RequestInit = {
         method: method.toUpperCase(),
@@ -14,11 +15,20 @@ export async function customFetch<T = unknown>(
         },
         body: data ? JSON.stringify(data) : undefined,
     };
+    let result;
 
-    if (enableRefetch) {
-        return fetchWithAuthRetry<T>(url, options);
-    } else {
-        return fetchJson<T>(url, options);
+    try {
+        if (!credentials) {
+            result = await fetch(url, options);
+            result = result.json();
+            return result;
+        } else {
+            return fetchWithAuthRetry<T>(url, options);
+        }
+    } catch (error) {
+        console.error(error);
+    } finally {
+        clearTimeout(timeoutId);
     }
 }
 
@@ -39,66 +49,31 @@ export async function customFetchFormData<T = unknown>(
     return fetchWithAuthRetry<T>(url, options);
 }
 
-async function fetchJson<T = unknown>(url: string, options: RequestInit): Promise<T> {
-    try {
-        const res = await fetch(url, options);
-
-        const results = await res.json();
-        if (!results.success) throw new Error(`${results.message}: ${results.errors.join(", ")}`);
-        return results;
-    } catch (error: any) {
-        throw new Error(error.message);
-    }
-}
 export async function fetchWithAuthRetry<T = unknown>(url: string, options: RequestInit = {}): Promise<T> {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 7000);
+    let response = await fetch(url, options);
+    let result = await response.json();
 
-    const baseOptions: RequestInit = {
-        ...options,
-        credentials: options.credentials ?? "include",
-        headers: {
-            ...(options.headers || {}),
-        },
-        signal: controller.signal,
-    };
+    if (!result.success && result.errors?.[0] === "Invalid access token") {
+        const refreshURL = `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/refresh-tokens`;
+        const refreshResponse = await fetch(refreshURL, {
+            method: "GET",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+        });
 
-    try {
-        let results: any = await fetchJson(url, baseOptions);
+        const refreshResult = await refreshResponse.json();
 
-        if (!results.success && results.errors?.[0] === "Invalid access token") {
-            const refreshController = new AbortController();
-            const refreshTimeout = setTimeout(() => refreshController.abort(), 7000);
-            try {
-                const refreshJson: any = await fetchJson(
-                    `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/refresh-tokens`,
-                    {
-                        method: "GET",
-                        credentials: "include",
-                        headers: { "Content-Type": "application/json" },
-                        signal: refreshController.signal,
-                    }
-                );
-
-                if (!refreshJson.success) {
-                    throw new Error(refreshJson.errors.join(", "));
-                }
-
-                results = await fetchJson(url, baseOptions);
-            } finally {
-                clearTimeout(refreshTimeout);
-            }
+        if (!refreshResult.success) {
+            throw new Error("Session expired. Please login again.");
         }
 
-        if (!results.success) {
-            throw new Error(results.errors?.join(", ") || "Unknown error");
-        }
-
-        return results as T;
-    } catch (error: any) {
-        console.error(error.message);
-        throw new Error(error);
-    } finally {
-        clearTimeout(timeoutId);
+        response = await fetch(url, options);
+        result = await response.json();
     }
+
+    if (!result.success) {
+        throw new Error(result.errors?.join(", ") || "Unknown error");
+    }
+
+    return result as T;
 }
