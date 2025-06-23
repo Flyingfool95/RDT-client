@@ -47,3 +47,29 @@ nav {
         margin-top: auto;
     }
 }
+
+@media (max-width: 540px) {
+    nav {
+        z-index: 100;
+        
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        > * {
+            flex-basis: 100%;
+        }
+        a {
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+        .logo {
+            max-width: var(--size-7);
+        }
+    }
+}
