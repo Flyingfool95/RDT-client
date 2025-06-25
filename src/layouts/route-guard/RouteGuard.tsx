@@ -1,10 +1,9 @@
 import { Suspense, useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import useAuthStore from "../../features/auth/store/useAuthStore";
-import { TypeUserResponse } from "../../features/auth/types";
-import { customFetch } from "../../features/shared/helpers/customFetch";
-import { convertPixelDataToImage } from "../../features/shared/helpers/helpers";
-import Loader from "../../features/loader/components/Loader";
+import useAuthStore from "../../features/auth/useAuthStore";
+import { customFetch } from "../../features/shared/utils/customFetch";
+import { convertPixelDataToImage } from "../../features/shared/utils/helpers";
+import Loader from "../../features/loader/Loader";
 
 export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
     const publicOnlyPaths = ["/login", "/register"];
@@ -13,7 +12,7 @@ export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
 
     const handleCheckAuth = async () => {
         try {
-            const result: TypeUserResponse = await customFetch(`/api/v1/auth/auth-check`, "GET", true);
+            const result: any = await customFetch(`/api/v1/auth/auth-check`, "GET", true);
 
             setUser({
                 id: result.data.user.id,

@@ -3,17 +3,17 @@ import { Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/Utils.css";
 
-import NotificationList from "./features/notifications/components/NotificationList";
+import Login from "./routes/auth/login/Login";
 
-import Login from "./routes/auth/Login";
-import Register from "./routes/auth/Register";
-import ResetPassword from "./routes/auth/ResetPassword";
 import RouteGuard from "./layouts/route-guard/RouteGuard";
 import ProtectedLayout from "./layouts/protected-layout/ProtectedLayout";
 import AppNavigation from "./layouts/app-navigation/AppNavigation";
+import NotificationList from "./features/notifications/NotificationList";
+import Register from "./routes/auth/register/Register";
+import ResetPassword from "./routes/auth/reset-password/ResetPassword";
 
-const Dashboard = lazy(() => import("./routes/protected/Dashboard"));
-const Profile = lazy(() => import("./routes/protected/Profile"));
+const Dashboard = lazy(() => import("./routes/protected/dashboard/Dashboard"));
+const Profile = lazy(() => import("./routes/protected/profile/Profile"));
 
 function App() {
     return (

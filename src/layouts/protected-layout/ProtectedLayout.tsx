@@ -1,7 +1,7 @@
 import "./ProtectedLayout.css";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import useAuthStore from "../../features/auth/store/useAuthStore";
+import useAuthStore from "../../features/auth/useAuthStore";
 
 export default function ProtectedLayout() {
     const location = useLocation();
