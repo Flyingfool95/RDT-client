@@ -48,7 +48,7 @@ nav {
     }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 768px) {
     nav {
         z-index: 100;
         
