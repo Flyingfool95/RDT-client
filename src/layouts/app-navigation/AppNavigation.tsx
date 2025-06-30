@@ -2,17 +2,35 @@ import "./AppNavigation.css";
 import { NavLink, Outlet } from "react-router-dom";
 import Logo from "../../../assets/rdt-logo.png";
 import useAuth from "../../features/auth/useAuth";
+import { useState } from "react";
 
 export default function AppNavigation() {
     const { logoutUser } = useAuth();
 
+    const [isMobile] = useState(window.innerWidth <= 768);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const dynamicNavClasses = `
+        ${isMobile ? "nav-mobile" : ""}
+        ${isOpen ? "nav-open" : ""}
+    `.trim();
+
+    const handleOpenNav = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+        if (!isMobile || e.target === e.currentTarget) return;
+        setIsOpen((prev) => !prev);
+    };
+
     return (
         <>
-            <nav>
+            <nav className={dynamicNavClasses} onClick={(e) => handleOpenNav(e)}>
                 <img src={Logo} alt="Logo" className="logo" />
-                <NavLink to={"/"}>Dashboard</NavLink>
-                <NavLink to={"/profile"}>Profile</NavLink>
-                <button onClick={() => logoutUser.mutate()} className="button-secondary">Logout</button>
+                <div className="nav-links">
+                    <NavLink to={"/"}>Dashboard</NavLink>
+                    <NavLink to={"/profile"}>Profile</NavLink>
+                </div>
+                <button onClick={() => logoutUser.mutate()} className="button-secondary">
+                    Logout
+                </button>
             </nav>
             <Outlet />
         </>
