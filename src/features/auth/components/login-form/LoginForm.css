@@ -10,3 +10,10 @@
         gap: var(--size-2);
     }
 }
+
+@media (max-width: 350px) {
+    .login-form {
+        padding: 0;
+        background-color: transparent;
+    }
+}

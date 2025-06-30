@@ -16,7 +16,7 @@ export default function AppNavigation() {
     `.trim();
 
     const handleOpenNav = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-        if (!isMobile || e.target === e.currentTarget) return;
+        if (!isMobile) return;
         setIsOpen((prev) => !prev);
     };
 
