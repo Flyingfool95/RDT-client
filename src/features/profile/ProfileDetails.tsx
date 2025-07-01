@@ -1,12 +1,15 @@
-import useAuthStore from "../auth/useAuthStore";
 import "./ProfileDetails.css";
 import { useRef } from "react";
 import useProfile from "./useProfile";
 import FormInput from "../shared/components/form-input/FormInput";
 import ImageInput from "../shared/components/image-input/ImageInput";
+import { TypeUser } from "../auth/types";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function ProfileDetails() {
-    const { user } = useAuthStore((state) => state);
+    const queryClient = useQueryClient();
+
+    const user = queryClient.getQueryData(["auth-check"]) as TypeUser;
 
     const formRef = useRef<HTMLFormElement | null>(null);
 

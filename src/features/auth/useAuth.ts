@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useNotificationStore from "../notifications/useNotificationStore";
-import useAuthStore from "./useAuthStore";
 import { convertPixelDataToImage, validateInputData } from "../shared/utils/helpers";
 import { customFetch } from "../shared/utils/customFetch";
 import { TypeResponse } from "../shared/types";
 import { loginSchema, registerSchema, resetPasswordSchema, sendResetEmailSchema } from "./validation";
+import { TypeUser } from "./types";
 
 export default function useAuth() {
+    const queryClient = useQueryClient();
     const { addNotification } = useNotificationStore((state) => state);
-    const { user, setUser } = useAuthStore((state) => state);
 
     const navigate = useNavigate();
 
@@ -51,12 +51,15 @@ export default function useAuth() {
             return result;
         },
         onSuccess: async (result: any) => {
-            setUser({
+            const user = {
                 id: result.data.user.id,
                 name: result.data.user.name,
                 email: result.data.user.email,
                 image: await convertPixelDataToImage(result.data.user.image),
-            });
+            };
+
+            queryClient.setQueryData(["auth-check"], user);
+
             addNotification(result.message, "success");
             navigate("/");
         },
@@ -73,7 +76,7 @@ export default function useAuth() {
             return results;
         },
         onSuccess: (results) => {
-            setUser(undefined);
+            queryClient.removeQueries({ queryKey: ["auth-check"] });
             addNotification(results.message, "info");
             navigate("/login");
         },
@@ -84,6 +87,8 @@ export default function useAuth() {
 
     const deleteUser = useMutation({
         mutationFn: async () => {
+            const user = queryClient.getQueryData(["auth-check"]) as TypeUser;
+            console.log(user);
             if (!user) throw new Error("User does not exist");
 
             const results: TypeResponse = await customFetch(
@@ -96,7 +101,7 @@ export default function useAuth() {
             return results;
         },
         onSuccess: (results) => {
-            setUser(undefined);
+            queryClient.removeQueries({ queryKey: ["auth-check"] });
             addNotification(results.message, "success");
             navigate("/login");
         },
