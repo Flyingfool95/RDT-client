@@ -2,63 +2,51 @@ import "./RegisterForm.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../useAuth";
+import { FromInputData } from "../../../shared/components/form-input/types";
+import FormInput from "../../../shared/components/form-input/FormInput";
 
 export default function RegisterForm() {
     const { registerUser } = useAuth();
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [email, setEmail] = useState<FromInputData>({ value: "", isError: false, error: "" });
+    const [password, setPassword] = useState<FromInputData>({ value: "", isError: false, error: "" });
+    const [confirmPassword, setConfirmPassword] = useState<FromInputData>({ value: "", isError: false, error: "" });
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        registerUser.mutate(e.currentTarget);
+        registerUser.mutate({ email: email.value, password: password.value, confirmPassword: confirmPassword.value });
     };
 
     return (
         <>
             <form onSubmit={handleSubmit} className="register-form">
-                <label
-                    htmlFor="email"
-                    className={registerUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
-                >
-                    Email
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </label>
+                <FormInput
+                    label="Email"
+                    name="email"
+                    type="email"
+                    placeholder="my@email.com"
+                    data={email}
+                    setData={setEmail}
+                />
 
-                <label
-                    htmlFor="password"
-                    className={registerUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
-                >
-                    Password
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </label>
-                <label
-                    htmlFor="confirm-password"
-                    className={registerUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
-                >
-                    Confirm Password
-                    <input
-                        type="password"
-                        name="confirm-password"
-                        id="confirm-password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                </label>
+                <FormInput
+                    label="Password"
+                    name="password"
+                    type="password"
+                    placeholder=""
+                    data={password}
+                    setData={setPassword}
+                />
+
+                <FormInput
+                    label="Confirm Password"
+                    name="confirm-password"
+                    type="password"
+                    placeholder=""
+                    data={confirmPassword}
+                    setData={setConfirmPassword}
+                />
 
                 <input type="submit" value="Register" />
             </form>

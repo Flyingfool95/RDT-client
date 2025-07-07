@@ -11,6 +11,7 @@ export default function LoginForm() {
 
     const [email, setEmail] = useState<FromInputData>({ value: "", isError: false, error: "" });
     const [password, setPassword] = useState<FromInputData>({ value: "", isError: false, error: "" });
+
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         loginUser.mutate({ email: email.value, password: password.value });
@@ -31,7 +32,7 @@ export default function LoginForm() {
                     label="Password"
                     name="password"
                     type="password"
-                    placeholder="*********"
+                    placeholder=""
                     data={password}
                     setData={setPassword}
                 />
