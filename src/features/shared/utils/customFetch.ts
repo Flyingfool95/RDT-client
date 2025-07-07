@@ -1,4 +1,4 @@
-import { TypeResponse } from "../types";
+import { RDTResponse } from "../types";
 
 export async function customFetch<T = unknown>(
     endpoint: string,
@@ -17,12 +17,12 @@ export async function customFetch<T = unknown>(
         },
         body: data ? JSON.stringify(data) : undefined,
     };
-    let result: TypeResponse | Response | Promise<T>;
+    let result: RDTResponse | Response | Promise<T>;
 
     try {
         if (!credentials) {
             result = await fetch(url, options);
-            result = (await result.json()) as TypeResponse;
+            result = (await result.json()) as RDTResponse;
 
             if (!result.success) {
                 throw new Error(result.errors?.[0]);

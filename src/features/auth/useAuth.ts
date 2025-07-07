@@ -3,10 +3,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useNotificationStore from "../notifications/useNotificationStore";
 import { convertPixelDataToImage, validateInputData } from "../shared/utils/helpers";
 import { customFetch } from "../shared/utils/customFetch";
-import { resetPasswordSchema, sendResetEmailSchema } from "./validation";
+import { resetPasswordSchema } from "./validation";
 import { LoginUserProps } from "./components/login-form/types";
 import { RegisterUserProps } from "./components/register-form/types";
-import { User } from "../shared/types";
+import { RDTResponse, User } from "../shared/types";
 
 export default function useAuth() {
     const queryClient = useQueryClient();
@@ -16,7 +16,7 @@ export default function useAuth() {
 
     const registerUser = useMutation({
         mutationFn: async ({ email, password, confirmPassword }: RegisterUserProps) => {
-            const result = await customFetch("/api/v1/auth/register", "POST", false, {
+            const result: RDTResponse = await customFetch("/api/v1/auth/register", "POST", false, {
                 email,
                 password,
                 confirmPassword,
@@ -36,7 +36,7 @@ export default function useAuth() {
 
     const loginUser = useMutation({
         mutationFn: async ({ email, password }: LoginUserProps) => {
-            const result = await customFetch("/api/v1/auth/login", "POST", true, {
+            const result: RDTResponse = await customFetch("/api/v1/auth/login", "POST", true, {
                 email,
                 password,
             });
@@ -63,7 +63,7 @@ export default function useAuth() {
 
     const logoutUser = useMutation({
         mutationFn: async () => {
-            const result = await customFetch("/api/v1/auth/logout", "GET", true);
+            const result: RDTResponse = await customFetch("/api/v1/auth/logout", "GET", true);
 
             return result;
         },
@@ -82,7 +82,12 @@ export default function useAuth() {
             const user = queryClient.getQueryData(["auth-check"]) as User;
             if (!user) throw new Error("User does not exist");
 
-            const result = await customFetch("/api/v1/auth/delete", "DELETE", true, JSON.stringify({ id: user.id }));
+            const result: RDTResponse = await customFetch(
+                "/api/v1/auth/delete",
+                "DELETE",
+                true,
+                JSON.stringify({ id: user.id })
+            );
 
             return result;
         },
@@ -100,7 +105,12 @@ export default function useAuth() {
         mutationFn: async ({ token, password }: { token: string; password: string }) => {
             const validatedInputData = validateInputData(resetPasswordSchema, { token, password });
 
-            const result = await customFetch("/api/v1/auth/reset-password", "POST", false, validatedInputData);
+            const result: RDTResponse = await customFetch(
+                "/api/v1/auth/reset-password",
+                "POST",
+                false,
+                validatedInputData
+            );
 
             return result;
         },
@@ -116,7 +126,7 @@ export default function useAuth() {
 
     const sendResetEmail = useMutation({
         mutationFn: async (email: string) => {
-            const result = await customFetch("/api/v1/auth/send-reset-email", "POST", false, email);
+            const result: RDTResponse = await customFetch("/api/v1/auth/send-reset-email", "POST", false, email);
             return result;
         },
         onSuccess: (result) => {

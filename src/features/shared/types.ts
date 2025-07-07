@@ -4,3 +4,10 @@ export type User = {
     name: string;
     image: string;
 };
+
+export type RDTResponse = {
+    success: boolean;
+    data: any;
+    message: string;
+    errors: string[];
+};

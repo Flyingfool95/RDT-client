@@ -3,6 +3,7 @@ import { convertPixelDataToImage, getFilteredFormData } from "../shared/utils/he
 import useAuth from "../auth/useAuth";
 import { customFetchFormData } from "../shared/utils/customFetch";
 import useNotificationStore from "../notifications/useNotificationStore";
+import { RDTResponse } from "../shared/types";
 
 export default function useProfile() {
     const queryClient = useQueryClient();
@@ -14,12 +15,7 @@ export default function useProfile() {
         mutationFn: async (formData: FormData) => {
             formData = getFilteredFormData(formData);
 
-            const result = await customFetchFormData(
-                "/api/v1/profile/update",
-                "PATCH",
-                true,
-                formData
-            );
+            const result: RDTResponse = await customFetchFormData("/api/v1/profile/update", "PATCH", true, formData);
 
             return result;
         },
