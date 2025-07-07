@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { RDTResponse, User } from "../shared/types";
+import { LoginUserProps } from "./components/login-form/types";
+import { RegisterUserProps } from "./components/register-form/types";
+import { resetPasswordSchema } from "./components/reset-password-form/validation";
 import useNotificationStore from "../notifications/useNotificationStore";
 import { convertPixelDataToImage, validateInputData } from "../shared/utils/helpers";
 import { customFetch } from "../shared/utils/customFetch";
-import { resetPasswordSchema } from "./validation";
-import { LoginUserProps } from "./components/login-form/types";
-import { RegisterUserProps } from "./components/register-form/types";
-import { RDTResponse, User } from "../shared/types";
 
 export default function useAuth() {
     const queryClient = useQueryClient();
@@ -64,7 +64,6 @@ export default function useAuth() {
     const logoutUser = useMutation({
         mutationFn: async () => {
             const result: RDTResponse = await customFetch("/api/v1/auth/logout", "GET", true);
-
             return result;
         },
         onSuccess: (result) => {

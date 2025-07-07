@@ -1,18 +1,23 @@
 import "./ProfileDetails.css";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { User } from "../shared/types";
+import { FromInputData } from "../shared/components/form-input/types";
 import useProfile from "./useProfile";
 import FormInput from "../shared/components/form-input/FormInput";
 import ImageInput from "../shared/components/image-input/ImageInput";
-import { useQueryClient } from "@tanstack/react-query";
 
 export default function ProfileDetails() {
+    const { updateUser } = useProfile();
     const queryClient = useQueryClient();
+    const user = queryClient.getQueryData(["auth-check"]) as User;
 
-    const user = queryClient.getQueryData(["auth-check"]) as TypeUser;
+    const [name, setName] = useState<FromInputData>({ value: "", isError: false, error: "" });
+    const [email, setEmail] = useState<FromInputData>({ value: "", isError: false, error: "" });
+    const [password, setPassword] = useState<FromInputData>({ value: "", isError: false, error: "" });
+    const [confirmPassword, setConfirmPassword] = useState<FromInputData>({ value: "", isError: false, error: "" });
 
     const formRef = useRef<HTMLFormElement | null>(null);
-
-    const { updateUser } = useProfile();
 
     const handleUpdate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -33,31 +38,28 @@ export default function ProfileDetails() {
         <form onSubmit={(e) => handleUpdate(e)} ref={formRef}>
             <ImageInput<any> data={user} />
 
+            <FormInput label="Name" name="name" type="text" placeholder={user?.name} data={name} setData={setName} />
             <FormInput
-                classNames={updateUser.error?.message.toLowerCase().includes("name") ? "input-error" : ""}
-                label="Name"
-                name="name"
-                type="text"
-                placeholder={user?.name}
-            />
-            <FormInput
-                classNames={updateUser.error?.message.toLowerCase().includes("email") ? "input-error" : ""}
                 label="Email"
                 name="email"
                 type="email"
                 placeholder={user?.email}
+                data={email}
+                setData={setEmail}
             />
             <FormInput
-                classNames={updateUser.error?.message.toLowerCase().includes("password") ? "input-error" : ""}
                 label="Current Password"
                 name="current-password"
                 type="password"
+                data={password}
+                setData={setPassword}
             />
             <FormInput
-                classNames={updateUser.error?.message.toLowerCase().includes("password") ? "input-error" : ""}
                 label="New Password"
                 name="new-password"
                 type="password"
+                data={confirmPassword}
+                setData={setConfirmPassword}
             />
 
             <input type="submit" value="Update" />
