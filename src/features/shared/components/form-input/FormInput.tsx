@@ -1,38 +1,18 @@
 import "./FormInput.css";
-import { ChangeEvent } from "react";
+import { FormInputProps } from "./types";
 
-interface FormInputProps {
-    classNames?: string;
-    label: string;
-    name: string;
-    type?: "text" | "number" | "textarea" | "email" | "password";
-    value?: string;
-    onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-    placeholder?: string;
-    required?: boolean;
-}
-
-export default function FormInput({
-    classNames = "",
-    label,
-    name,
-    type = "text",
-    value,
-    onChange,
-    placeholder,
-    required,
-}: FormInputProps) {
+export default function FormInput({ label, name, type, data, setData, placeholder, required }: FormInputProps) {
     const id = `input-${name}`;
-
+    console.log(data);
     return (
-        <div className={`form-input ${classNames}`}>
+        <div className={`form-input ${data.isError ? "input-error" : ""}`}>
             <label htmlFor={id}>{label}</label>
             {type === "textarea" ? (
                 <textarea
                     name={name}
                     id={id}
-                    value={value}
-                    onChange={onChange}
+                    value={data.value}
+                    onChange={(e) => setData({ ...data, value: e.target.value })}
                     placeholder={placeholder}
                     required={required}
                 />
@@ -41,8 +21,8 @@ export default function FormInput({
                     type={type}
                     name={name}
                     id={id}
-                    value={value}
-                    onChange={onChange}
+                    value={data.value}
+                    onChange={(e) => setData({ ...data, value: e.target.value })}
                     placeholder={placeholder}
                     required={required}
                 />

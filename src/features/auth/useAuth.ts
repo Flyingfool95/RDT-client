@@ -3,9 +3,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useNotificationStore from "../notifications/useNotificationStore";
 import { convertPixelDataToImage, validateInputData } from "../shared/utils/helpers";
 import { customFetch } from "../shared/utils/customFetch";
-import { TypeResponse } from "../shared/types";
-import { loginSchema, registerSchema, resetPasswordSchema, sendResetEmailSchema } from "./validation";
+import { loginSchema, resetPasswordSchema, sendResetEmailSchema } from "./validation";
 import { TypeUser } from "./types";
+import { LoginUserProps } from "./components/login-form/types";
 
 export default function useAuth() {
     const queryClient = useQueryClient();
@@ -14,14 +14,14 @@ export default function useAuth() {
     const navigate = useNavigate();
 
     const registerUser = useMutation({
-        mutationFn: async (e: any) => {
+        mutationFn: async (e) => {
             const email = e["email"].value;
             const password = e["password"].value;
             const confirmPassword = e["confirm-password"].value;
 
             const validatedInputData = validateInputData(registerSchema, { email, password, confirmPassword });
 
-            const results: TypeResponse = await customFetch("/api/v1/auth/register", "POST", false, validatedInputData);
+            const results = await customFetch("/api/v1/auth/register", "POST", false, validatedInputData);
 
             return results;
         },
@@ -36,9 +36,7 @@ export default function useAuth() {
     });
 
     const loginUser = useMutation({
-        mutationFn: async (e: any) => {
-            const email = e["email"].value;
-            const password = e["password"].value;
+        mutationFn: async ({ email, password }: LoginUserProps) => {
             validateInputData(loginSchema, {
                 email,
                 password,
@@ -50,7 +48,7 @@ export default function useAuth() {
             });
             return result;
         },
-        onSuccess: async (result: any) => {
+        onSuccess: async (result) => {
             const user = {
                 id: result.data.user.id,
                 name: result.data.user.name,
@@ -71,7 +69,7 @@ export default function useAuth() {
 
     const logoutUser = useMutation({
         mutationFn: async () => {
-            const results: TypeResponse = await customFetch("/api/v1/auth/logout", "GET", true);
+            const results = await customFetch("/api/v1/auth/logout", "GET", true);
 
             return results;
         },
@@ -91,12 +89,7 @@ export default function useAuth() {
             console.log(user);
             if (!user) throw new Error("User does not exist");
 
-            const results: TypeResponse = await customFetch(
-                "/api/v1/auth/delete",
-                "DELETE",
-                true,
-                JSON.stringify({ id: user.id })
-            );
+            const results = await customFetch("/api/v1/auth/delete", "DELETE", true, JSON.stringify({ id: user.id }));
 
             return results;
         },
@@ -114,12 +107,7 @@ export default function useAuth() {
         mutationFn: async ({ token, password }: { token: string; password: string }) => {
             const validatedInputData = validateInputData(resetPasswordSchema, { token, password });
 
-            const results: TypeResponse = await customFetch(
-                "/api/v1/auth/reset-password",
-                "POST",
-                false,
-                validatedInputData
-            );
+            const results = await customFetch("/api/v1/auth/reset-password", "POST", false, validatedInputData);
 
             return results;
         },
@@ -134,15 +122,10 @@ export default function useAuth() {
     });
 
     const sendResetEmail = useMutation({
-        mutationFn: async (e: any) => {
+        mutationFn: async (e) => {
             const email = e["email"].value;
             const validatedInputData = validateInputData(sendResetEmailSchema, { email });
-            const results: TypeResponse = await customFetch(
-                "/api/v1/auth/send-reset-email",
-                "POST",
-                false,
-                validatedInputData
-            );
+            const results = await customFetch("/api/v1/auth/send-reset-email", "POST", false, validatedInputData);
             return results;
         },
         onSuccess: (results) => {

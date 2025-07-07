@@ -7,15 +7,7 @@ export const loginSchema = z
     })
     .strict();
 
-export const registerSchema = loginSchema
-    .extend({
-        confirmPassword: z.string(),
-    })
-    .strict()
-    .refine((data) => data.password === data.confirmPassword, {
-        message: "Passwords do not match",
-        path: ["confirmPassword"],
-    });
+
 
 export const updateUserSchema = z
     .object({

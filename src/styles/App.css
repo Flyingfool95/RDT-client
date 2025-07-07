@@ -162,11 +162,11 @@ form {
         width: fit-content;
     }
 
-    .zod-error label {
+    .input-error label {
         color: var(--color-error-5) !important;
     }
 
-    .zod-error input {
+    .input-error input {
         color: var(--color-error-1) !important;
         border-color: var(--color-error-5) !important;
         background-color: var(--color-error-10) !important;

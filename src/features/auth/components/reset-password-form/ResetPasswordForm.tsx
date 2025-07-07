@@ -18,7 +18,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
             <form onSubmit={handleSubmit}>
                 <label
                     htmlFor="text"
-                    className={resetPassword.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
+                    className={resetPassword.error?.message.toLowerCase().includes("password") ? "input-error" : ""}
                 >
                     New Password
                     <input

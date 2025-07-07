@@ -15,7 +15,7 @@ export default function SendResetEmailForm() {
             <form onSubmit={handleSubmit}>
                 <label
                     htmlFor="email"
-                    className={sendResetEmail.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
+                    className={sendResetEmail.error?.message.toLowerCase().includes("email") ? "input-error" : ""}
                 >
                     Email
                     <input type="email" name="email" id="email" />

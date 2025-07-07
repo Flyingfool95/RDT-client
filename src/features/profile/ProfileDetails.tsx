@@ -3,7 +3,6 @@ import { useRef } from "react";
 import useProfile from "./useProfile";
 import FormInput from "../shared/components/form-input/FormInput";
 import ImageInput from "../shared/components/image-input/ImageInput";
-import { TypeUser } from "../auth/types";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function ProfileDetails() {
@@ -35,27 +34,27 @@ export default function ProfileDetails() {
             <ImageInput<any> data={user} />
 
             <FormInput
-                classNames={updateUser.error?.message.toLowerCase().includes("name") ? "zod-error" : ""}
+                classNames={updateUser.error?.message.toLowerCase().includes("name") ? "input-error" : ""}
                 label="Name"
                 name="name"
                 type="text"
                 placeholder={user?.name}
             />
             <FormInput
-                classNames={updateUser.error?.message.toLowerCase().includes("email") ? "zod-error" : ""}
+                classNames={updateUser.error?.message.toLowerCase().includes("email") ? "input-error" : ""}
                 label="Email"
                 name="email"
                 type="email"
                 placeholder={user?.email}
             />
             <FormInput
-                classNames={updateUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
+                classNames={updateUser.error?.message.toLowerCase().includes("password") ? "input-error" : ""}
                 label="Current Password"
                 name="current-password"
                 type="password"
             />
             <FormInput
-                classNames={updateUser.error?.message.toLowerCase().includes("password") ? "zod-error" : ""}
+                classNames={updateUser.error?.message.toLowerCase().includes("password") ? "input-error" : ""}
                 label="New Password"
                 name="new-password"
                 type="password"

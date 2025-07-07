@@ -4,11 +4,7 @@ import imageCompression from "browser-image-compression";
 export function validateInputData(schema: ZodSchema, data: unknown) {
     const results = schema.safeParse(data);
 
-    if (!results.success) {
-        throw new Error(results.error.issues.map((err) => err.message).join("\n"));
-    }
-
-    return results.data;
+    return results;
 }
 
 export function zodValidator(schema: ZodType, formData: FormData) {

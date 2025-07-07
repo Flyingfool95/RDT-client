@@ -1,7 +1,6 @@
 import { create } from "zustand";
-import { TypeUseModalStore } from "../../types";
 
-const useModalStore = create<TypeUseModalStore>((set) => ({
+const useModalStore = create((set) => ({
     showModal: false,
     setShowModal: (isShow: boolean) => {
         set(() => ({

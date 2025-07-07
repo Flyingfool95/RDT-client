@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { convertPixelDataToImage, getFilteredFormData } from "../shared/utils/helpers";
 import useAuth from "../auth/useAuth";
-import { TypeUserResponse } from "../auth/types";
 import { customFetchFormData } from "../shared/utils/customFetch";
 import useNotificationStore from "../notifications/useNotificationStore";
 
@@ -15,24 +14,24 @@ export default function useProfile() {
         mutationFn: async (formData: FormData) => {
             formData = getFilteredFormData(formData);
 
-            const results: TypeUserResponse = await customFetchFormData(
+            const result = await customFetchFormData(
                 "/api/v1/profile/update",
                 "PATCH",
                 true,
                 formData
             );
 
-            return results;
+            return result;
         },
-        onSuccess: async (results) => {
+        onSuccess: async (result) => {
             const user = {
-                id: results.data.user.id,
-                name: results.data.user.name,
-                email: results.data.user.email,
-                image: await convertPixelDataToImage(results.data.user.image),
+                id: result.data.user.id,
+                name: result.data.user.name,
+                email: result.data.user.email,
+                image: await convertPixelDataToImage(result.data.user.image),
             };
             queryClient.setQueryData(["auth-check"], user);
-            addNotification(results.message, "success");
+            addNotification(result.message, "success");
         },
         onError: (error) => {
             addNotification(error.message, "error", 7000);
