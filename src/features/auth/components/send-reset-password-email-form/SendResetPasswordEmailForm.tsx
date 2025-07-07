@@ -1,25 +1,32 @@
+import { useState } from "react";
 import Loader from "../../../loader/Loader";
+import FormInput from "../../../shared/components/form-input/FormInput";
+import { FromInputData } from "../../../shared/components/form-input/types";
 import useAuth from "../../useAuth";
 
 export default function SendResetEmailForm() {
     const { sendResetEmail } = useAuth();
 
+    const [email, setEmail] = useState<FromInputData>({ value: "", isError: false, error: "" });
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        sendResetEmail.mutate(e.currentTarget);
+        sendResetEmail.mutate(email.value);
     };
 
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <label
-                    htmlFor="email"
-                    className={sendResetEmail.error?.message.toLowerCase().includes("email") ? "input-error" : ""}
-                >
-                    Email
-                    <input type="email" name="email" id="email" />
-                </label>
+                <FormInput
+                    label="Email"
+                    name="email"
+                    type="email"
+                    placeholder="my@email.com"
+                    data={email}
+                    setData={setEmail}
+                    required
+                />
 
                 <input type="submit" value="Send email" />
             </form>

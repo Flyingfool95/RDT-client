@@ -6,6 +6,7 @@ import { customFetch } from "../shared/utils/customFetch";
 import { resetPasswordSchema, sendResetEmailSchema } from "./validation";
 import { LoginUserProps } from "./components/login-form/types";
 import { RegisterUserProps } from "./components/register-form/types";
+import { User } from "../shared/types";
 
 export default function useAuth() {
     const queryClient = useQueryClient();
@@ -78,8 +79,7 @@ export default function useAuth() {
 
     const deleteUser = useMutation({
         mutationFn: async () => {
-            const user = queryClient.getQueryData(["auth-check"]) as TypeUser;
-            console.log(user);
+            const user = queryClient.getQueryData(["auth-check"]) as User;
             if (!user) throw new Error("User does not exist");
 
             const result = await customFetch("/api/v1/auth/delete", "DELETE", true, JSON.stringify({ id: user.id }));
@@ -115,10 +115,8 @@ export default function useAuth() {
     });
 
     const sendResetEmail = useMutation({
-        mutationFn: async (e) => {
-            const email = e["email"].value;
-            const validatedInputData = validateInputData(sendResetEmailSchema, { email });
-            const result = await customFetch("/api/v1/auth/send-reset-email", "POST", false, validatedInputData);
+        mutationFn: async (email: string) => {
+            const result = await customFetch("/api/v1/auth/send-reset-email", "POST", false, email);
             return result;
         },
         onSuccess: (result) => {
