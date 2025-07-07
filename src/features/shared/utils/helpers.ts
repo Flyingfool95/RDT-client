@@ -7,21 +7,6 @@ export function validateInputData(schema: ZodSchema, data: unknown) {
     return results;
 }
 
-export function zodValidator(schema: ZodType, formData: FormData) {
-    const rawData = Object.fromEntries(formData.entries());
-
-    const results = schema.safeParse(rawData);
-
-    if (results.success) {
-        return { success: true, data: formData };
-    } else {
-        return {
-            success: false,
-            errors: results.error.flatten(),
-        };
-    }
-}
-
 export async function convertPixelDataToImage(pixeldata: any) {
     const pixelValues = Object.values(pixeldata);
     const pixelArray = new Uint8Array(pixelValues as any);
