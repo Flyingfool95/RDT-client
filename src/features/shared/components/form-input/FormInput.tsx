@@ -1,5 +1,4 @@
 import "./FormInput.css";
-import { useState } from "react";
 import { FormInputProps } from "./types";
 import { validateInputData } from "../../utils/helpers";
 
@@ -14,27 +13,22 @@ export default function FormInput({
 }: FormInputProps) {
     const name = label.toLowerCase().replace(" ", "-");
     const id = `input-${name}`;
-    const [touched, setTouched] = useState(false);
-
-    const validate = (value: string) => {
-        const result = validateInputData(validationSchema, value);
-        if (result.success) {
-            setData({ ...data, isError: false, error: "" });
-        } else {
-            setData({ ...data, isError: true, error: result.error.issues.map((issue) => issue.message).join(", ") });
-        }
-    };
-
-    const handleBlur = () => {
-        setTouched(true);
-        validate(data.value);
-    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setData({ ...data, value: e.target.value });
+    };
 
-        if (touched) {
-            validate(e.target.value);
+    const handleBlur = () => {
+        const result = validateInputData(validationSchema, data.value);
+
+        if (result.success) {
+            setData({ ...data, isError: false, error: "" });
+        } else {
+            setData({
+                ...data,
+                isError: true,
+                error: result.error.issues.map((issue) => issue.message).join(", "),
+            });
         }
     };
 
@@ -63,7 +57,7 @@ export default function FormInput({
                     required={required}
                 />
             )}
-            {data.isError && touched && <p className="error-message">{data.error}</p>}
+            {data.isError && <p className="error-message">{data.error}</p>}
         </div>
     );
 }
