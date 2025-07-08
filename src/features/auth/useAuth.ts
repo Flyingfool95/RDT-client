@@ -103,12 +103,11 @@ export default function useAuth() {
     const resetPassword = useMutation({
         mutationFn: async ({ token, password }: { token: string; password: string }) => {
             const validatedInputData = validateInputData(resetPasswordSchema, { token, password });
-
             const result: RDTResponse = await customFetch(
                 "/api/v1/auth/reset-password",
                 "POST",
                 false,
-                validatedInputData
+                validatedInputData.data
             );
 
             return result;
@@ -125,7 +124,7 @@ export default function useAuth() {
 
     const sendResetEmail = useMutation({
         mutationFn: async (email: string) => {
-            const result: RDTResponse = await customFetch("/api/v1/auth/send-reset-email", "POST", false, email);
+            const result: RDTResponse = await customFetch("/api/v1/auth/send-reset-email", "POST", false, { email });
             return result;
         },
         onSuccess: (result) => {

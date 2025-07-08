@@ -19,8 +19,8 @@ export default function ResetPasswordForm({ token }: { token: string }) {
         <>
             <form onSubmit={handleSubmit}>
                 <FormInput
-                    label="Text"
-                    name="text"
+                    label="New Password"
+                    name="password"
                     type="text"
                     placeholder="New password"
                     data={password}

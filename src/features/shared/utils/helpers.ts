@@ -1,4 +1,4 @@
-import { ZodSchema, ZodType } from "zod";
+import { ZodSchema } from "zod";
 import imageCompression from "browser-image-compression";
 
 export function validateInputData(schema: ZodSchema, data: unknown) {
