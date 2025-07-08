@@ -38,29 +38,10 @@ export default function ProfileDetails() {
         <form onSubmit={(e) => handleUpdate(e)} ref={formRef}>
             <ImageInput<any> data={user} />
 
-            <FormInput label="Name" name="name" type="text" placeholder={user?.name} data={name} setData={setName} />
-            <FormInput
-                label="Email"
-                name="email"
-                type="email"
-                placeholder={user?.email}
-                data={email}
-                setData={setEmail}
-            />
-            <FormInput
-                label="Current Password"
-                name="current-password"
-                type="password"
-                data={password}
-                setData={setPassword}
-            />
-            <FormInput
-                label="New Password"
-                name="new-password"
-                type="password"
-                data={confirmPassword}
-                setData={setConfirmPassword}
-            />
+            <FormInput label="Name" type="text" placeholder={user?.name} data={name} setData={setName} />
+            <FormInput label="Email" type="email" placeholder={user?.email} data={email} setData={setEmail} />
+            <FormInput label="Current Password" type="password" data={password} setData={setPassword} />
+            <FormInput label="New Password" type="password" data={confirmPassword} setData={setConfirmPassword} />
 
             <input type="submit" value="Update" />
         </form>

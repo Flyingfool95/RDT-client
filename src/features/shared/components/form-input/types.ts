@@ -9,7 +9,6 @@ export type FromInputData = {
 export type FormInputProps = {
     classNames?: string;
     label: string;
-    name: string;
     type: "text" | "textarea" | "email" | "password";
     data: FromInputData;
     setData: React.Dispatch<React.SetStateAction<FromInputData>>;

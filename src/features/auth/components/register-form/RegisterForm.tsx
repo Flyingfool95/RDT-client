@@ -21,27 +21,12 @@ export default function RegisterForm() {
     return (
         <>
             <form onSubmit={handleSubmit} className="register-form">
-                <FormInput
-                    label="Email"
-                    name="email"
-                    type="email"
-                    placeholder="my@email.com"
-                    data={email}
-                    setData={setEmail}
-                />
+                <FormInput label="Email" type="email" placeholder="my@email.com" data={email} setData={setEmail} />
 
-                <FormInput
-                    label="Password"
-                    name="password"
-                    type="password"
-                    placeholder=""
-                    data={password}
-                    setData={setPassword}
-                />
+                <FormInput label="Password" type="password" placeholder="" data={password} setData={setPassword} />
 
                 <FormInput
                     label="Confirm Password"
-                    name="confirm-password"
                     type="password"
                     placeholder=""
                     data={confirmPassword}

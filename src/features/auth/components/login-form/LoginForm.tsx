@@ -22,7 +22,6 @@ export default function LoginForm() {
             <form onSubmit={(e) => handleLogin(e)} className="login-form">
                 <FormInput
                     label="Email"
-                    name="email"
                     type="email"
                     placeholder="my@email.com"
                     data={email}
@@ -30,7 +29,6 @@ export default function LoginForm() {
                 />
                 <FormInput
                     label="Password"
-                    name="password"
                     type="password"
                     placeholder=""
                     data={password}

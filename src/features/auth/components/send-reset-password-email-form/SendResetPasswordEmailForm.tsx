@@ -20,7 +20,6 @@ export default function SendResetEmailForm() {
             <form onSubmit={handleSubmit}>
                 <FormInput
                     label="Email"
-                    name="email"
                     type="email"
                     placeholder="my@email.com"
                     data={email}

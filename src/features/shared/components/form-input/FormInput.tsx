@@ -1,7 +1,9 @@
 import "./FormInput.css";
 import { FormInputProps } from "./types";
 
-export default function FormInput({ label, name, type, data, setData, placeholder, required }: FormInputProps) {
+export default function FormInput({ label, type, data, setData, placeholder, required = false }: FormInputProps) {
+    
+    const name = label.toLowerCase().replace(" ", "-");
     const id = `input-${name}`;
 
     //Add realtime validation of inputs
