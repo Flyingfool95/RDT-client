@@ -5,7 +5,6 @@ import useAuth from "../../useAuth";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FromInputData } from "../../../shared/components/form-input/types";
-import { emailSchema, passwordSchema } from "../../../shared/validations";
 
 export default function LoginForm() {
     const { loginUser } = useAuth();
@@ -27,7 +26,7 @@ export default function LoginForm() {
                     placeholder="my@email.com"
                     data={email}
                     setData={setEmail}
-                    validationSchema={emailSchema}
+                    required
                 />
                 <FormInput
                     label="Password"
@@ -35,7 +34,7 @@ export default function LoginForm() {
                     placeholder=""
                     data={password}
                     setData={setPassword}
-                    validationSchema={passwordSchema}
+                    required
                 />
 
                 <input type="submit" value="Login" />

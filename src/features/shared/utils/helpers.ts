@@ -1,11 +1,4 @@
-import { ZodSchema } from "zod";
 import imageCompression from "browser-image-compression";
-
-export function validateInputData(schema: ZodSchema, data: unknown) {
-    const result = schema.safeParse(data);
-
-    return result;
-}
 
 export async function convertPixelDataToImage(pixeldata: any) {
     const pixelValues = Object.values(pixeldata);

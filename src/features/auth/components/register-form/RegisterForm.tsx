@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import useAuth from "../../useAuth";
 import { FromInputData } from "../../../shared/components/form-input/types";
 import FormInput from "../../../shared/components/form-input/FormInput";
-import { confirmPasswordSchema, emailSchema, passwordSchema } from "../../../shared/validations";
 
 export default function RegisterForm() {
     const { registerUser } = useAuth();
@@ -28,7 +27,7 @@ export default function RegisterForm() {
                     placeholder="my@email.com"
                     data={email}
                     setData={setEmail}
-                    validationSchema={emailSchema}
+                    required
                 />
 
                 <FormInput
@@ -37,7 +36,7 @@ export default function RegisterForm() {
                     placeholder=""
                     data={password}
                     setData={setPassword}
-                    validationSchema={passwordSchema}
+                    required
                 />
 
                 <FormInput
@@ -46,7 +45,7 @@ export default function RegisterForm() {
                     placeholder=""
                     data={confirmPassword}
                     setData={setConfirmPassword}
-                    validationSchema={confirmPasswordSchema(password.value)}
+                    required
                 />
 
                 <input type="submit" value="Register" />
