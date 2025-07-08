@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import "./FormInput.css";
+import { useState } from "react";
 import { FormInputProps } from "./types";
 import { validateInputData } from "../../utils/helpers";
 
@@ -18,7 +18,6 @@ export default function FormInput({
 
     const validate = (value: string) => {
         const result = validateInputData(validationSchema, value);
-        console.log(result);
         if (result.success) {
             setData({ ...data, isError: false, error: "" });
         } else {
