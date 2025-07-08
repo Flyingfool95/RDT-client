@@ -1,12 +1,43 @@
+import { useState, useEffect } from "react";
 import "./FormInput.css";
 import { FormInputProps } from "./types";
+import { validateInputData } from "../../utils/helpers";
 
-export default function FormInput({ label, type, data, setData, placeholder, required = false }: FormInputProps) {
-    
+export default function FormInput({
+    label,
+    type,
+    data,
+    setData,
+    validationSchema,
+    placeholder,
+    required = false,
+}: FormInputProps) {
     const name = label.toLowerCase().replace(" ", "-");
     const id = `input-${name}`;
+    const [touched, setTouched] = useState(false);
 
-    //Add realtime validation of inputs
+    const validate = (value: string) => {
+        const result = validateInputData(validationSchema, value);
+        console.log(result);
+        if (result.success) {
+            setData({ ...data, isError: false, error: "" });
+        } else {
+            setData({ ...data, isError: true, error: result.error.issues.map((issue) => issue.message).join(", ") });
+        }
+    };
+
+    const handleBlur = () => {
+        setTouched(true);
+        validate(data.value);
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setData({ ...data, value: e.target.value });
+
+        if (touched) {
+            validate(e.target.value);
+        }
+    };
 
     return (
         <div className={`form-input ${data.isError ? "input-error" : ""}`}>
@@ -16,7 +47,8 @@ export default function FormInput({ label, type, data, setData, placeholder, req
                     name={name}
                     id={id}
                     value={data.value}
-                    onChange={(e) => setData({ ...data, value: e.target.value })}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     placeholder={placeholder}
                     required={required}
                 />
@@ -26,11 +58,13 @@ export default function FormInput({ label, type, data, setData, placeholder, req
                     name={name}
                     id={id}
                     value={data.value}
-                    onChange={(e) => setData({ ...data, value: e.target.value })}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                     placeholder={placeholder}
                     required={required}
                 />
             )}
+            {data.isError && touched && <p className="error-message">{data.error}</p>}
         </div>
     );
 }

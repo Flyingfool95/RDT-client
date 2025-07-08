@@ -2,9 +2,9 @@ import { ZodSchema } from "zod";
 import imageCompression from "browser-image-compression";
 
 export function validateInputData(schema: ZodSchema, data: unknown) {
-    const results = schema.safeParse(data);
+    const result = schema.safeParse(data);
 
-    return results;
+    return result;
 }
 
 export async function convertPixelDataToImage(pixeldata: any) {
