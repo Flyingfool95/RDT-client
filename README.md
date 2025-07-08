@@ -10,8 +10,7 @@ Its purpose is to provide a starting point for web applications with the followi
 -   **[Vite](https://vitejs.dev/)** – Fast development build tool and dev server
 -   **TypeScript** – Strongly typed codebase for better developer experience
 -   **[TanStack Query](https://tanstack.com/query/latest)** – Powerful data fetching, caching, and synchronization
--   **[Zustand](https://github.com/pmndrs/zustand)** – Lightweight state management (currently used for user data; migration to TanStack Query planned)
--   **Validation** with [Zod](https://github.com/colinhacks/zod)
+-   **[Zustand](https://github.com/pmndrs/zustand)** – Lightweight state management
 -   **Image optimization** via [`browser-image-compression`](https://www.npmjs.com/package/browser-image-compression)
 
 ---
