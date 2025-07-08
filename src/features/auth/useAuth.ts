@@ -100,6 +100,21 @@ export default function useAuth() {
         },
     });
 
+    const sendResetEmail = useMutation({
+        mutationFn: async (email: string) => {
+            const result: RDTResponse = await customFetch("/api/v1/auth/send-reset-email", "POST", false, { email });
+            return result;
+        },
+        onSuccess: (result) => {
+            addNotification(result.message, "success");
+            navigate("/login");
+        },
+        onError: (error) => {
+            console.log(error);
+            addNotification(error.message, "error", 7000);
+        },
+    });
+
     const resetPassword = useMutation({
         mutationFn: async ({ token, password }: { token: string; password: string }) => {
             const validatedInputData = validateInputData(resetPasswordSchema, { token, password });
@@ -122,27 +137,12 @@ export default function useAuth() {
         },
     });
 
-    const sendResetEmail = useMutation({
-        mutationFn: async (email: string) => {
-            const result: RDTResponse = await customFetch("/api/v1/auth/send-reset-email", "POST", false, { email });
-            return result;
-        },
-        onSuccess: (result) => {
-            addNotification(result.message, "success");
-            navigate("/login");
-        },
-        onError: (error) => {
-            console.log(error);
-            addNotification(error.message, "error", 7000);
-        },
-    });
-
     return {
         registerUser,
         loginUser,
         logoutUser,
         deleteUser,
-        resetPassword,
         sendResetEmail,
+        resetPassword,
     };
 }
