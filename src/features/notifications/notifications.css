@@ -1,15 +1,17 @@
 .notification-container {
     z-index: 3;
     min-width: var(--size-16);
+    max-width: fit-content;
     position: fixed;
-    bottom: 1rem;
-    right: 1rem;
+    bottom: var(--size-3);
+    left: var(--size-3);
+    right: var(--size-3);
     margin-left: auto;
-    margin-right: 0;
+    margin-right: auto;
 
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     gap: 1rem;
 }
 
