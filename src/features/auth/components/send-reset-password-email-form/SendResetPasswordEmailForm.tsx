@@ -1,18 +1,17 @@
 import { useState } from "react";
 import Loader from "../../../loader/Loader";
 import FormInput from "../../../shared/components/form-input/FormInput";
-import { FromInputData } from "../../../shared/components/form-input/types";
 import useAuth from "../../useAuth";
 
 export default function SendResetEmailForm() {
     const { sendResetEmail } = useAuth();
 
-    const [email, setEmail] = useState<FromInputData>("");
+    const [email, setEmail] = useState("");
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        sendResetEmail.mutate(email.value);
+        sendResetEmail.mutate(email);
     };
 
     return (

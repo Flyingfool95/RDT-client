@@ -1,5 +1,5 @@
 import "./ProfileDetails.css";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { User } from "../shared/types";
 import useProfile from "./useProfile";

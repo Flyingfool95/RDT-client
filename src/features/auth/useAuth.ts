@@ -37,7 +37,6 @@ export default function useAuth() {
             navigate("/login");
         },
         onError: (error) => {
-            console.log(error);
             addNotification(error.message, "error", 7000);
         },
     });
@@ -127,7 +126,6 @@ export default function useAuth() {
             navigate("/login");
         },
         onError: (error) => {
-            console.log(error);
             addNotification(error.message, "error", 7000);
         },
     });
@@ -151,7 +149,6 @@ export default function useAuth() {
             navigate("/login");
         },
         onError: (error) => {
-            console.log(error);
             addNotification(error.message, "error", 7000);
         },
     });

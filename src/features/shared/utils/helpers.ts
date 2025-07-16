@@ -19,7 +19,6 @@ export async function optimizeImage(imageData: any) {
     try {
         return (await imageCompression(imageData, options)) as Blob | MediaSource;
     } catch (error) {
-        console.log(error);
         return imageData;
     }
 }

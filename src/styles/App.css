@@ -172,21 +172,25 @@ form {
         background-color: var(--color-error-10) !important;
         box-shadow: 1px 1px 3px 0 var(--color-error-6-50) !important;
     }
+
+    .input-error .error-message {
+        color: var(--color-error-1) !important;
+        margin: 0;
+    }
 }
 
-
-@media (max-width: 350px){
+@media (max-width: 350px) {
     p,
-span,
-a,
-label,
-input,
-textarea,
-select,
-small,
-figcaption,
-button,
-::placeholder {
-    font-size: calc(var(--size-3) * 0.85);
-}
+    span,
+    a,
+    label,
+    input,
+    textarea,
+    select,
+    small,
+    figcaption,
+    button,
+    ::placeholder {
+        font-size: calc(var(--size-3) * 0.85);
+    }
 }

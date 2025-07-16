@@ -12,9 +12,15 @@ export default function FormInput({ label, type, data, setData, placeholder, req
     const formInputError =
         formErrors &&
         formErrors.filter((err) => {
-            if (err.path === name || err.path === "Http Error") return err;
+            if (err.path === name) return err;
         });
-    const isError = formInputError && formInputError.length > 0 ? true : false;
+    const httpError =
+        formErrors &&
+        formErrors.filter((err) => {
+            if (err.path === "Http Error") return err;
+        });
+
+    const isError = formInputError && formInputError.length > 0 ? true : false || httpError && httpError.length > 0 ? true : false;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setData(e.target.value);
