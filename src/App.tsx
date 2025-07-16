@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./styles/App.css";
 import "./styles/Utils.css";
@@ -16,6 +16,7 @@ const Dashboard = lazy(() => import("./routes/protected/dashboard/Dashboard"));
 const Profile = lazy(() => import("./routes/protected/profile/Profile"));
 
 function App() {
+
     return (
         <div id="app">
             <Routes>

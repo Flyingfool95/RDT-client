@@ -4,10 +4,13 @@ import useAuth from "../auth/useAuth";
 import { customFetchFormData } from "../shared/utils/customFetch";
 import useNotificationStore from "../notifications/useNotificationStore";
 import { RDTResponse } from "../shared/types";
+import useFormErrorStore from "../shared/stores/form-errors/useFormErrorsStore";
+import { FormErrors } from "../shared/stores/form-errors/types";
 
 export default function useProfile() {
     const queryClient = useQueryClient();
 
+    const { setFormErrors } = useFormErrorStore((state) => state);
     const { addNotification } = useNotificationStore((state) => state);
     const { logoutUser } = useAuth();
 
@@ -20,8 +23,10 @@ export default function useProfile() {
         },
         onSuccess: async (result) => {
             if (!result.success) {
-                return result.errors;
+                setFormErrors(result.errors as FormErrors);
+                throw Error("Update failed");
             }
+
             const user = {
                 id: result.data.id,
                 name: result.data.name,

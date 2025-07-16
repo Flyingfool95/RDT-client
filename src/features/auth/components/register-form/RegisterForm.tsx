@@ -10,22 +10,11 @@ export default function RegisterForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [errors, setErrors] = useState<Array<string>>([]);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        registerUser.mutate(
-            { email, password, confirmPassword },
-            {
-                onSuccess: (result) => {
-                    if (!result.success) {
-                        setErrors(result.errors?.map((err) => err.path) as Array<string>);
-                        throw Error(result.errors?.map((err) => err.message).join("\n"));
-                    }
-                },
-            }
-        );
+        registerUser.mutate({ email, password, confirmPassword });
     };
 
     return (
@@ -37,7 +26,6 @@ export default function RegisterForm() {
                     placeholder="my@email.com"
                     data={email}
                     setData={setEmail}
-                    errors={errors}
                     required
                 />
 
@@ -47,7 +35,6 @@ export default function RegisterForm() {
                     placeholder=""
                     data={password}
                     setData={setPassword}
-                    errors={errors}
                     required
                 />
 
@@ -57,7 +44,6 @@ export default function RegisterForm() {
                     placeholder=""
                     data={confirmPassword}
                     setData={setConfirmPassword}
-                    errors={errors}
                     required
                 />
 

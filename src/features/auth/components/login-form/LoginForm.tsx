@@ -3,33 +3,18 @@ import Loader from "../../../loader/Loader";
 import FormInput from "../../../shared/components/form-input/FormInput";
 import useAuth from "../../useAuth";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function LoginForm() {
     const { loginUser } = useAuth();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState<Array<string>>([]);
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        loginUser.mutate(
-            { email, password },
-            {
-                onSuccess: (result) => {
-                    if (!result.success) {
-                        setErrors(result.errors?.map((err) => err.path) as Array<string>);
-                        throw Error(result.errors?.map((err) => err.message).join("\n"));
-                    }
-                },
-            }
-        );
+        loginUser.mutate({ email, password });
     };
-
-    useEffect(() => {
-        console.log(errors);
-    }, [errors]);
 
     return (
         <>
@@ -40,7 +25,6 @@ export default function LoginForm() {
                     placeholder="my@email.com"
                     data={email}
                     setData={setEmail}
-                    errors={errors}
                     required
                 />
                 <FormInput
@@ -49,7 +33,6 @@ export default function LoginForm() {
                     placeholder=""
                     data={password}
                     setData={setPassword}
-                    errors={errors}
                     required
                 />
 

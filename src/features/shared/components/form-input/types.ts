@@ -6,7 +6,6 @@ export type FormInputProps = {
     type: "text" | "textarea" | "email" | "password";
     data: any;
     setData: React.Dispatch<React.SetStateAction<any>>;
-    errors: Array<string>;
     onChange?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
     placeholder?: string;
     required?: boolean;

@@ -6,10 +6,14 @@ import { RegisterUserProps } from "./components/register-form/types";
 import useNotificationStore from "../notifications/useNotificationStore";
 import { convertPixelDataToImage } from "../shared/utils/helpers";
 import { customFetch } from "../shared/utils/customFetch";
+import useFormErrorStore from "../shared/stores/form-errors/useFormErrorsStore";
+import { FormErrors } from "../shared/stores/form-errors/types";
 
 export default function useAuth() {
     const queryClient = useQueryClient();
+
     const { addNotification } = useNotificationStore((state) => state);
+    const { setFormErrors } = useFormErrorStore((state) => state);
 
     const navigate = useNavigate();
 
@@ -25,8 +29,8 @@ export default function useAuth() {
         },
         onSuccess: (result) => {
             if (!result.success) {
-                console.log(result.errors)
-                return result.errors;
+                setFormErrors(result.errors as FormErrors);
+                throw Error("Update failed");
             }
 
             addNotification(result.message, "success");
@@ -48,7 +52,8 @@ export default function useAuth() {
         },
         onSuccess: async (result) => {
             if (!result.success) {
-                return result.errors;
+                setFormErrors(result.errors as FormErrors);
+                throw Error("Login failed");
             }
 
             const user = {
@@ -113,6 +118,11 @@ export default function useAuth() {
             return result;
         },
         onSuccess: (result) => {
+            if (!result.success) {
+                setFormErrors(result.errors as FormErrors);
+                throw Error("Sending failed");
+            }
+
             addNotification(result.message, "success");
             navigate("/login");
         },
@@ -132,6 +142,11 @@ export default function useAuth() {
             return result;
         },
         onSuccess: (result) => {
+            if (!result.success) {
+                setFormErrors(result.errors as FormErrors);
+                throw Error("Reset failed");
+            }
+
             addNotification(result.message, "success");
             navigate("/login");
         },
