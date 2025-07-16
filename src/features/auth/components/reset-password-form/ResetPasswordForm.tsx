@@ -7,7 +7,7 @@ import { FromInputData } from "../../../shared/components/form-input/types";
 export default function ResetPasswordForm({ token }: { token: string }) {
     const { resetPassword } = useAuth();
 
-    const [password, setPassword] = useState<FromInputData>({ value: "", isError: false, error: "" });
+    const [password, setPassword] = useState<FromInputData>("");
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

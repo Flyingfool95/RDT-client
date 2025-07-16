@@ -5,9 +5,12 @@ export type User = {
     image: string;
 };
 
+export type ApiError = { message: string; path?: string };
+
 export type RDTResponse = {
     success: boolean;
-    data: any;
+    status: number;
     message: string;
-    errors: string[];
+    data?: any;
+    errors?: Array<ApiError>;
 };

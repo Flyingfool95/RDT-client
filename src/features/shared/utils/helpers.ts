@@ -44,3 +44,14 @@ export function getFilteredFormData(formData: FormData): FormData {
 
     return filteredFormData;
 }
+
+
+export function toCamelCase(label: string): string {
+  return label
+    .toLowerCase()
+    .split(" ")
+    .map((word, index) =>
+      index === 0 ? word : word[0].toUpperCase() + word.slice(1)
+    )
+    .join("");
+}

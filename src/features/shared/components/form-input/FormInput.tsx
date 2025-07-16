@@ -1,22 +1,32 @@
+import { toCamelCase } from "../../utils/helpers";
 import "./FormInput.css";
 import { FormInputProps } from "./types";
 
-export default function FormInput({ label, type, data, setData, placeholder, required = false }: FormInputProps) {
-    const name = label.toLowerCase().replace(" ", "-");
+export default function FormInput({
+    label,
+    type,
+    data,
+    setData,
+    errors,
+    placeholder,
+    required = false,
+}: FormInputProps) {
+    const name = toCamelCase(label);
     const id = `input-${name}`;
+    const isError = errors.includes(name) || errors.includes("Http Error");
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setData({ ...data, value: e.target.value });
+        setData(e.target.value);
     };
 
     return (
-        <div className={`form-input ${data.isError ? "input-error" : ""}`}>
+        <div className={`form-input ${isError ? "input-error" : ""}`}>
             <label htmlFor={id}>{label}</label>
             {type === "textarea" ? (
                 <textarea
                     name={name}
                     id={id}
-                    value={data.value}
+                    value={data}
                     onChange={handleChange}
                     placeholder={placeholder}
                     required={required}
@@ -26,13 +36,13 @@ export default function FormInput({ label, type, data, setData, placeholder, req
                     type={type}
                     name={name}
                     id={id}
-                    value={data.value}
+                    value={data}
                     onChange={handleChange}
                     placeholder={placeholder}
                     required={required}
                 />
             )}
-            {data.isError && <p className="error-message">{data.error}</p>}
+            {isError && <p className="error-message">Error</p>}
         </div>
     );
 }

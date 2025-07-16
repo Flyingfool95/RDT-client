@@ -2,20 +2,30 @@ import "./RegisterForm.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../useAuth";
-import { FromInputData } from "../../../shared/components/form-input/types";
 import FormInput from "../../../shared/components/form-input/FormInput";
 
 export default function RegisterForm() {
     const { registerUser } = useAuth();
 
-    const [email, setEmail] = useState<FromInputData>({ value: "", isError: false, error: "" });
-    const [password, setPassword] = useState<FromInputData>({ value: "", isError: false, error: "" });
-    const [confirmPassword, setConfirmPassword] = useState<FromInputData>({ value: "", isError: false, error: "" });
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [errors, setErrors] = useState<Array<string>>([]);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        registerUser.mutate({ email: email.value, password: password.value, confirmPassword: confirmPassword.value });
+        registerUser.mutate(
+            { email, password, confirmPassword },
+            {
+                onSuccess: (result) => {
+                    if (!result.success) {
+                        setErrors(result.errors?.map((err) => err.path) as Array<string>);
+                        throw Error(result.errors?.map((err) => err.message).join("\n"));
+                    }
+                },
+            }
+        );
     };
 
     return (
@@ -27,6 +37,7 @@ export default function RegisterForm() {
                     placeholder="my@email.com"
                     data={email}
                     setData={setEmail}
+                    errors={errors}
                     required
                 />
 
@@ -36,6 +47,7 @@ export default function RegisterForm() {
                     placeholder=""
                     data={password}
                     setData={setPassword}
+                    errors={errors}
                     required
                 />
 
@@ -45,6 +57,7 @@ export default function RegisterForm() {
                     placeholder=""
                     data={confirmPassword}
                     setData={setConfirmPassword}
+                    errors={errors}
                     required
                 />
 

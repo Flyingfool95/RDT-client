@@ -23,11 +23,6 @@ export async function customFetch<T = unknown>(
         if (!credentials) {
             result = await fetch(url, options);
             result = (await result.json()) as RDTResponse;
-
-            if (!result.success) {
-                throw new Error(result.errors?.[0]);
-            }
-
             return result;
         } else {
             return fetchWithAuthRetry<T>(url, options);
@@ -76,10 +71,6 @@ export async function fetchWithAuthRetry<T = unknown>(url: string, options: Requ
 
         response = await fetch(url, options);
         result = await response.json();
-    }
-
-    if (!result.success) {
-        throw new Error(result.errors?.join(", ") || "Unknown error");
     }
 
     return result as T;

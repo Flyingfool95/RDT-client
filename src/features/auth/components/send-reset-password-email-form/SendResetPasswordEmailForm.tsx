@@ -7,7 +7,7 @@ import useAuth from "../../useAuth";
 export default function SendResetEmailForm() {
     const { sendResetEmail } = useAuth();
 
-    const [email, setEmail] = useState<FromInputData>({ value: "", isError: false, error: "" });
+    const [email, setEmail] = useState<FromInputData>("");
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

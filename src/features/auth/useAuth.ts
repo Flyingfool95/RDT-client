@@ -24,6 +24,11 @@ export default function useAuth() {
             return result;
         },
         onSuccess: (result) => {
+            if (!result.success) {
+                console.log(result.errors)
+                return result.errors;
+            }
+
             addNotification(result.message, "success");
             navigate("/login");
         },
@@ -42,6 +47,10 @@ export default function useAuth() {
             return result;
         },
         onSuccess: async (result) => {
+            if (!result.success) {
+                return result.errors;
+            }
+
             const user = {
                 id: result.data.user.id,
                 name: result.data.user.name,
@@ -50,12 +59,11 @@ export default function useAuth() {
             };
 
             queryClient.setQueryData(["auth-check"], user);
-
             addNotification(result.message, "success");
             navigate("/");
         },
         onError: (error) => {
-            console.log(error);
+            console.error(error);
             addNotification(error.message, "error", 7000);
         },
     });
