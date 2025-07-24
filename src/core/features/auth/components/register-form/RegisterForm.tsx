@@ -2,7 +2,7 @@ import "./RegisterForm.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useAuth from "../../useAuth";
-import FormInput from "../../../shared/components/form-input/FormInput";
+import FormInput from "../../../form-inputs/form-input/FormInput";
 
 export default function RegisterForm() {
     const { registerUser } = useAuth();

@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { useAuthCheckQuery } from "./useAuthCheckQuery";
 import Loader from "../../features/loader/Loader";
-import { useAuthCheckQuery } from "./UseAuthQuery";
 
 export default function RouteGuard({ isProtected }: { isProtected: boolean }) {
     const publicOnlyPaths = ["/login", "/register"];

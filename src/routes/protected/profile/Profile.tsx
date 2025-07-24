@@ -1,8 +1,8 @@
 import "./Profile.css";
-import useAuth from "../../../features/auth/useAuth";
-import useModalStore from "../../../features/shared/components/modal/useModalStore";
-import ProfileDetails from "../../../features/profile/ProfileDetails";
-import Modal from "../../../features/shared/components/modal/Modal";
+import useAuth from "../../../core/features/auth/useAuth";
+import useModalStore from "../../../core/features/shared/components/modal/useModalStore";
+import ProfileDetails from "../../../core/features/profile/ProfileDetails";
+import Modal from "../../../core/features/shared/components/modal/Modal";
 
 
 export default function Profile() {

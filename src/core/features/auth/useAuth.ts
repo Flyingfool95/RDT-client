@@ -6,8 +6,8 @@ import { RegisterUserProps } from "./components/register-form/types";
 import useNotificationStore from "../notifications/useNotificationStore";
 import { convertPixelDataToImage } from "../shared/utils/helpers";
 import { customFetch } from "../shared/utils/customFetch";
-import useFormErrorStore from "../shared/stores/form-errors/useFormErrorsStore";
 import { FormErrors } from "../shared/stores/form-errors/types";
+import useFormErrorStore from "../form-inputs/stores/form-errors/useFormErrorsStore";
 
 export default function useAuth() {
     const queryClient = useQueryClient();

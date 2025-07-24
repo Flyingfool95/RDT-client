@@ -1,5 +1,5 @@
-import ResetPasswordForm from "../../../features/auth/components/reset-password-form/ResetPasswordForm";
-import SendResetEmailForm from "../../../features/auth/components/send-reset-password-email-form/SendResetPasswordEmailForm";
+import ResetPasswordForm from "../../../core/features/auth/components/reset-password-form/ResetPasswordForm";
+import SendResetEmailForm from "../../../core/features/auth/components/send-reset-password-email-form/SendResetPasswordEmailForm";
 import "./ResetPassword.css";
 import { useLocation } from "react-router-dom";
 

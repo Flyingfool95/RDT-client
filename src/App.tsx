@@ -1,16 +1,16 @@
-import { lazy, useEffect } from "react";
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import "./styles/App.css";
-import "./styles/Utils.css";
+import "./core/styles/App.css";
+import "./core/styles/Utils.css";
 
 import Login from "./routes/auth/login/Login";
 
-import RouteGuard from "./layouts/route-guard/RouteGuard";
-import ProtectedLayout from "./layouts/protected-layout/ProtectedLayout";
-import AppNavigation from "./layouts/app-navigation/AppNavigation";
-import NotificationList from "./features/notifications/NotificationList";
+import NotificationList from "./core/features/notifications/NotificationList";
 import Register from "./routes/auth/register/Register";
 import ResetPassword from "./routes/auth/reset-password/ResetPassword";
+import RouteGuard from "./core/layouts/route-guard/RouteGuard";
+import AppNavigation from "./core/layouts/app-navigation/AppNavigation";
+import ProtectedLayout from "./core/layouts/protected-layout/ProtectedLayout";
 
 const Dashboard = lazy(() => import("./routes/protected/dashboard/Dashboard"));
 const Profile = lazy(() => import("./routes/protected/profile/Profile"));
