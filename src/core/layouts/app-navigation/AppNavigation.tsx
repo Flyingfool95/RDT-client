@@ -15,14 +15,14 @@ export default function AppNavigation() {
         ${isOpen ? "nav-open" : ""}
     `.trim();
 
-    const handleOpenNav = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const handleOpenNav = () => {
         if (!isMobile) return;
         setIsOpen((prev) => !prev);
     };
 
     return (
         <>
-            <nav className={dynamicNavClasses} onClick={(e) => handleOpenNav(e)}>
+            <nav className={dynamicNavClasses} onClick={() => handleOpenNav()}>
                 <img src={Logo} alt="Logo" className="logo" />
                 <div className="nav-links">
                     <NavLink to={"/"}>Dashboard</NavLink>
