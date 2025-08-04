@@ -17,7 +17,7 @@ export default function ImageInput({ data }: { data: WithImage | null }) {
             if (!previewUrl) return;
             URL.revokeObjectURL(previewUrl);
         };
-    }, [imageFile, previewUrl]);
+    }, [imageFile]);
 
     const handleInputUpdate = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;
