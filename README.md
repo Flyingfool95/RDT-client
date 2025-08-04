@@ -1,20 +1,21 @@
-# React Deno Template – Client
+# React Deno Template (RDT): Client
 
-This template is designed to work out of the box with [RDT - Server](https://github.com/Flyingfool95/RDT-server).
+## Client side for [RDT - Server](https://github.com/Flyingfool95/RDT-server) that works out of the box.
 
-Its purpose is to provide a starting point for web applications with the following features already set up:
+Its purpose is to provide a starting point for web applications with the following tech used:
 
-## 🚀 Features
+## Tech & packages
 
--   **[Vite](https://vitejs.dev/)** – Fast development build tool and dev server
--   **TypeScript** – Strongly typed codebase for better developer experience
--   **[TanStack Query](https://tanstack.com/query/latest)** – Powerful data fetching, caching, and synchronization
--   **[Zustand](https://github.com/pmndrs/zustand)** – Lightweight state management (currently used for user data; migration to TanStack Query planned)
+-   **[Vite](https://vitejs.dev/)**: Fast development build tool and dev server
+-   **TypeScript**: Strongly typed codebase for better developer experience
+-   **[React Router Dom](https://reactrouter.com/home)**: Declarative routing for React apps, enabling dynamic navigation, nested routes, and route-based component rendering
+-   **[TanStack Query](https://tanstack.com/query/latest)**: Powerful data fetching, caching, and synchronization
+-   **[Zustand](https://github.com/pmndrs/zustand)**: Lightweight state management (currently used for user data; migration to TanStack Query planned)
 -   **Image optimization** via [`browser-image-compression`](https://www.npmjs.com/package/browser-image-compression)
 
 ---
 
-## 🛠️ Getting Started
+## Getting Started
 
 ### 1. Clone the Repo
 
@@ -36,15 +37,17 @@ npm run dev
 
 ---
 
-## ⚙️ Configuration
-Copy the ```.env.example``` file and rename it to ```.env.local``` and add the URL for the server. If you're using the [RDT - Server](https://github.com/Flyingfool95/RDT-server) repo it should be ```http://localhost:8000``` while developing.
+## Configuration
+
+Copy the `.env.example` file and rename it to `.env.local` and add the URL for the server. If you're using the [RDT - Server](https://github.com/Flyingfool95/RDT-server) repo it should be `http://localhost:8000` while developing.
+
 ```bash
 VITE_API_BASE_URL=
 ```
 
 ---
 
-## 📁 File Structure
+## File Structure
 
 ```
 ├── src/
@@ -59,30 +62,21 @@ VITE_API_BASE_URL=
 
 ---
 
-## 🧪 Scripts
+## Scripts
 
-| Script          | Description            |
-| --------------- | ---------------------- |
-| `npm run dev`   | Starts dev server      |
-| `npm run build` | Builds for production  |
-| `npm run lint`  | Lints code (if set up) |
-
----
-
-## 📦 Technologies
-
--   [Deno / Node.js / React / Tailwind / etc.]
--   [Other libraries or tools you're using]
+| Script          | Description           |
+| --------------- | --------------------- |
+| `npm run dev`   | Starts dev server     |
+| `npm run build` | Builds for production |
 
 ---
 
-## 📄 License
+## License
 
 MIT — feel free to use and modify.
 
 ---
 
-## 🙋‍♂️ Author
+## Author
 
-Made by [Your Name](https://github.com/your-username)  
-Feedback welcome! ⭐
+Made by [Flyingfool95](https://github.com/flyingfool95)
