@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { User } from "../shared/types";
 import useProfile from "./useProfile";
-import FormInput from "../shared/components/form-input/FormInput";
-import ImageInput from "../shared/components/image-input/ImageInput";
-import useFormErrorStore from "../shared/stores/form-errors/useFormErrorsStore";
+import ImageInput from "../form-inputs/image-input/ImageInput";
+import useFormErrorStore from "../form-inputs/stores/form-errors/useFormErrorsStore";
+import FormInput from "../form-inputs/form-input/FormInput";
 
 export default function ProfileDetails() {
     const queryClient = useQueryClient();

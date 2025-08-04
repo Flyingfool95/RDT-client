@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Loader from "../../../loader/Loader";
-import FormInput from "../../../shared/components/form-input/FormInput";
 import useAuth from "../../useAuth";
+import FormInput from "../../../form-inputs/form-input/FormInput";
 
 export default function SendResetEmailForm() {
     const { sendResetEmail } = useAuth();

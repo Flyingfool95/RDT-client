@@ -1,5 +1,5 @@
 import "./Login.css";
-import LoginForm from "../../../features/auth/components/login-form/LoginForm";
+import LoginForm from "../../../core/features/auth/components/login-form/LoginForm";
 
 export default function Login() {
     return (

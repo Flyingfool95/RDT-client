@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { toCamelCase } from "../../utils/helpers";
 import "./FormInput.css";
 import { FormInputProps } from "./types";
-import useFormErrorStore from "../../stores/form-errors/useFormErrorsStore";
+import useFormErrorStore from "../stores/form-errors/useFormErrorsStore";
+import { toCamelCase } from "../../shared/utils/helpers";
 
 export default function FormInput({ label, type, data, setData, placeholder, required = false }: FormInputProps) {
     const { removeFormErrors, formErrors } = useFormErrorStore((state) => state);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./ImageInput.css";
-import { optimizeImage } from "../../utils/helpers";
+import { optimizeImage } from "../../shared/utils/helpers";
 
 type WithImage = { image: string | null };
 

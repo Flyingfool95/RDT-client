@@ -2,13 +2,14 @@ import { useQueryClient } from "@tanstack/react-query";
 import "./ProtectedLayout.css";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { User } from "../../features/shared/types";
 
 export default function ProtectedLayout() {
     const location = useLocation();
     const [pageHeading, setPageHeading] = useState("");
 
     const queryClient = useQueryClient();
-    const user = queryClient.getQueryData(["auth-check"]);
+    const user = queryClient.getQueryData(["auth-check"]) as User;
 
     useEffect(() => {
         if (location.pathname === "/") {

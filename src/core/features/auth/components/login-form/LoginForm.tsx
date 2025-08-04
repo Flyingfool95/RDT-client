@@ -1,9 +1,9 @@
 import "./LoginForm.css";
 import Loader from "../../../loader/Loader";
-import FormInput from "../../../shared/components/form-input/FormInput";
 import useAuth from "../../useAuth";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import FormInput from "../../../form-inputs/form-input/FormInput";
 
 export default function LoginForm() {
     const { loginUser } = useAuth();
