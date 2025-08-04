@@ -10,7 +10,7 @@ export async function convertPixelDataToImage(pixeldata: any) {
     return imageUrl;
 }
 
-export async function optimizeImage(imageData: any) {
+export async function optimizeImage(imageData: File) {
     const options = {
         maxSizeMB: 0.2,
         maxWidthOrHeight: 320,
@@ -19,6 +19,7 @@ export async function optimizeImage(imageData: any) {
     try {
         return (await imageCompression(imageData, options)) as Blob | MediaSource;
     } catch (error) {
+        console.log(error);
         return imageData;
     }
 }
@@ -44,13 +45,10 @@ export function getFilteredFormData(formData: FormData): FormData {
     return filteredFormData;
 }
 
-
 export function toCamelCase(label: string): string {
-  return label
-    .toLowerCase()
-    .split(" ")
-    .map((word, index) =>
-      index === 0 ? word : word[0].toUpperCase() + word.slice(1)
-    )
-    .join("");
+    return label
+        .toLowerCase()
+        .split(" ")
+        .map((word, index) => (index === 0 ? word : word[0].toUpperCase() + word.slice(1)))
+        .join("");
 }

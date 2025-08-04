@@ -1,17 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { customFetch } from "../../features/shared/utils/customFetch";
 import { convertPixelDataToImage } from "../../features/shared/utils/helpers";
+import { RDTResponse, User } from "../../features/shared/types";
 
 export const useAuthCheckQuery = () => {
     return useQuery({
         queryKey: ["auth-check"],
         queryFn: async () => {
-            const result: any = await customFetch(`/api/v1/auth/auth-check`, "GET", true);
+            const result: RDTResponse = await customFetch(`/api/v1/auth/auth-check`, "GET", true);
+
+            const userData = result.data as { user: User };
+
             return {
-                id: result.data.user.id,
-                name: result.data.user.name,
-                email: result.data.user.email,
-                image: await convertPixelDataToImage(result.data.user.image),
+                id: userData.user.id,
+                name: userData.user.name,
+                email: userData.user.email,
+                image: await convertPixelDataToImage(userData.user.image),
             };
         },
         retry: false,

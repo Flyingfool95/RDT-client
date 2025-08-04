@@ -27,8 +27,6 @@ export async function customFetch<T = unknown>(
         } else {
             return fetchWithAuthRetry<T>(url, options);
         }
-    } catch (error) {
-        throw error;
     } finally {
         clearTimeout(timeoutId);
     }
