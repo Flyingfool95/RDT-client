@@ -7,10 +7,10 @@ export type User = {
 
 export type ApiError = { message: string; path?: string };
 
-export type RDTResponse = {
+export type RDTResponse<T = unknown> = {
     success: boolean;
     status: number;
     message: string;
-    data?: any;
+    data?: T;
     errors?: Array<ApiError>;
 };

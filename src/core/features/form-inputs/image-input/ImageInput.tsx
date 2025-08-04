@@ -4,7 +4,7 @@ import { optimizeImage } from "../../shared/utils/helpers";
 
 type WithImage = { image: string | null };
 
-export default function ImageInput<T extends WithImage | null>({ data }: { data: T }) {
+export default function ImageInput({ data }: { data: WithImage | null }) {
     const [imageFile, setImageFile] = useState<Blob | MediaSource | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(data?.image || null);
 
@@ -17,7 +17,7 @@ export default function ImageInput<T extends WithImage | null>({ data }: { data:
             if (!previewUrl) return;
             URL.revokeObjectURL(previewUrl);
         };
-    }, [imageFile]);
+    }, [imageFile, previewUrl]);
 
     const handleInputUpdate = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files) return;

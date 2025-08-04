@@ -1,12 +1,12 @@
-export type TypeNotification = {
+export type Notification = {
     id: number;
     message: string;
     type: "info" | "error" | "warning" | "success";
     duration: number;
 };
 
-export type TypeNotificationStore = {
-    notifications: TypeNotification[];
+export type NotificationStore = {
+    notifications: Notification[];
     addNotification: (message: string, type?: "info" | "error" | "warning" | "success", duration?: number) => void;
     removeNotification: (id: number) => void;
 };

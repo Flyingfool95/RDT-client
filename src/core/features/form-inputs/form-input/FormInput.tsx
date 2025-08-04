@@ -20,7 +20,7 @@ export default function FormInput({ label, type, data, setData, placeholder, req
             if (err.path === "Http Error") return err;
         });
 
-    const isError = formInputError && formInputError.length > 0 ? true : false || httpError && httpError.length > 0 ? true : false;
+    const isError = (!!formInputError && formInputError.length > 0) || (!!httpError && httpError.length > 0);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setData(e.target.value);
@@ -28,7 +28,7 @@ export default function FormInput({ label, type, data, setData, placeholder, req
 
     useEffect(() => {
         return removeFormErrors();
-    }, []);
+    }, [removeFormErrors]);
 
     return (
         <div className={`form-input ${isError ? "input-error" : ""}`}>

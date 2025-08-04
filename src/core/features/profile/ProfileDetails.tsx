@@ -23,7 +23,7 @@ export default function ProfileDetails() {
     const handleUpdate = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        let formData = new FormData(e.currentTarget);
+        const formData = new FormData(e.currentTarget);
 
         updateUser.mutate(formData, {
             onSuccess: () => {
@@ -38,7 +38,7 @@ export default function ProfileDetails() {
 
     return (
         <form onSubmit={(e) => handleUpdate(e)}>
-            <ImageInput<any> data={user} />
+            <ImageInput data={user} />
 
             <FormInput label="Name" type="text" placeholder={user.name} data={name} setData={setName} />
             <FormInput label="Email" type="email" placeholder={user.email} data={email} setData={setEmail} />

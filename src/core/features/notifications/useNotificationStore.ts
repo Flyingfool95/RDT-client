@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import { TypeNotificationStore } from "./types";
+import { NotificationStore } from "./types";
 
-const useNotificationStore = create<TypeNotificationStore>((set, get) => ({
+const useNotificationStore = create<NotificationStore>((set, get) => ({
     notifications: [],
 
     addNotification: (

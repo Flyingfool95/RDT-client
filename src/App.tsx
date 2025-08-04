@@ -1,7 +1,7 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./core/styles/App.css";
-import "./core/styles/Utils.css";
+import "./core/styles/utils.css";
 
 import Login from "./routes/auth/login/Login";
 

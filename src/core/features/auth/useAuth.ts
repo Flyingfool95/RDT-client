@@ -6,8 +6,8 @@ import { RegisterUserProps } from "./components/register-form/types";
 import useNotificationStore from "../notifications/useNotificationStore";
 import { convertPixelDataToImage } from "../shared/utils/helpers";
 import { customFetch } from "../shared/utils/customFetch";
-import { FormErrors } from "../shared/stores/form-errors/types";
 import useFormErrorStore from "../form-inputs/stores/form-errors/useFormErrorsStore";
+import { FormErrors } from "../form-inputs/stores/form-errors/types";
 
 export default function useAuth() {
     const queryClient = useQueryClient();
@@ -55,11 +55,13 @@ export default function useAuth() {
                 throw Error("Login failed");
             }
 
+            const userData = result.data as { user: User };
+
             const user = {
-                id: result.data.user.id,
-                name: result.data.user.name,
-                email: result.data.user.email,
-                image: await convertPixelDataToImage(result.data.user.image),
+                id: userData.user.id,
+                name: userData.user.name,
+                email: userData.user.email,
+                image: await convertPixelDataToImage(userData.user.image),
             };
 
             queryClient.setQueryData(["auth-check"], user);

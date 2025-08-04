@@ -1,6 +1,7 @@
 import { create } from "zustand";
+import { ModalStore } from "./types";
 
-const useModalStore = create((set) => ({
+const useModalStore = create<ModalStore>((set) => ({
     showModal: false,
     setShowModal: (isShow: boolean) => {
         set(() => ({

@@ -1,4 +1,5 @@
 import "./notifications.css";
+import { Notification } from "./types";
 import useNotificationStore from "./useNotificationStore";
 
 export default function NotificationList() {
@@ -6,9 +7,9 @@ export default function NotificationList() {
 
     return (
         <div className="notification-container">
-            {notifications.map((notification: any) => (
+            {notifications.map((notification: Notification) => (
                 <div key={notification.id} className={`notification ${notification.type}`}>
-                    {notification.message.split("\n").map((msg: any, index: any) => (
+                    {notification.message.split("\n").map((msg: string, index: number) => (
                         <p key={index}>{msg}</p>
                     ))}
 
