@@ -72,7 +72,7 @@ npm run dev
 
 ## License
 
-MIT — feel free to use and modify.
+MIT - feel free to use and modify.
 
 ---
 
