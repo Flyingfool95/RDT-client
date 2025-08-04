@@ -6,12 +6,12 @@ Its purpose is to provide a starting point for web applications with the followi
 
 ## Tech & packages
 
--   **[Vite](https://vitejs.dev/)**: Fast development build tool and dev server
--   **[TypeScript](https://www.typescriptlang.org/)**: Strongly typed codebase for better developer experience
--   **[React Router Dom](https://reactrouter.com/home)**: Declarative routing for React apps, enabling dynamic navigation, nested routes, and route-based component rendering
--   **[TanStack Query](https://tanstack.com/query/latest)**: Powerful data fetching, caching, and synchronization
--   **[Zustand](https://github.com/pmndrs/zustand)**: Lightweight state management (currently used for user data; migration to TanStack Query planned)
--   **[Image optimization](https://www.npmjs.com/package/browser-image-compression)** via `browser-image-compression`
+**[Vite](https://vitejs.dev/)**: Fast development build tool and dev server
+**[TypeScript](https://www.typescriptlang.org/)**: Strongly typed codebase for better developer experience
+**[React Router Dom](https://reactrouter.com/home)**: Declarative routing for React apps, enabling dynamic navigation, nested routes, and route-based component rendering
+**[TanStack Query](https://tanstack.com/query/latest)**: Powerful data fetching, caching, and synchronization
+**[Zustand](https://github.com/pmndrs/zustand)**: Lightweight state management (currently used for user data; migration to TanStack Query planned)
+**[Image optimization](https://www.npmjs.com/package/browser-image-compression)** via `browser-image-compression`
 
 ## Configuration
 
