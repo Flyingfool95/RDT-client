@@ -1,6 +1,6 @@
 import imageCompression from "browser-image-compression";
 
-export async function convertPixelDataToImage(pixeldata: any) {
+export async function convertPixelDataToImage(pixeldata: Array<string> | string) {
     const pixelValues = Object.values(pixeldata);
     const pixelArray = new Uint8Array(pixelValues as any);
 
