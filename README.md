@@ -15,28 +15,6 @@ Its purpose is to provide a starting point for web applications with the followi
 
 ---
 
-## Getting Started
-
-### 1. Clone the Repo
-
-```bash
-git clone https://github.com/Flyingfool95/RDT-client.git my-new-project
-```
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Start Dev Server
-
-```bash
-npm run dev
-```
-
----
-
 ## Configuration
 
 Copy the `.env.example` file and rename it to `.env.local` and add the URL for the server. If you're using the [RDT - Server](https://github.com/Flyingfool95/RDT-server) repo it should be `http://localhost:8000` while developing.
@@ -68,6 +46,28 @@ VITE_API_BASE_URL=
 | --------------- | --------------------- |
 | `npm run dev`   | Starts dev server     |
 | `npm run build` | Builds for production |
+
+---
+
+## Getting Started
+
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/Flyingfool95/RDT-client.git my-new-project
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Start Dev Server
+
+```bash
+npm run dev
+```
 
 ---
 
