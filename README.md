@@ -13,8 +13,6 @@ Its purpose is to provide a starting point for web applications with the followi
 -   **[Zustand](https://github.com/pmndrs/zustand)**: Lightweight state management (currently used for user data; migration to TanStack Query planned)
 -   **Image optimization** via [`browser-image-compression`](https://www.npmjs.com/package/browser-image-compression)
 
----
-
 ## Configuration
 
 Copy the `.env.example` file and rename it to `.env.local` and add the URL for the server. If you're using the [RDT - Server](https://github.com/Flyingfool95/RDT-server) repo it should be `http://localhost:8000` while developing.
@@ -22,8 +20,6 @@ Copy the `.env.example` file and rename it to `.env.local` and add the URL for t
 ```bash
 VITE_API_BASE_URL=
 ```
-
----
 
 ## File Structure
 
@@ -37,8 +33,6 @@ VITE_API_BASE_URL=
 ├── package.json
 └── README.md
 ```
-
----
 
 ## Scripts
 
