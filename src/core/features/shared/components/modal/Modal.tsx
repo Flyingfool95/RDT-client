@@ -36,13 +36,13 @@ function Modal({
         return () => {
             document.removeEventListener("keydown", handleKeyboardClose);
         };
-    }, [showModal, handleKeyboardClose]);
+    }, [showModal]);
 
     useEffect(() => {
         return () => {
             setShowModal(false);
         };
-    }, [setShowModal]);
+    }, []);
 
     if (triggerType === "button") {
         trigger = (

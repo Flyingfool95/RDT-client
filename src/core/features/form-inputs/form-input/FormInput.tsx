@@ -28,7 +28,7 @@ export default function FormInput({ label, type, data, setData, placeholder, req
 
     useEffect(() => {
         return removeFormErrors();
-    }, [removeFormErrors]);
+    }, []);
 
     return (
         <div className={`form-input ${isError ? "input-error" : ""}`}>
