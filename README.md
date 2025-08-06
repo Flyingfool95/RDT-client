@@ -1,76 +1,69 @@
-# React Deno Template (RDT): Client
+# React + TypeScript + Vite
 
-## Client side for [RDT - Server](https://github.com/Flyingfool95/RDT-server) that works out of the box.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-A template to get you going with creating web based applications using React and Deno.
+Currently, two official plugins are available:
 
-## Tech & packages
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
--   **[Vite](https://vitejs.dev/)**: Fast development build tool and dev server
--   **[TypeScript](https://www.typescriptlang.org/)**: Strongly typed codebase for better developer experience
--   **[React Router Dom](https://reactrouter.com/home)**: Declarative routing for React apps, enabling dynamic navigation, nested routes, and route-based component rendering
--   **[TanStack Query](https://tanstack.com/query/latest)**: Powerful data fetching, caching, and synchronization
--   **[Zustand](https://github.com/pmndrs/zustand)**: Lightweight state management (currently used for user data; migration to TanStack Query planned)
--   **[Image optimization](https://www.npmjs.com/package/browser-image-compression)** via `browser-image-compression`
+## Expanding the ESLint configuration
 
-## Configuration
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-Copy the `.env.example` file and rename it to `.env.local` and add the URL for the server. If you're using the [RDT - Server](https://github.com/Flyingfool95/RDT-server) repo it should be `http://localhost:8000` while developing.
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-```bash
-VITE_API_BASE_URL=
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-## File Structure
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-├── src/
-│   ├── core/
-│   ├── features/
-│   ├── routes/
-├── public/
-├── .env.example
-├── package.json
-└── README.md
-```
-
-## Scripts
-
-| Script          | Description           |
-| --------------- | --------------------- |
-| `npm run dev`   | Starts dev server     |
-| `npm run build` | Builds for production |
-
----
-
-## Getting Started
-
-### 1. Clone the Repo
-
-```bash
-git clone https://github.com/Flyingfool95/RDT-client.git my-new-project
-```
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Start Dev Server
-
-```bash
-npm run dev
-```
-
----
-
-## License
-
-MIT - feel free to use and modify.
-
----
-
-## Author
-
-Made by [Flyingfool95](https://github.com/flyingfool95)
