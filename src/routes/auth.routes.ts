@@ -5,31 +5,18 @@ import AuthLayout from "../layouts/AuthLayout";
 
 export const authRoutes = [
     {
-        path: "/login",
         Component: AuthLayout,
         children: [
             {
-                index: true,
+                path: "login",
                 Component: Login,
             },
-        ],
-    },
-    {
-        path: "/register",
-        Component: AuthLayout,
-        children: [
             {
-                index: true,
+                path: "register",
                 Component: Register,
             },
-        ],
-    },
-    {
-        path: "/reset-password",
-        Component: AuthLayout,
-        children: [
             {
-                index: true,
+                path: "reset-password",
                 Component: ResetPassword,
             },
         ],

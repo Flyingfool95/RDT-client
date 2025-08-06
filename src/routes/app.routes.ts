@@ -11,14 +11,8 @@ export const appRoutes = [
                 index: true,
                 Component: Dashboard,
             },
-        ],
-    },
-    {
-        path: "/profile",
-        Component: AppLayout,
-        children: [
             {
-                index: true,
+                path: "profile",
                 Component: Profile,
             },
         ],
