@@ -5,7 +5,6 @@ export default function AppLayout() {
     const { data, isLoading } = useAuthCheck();
 
     if (isLoading) return <h1>Loading...</h1>;
-
     if (!data.success) return <Navigate to={"/login"} />;
 
     return (

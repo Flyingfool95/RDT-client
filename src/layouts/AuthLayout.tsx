@@ -5,8 +5,8 @@ export default function AuthLayout() {
     const { data, isLoading } = useAuthCheck();
 
     if (isLoading) return <h1>Loading...</h1>;
-
     if (data.success) return <Navigate to={"/"} />;
+
     return (
         <div>
             <h1>Auth Layout</h1>
