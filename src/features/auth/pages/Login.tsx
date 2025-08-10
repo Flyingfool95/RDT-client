@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useLogin from "../hooks/useLogin";
+import { APIError } from "../../../classes/apiError";
 
 export default function Login() {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -14,8 +15,15 @@ export default function Login() {
                 console.log(result);
             },
 
-            onError: (err) => {
-                setError(err.message);
+            onError: (error: unknown) => {
+                if (error instanceof APIError) {
+                    console.log(error.errors);
+                    setError(error.errors.map(err => err.message).join(", "));
+                } else if (error instanceof Error) {
+                    setError(error.message);
+                } else {
+                    setError("An unknown error occurred");
+                }
             },
         });
     };

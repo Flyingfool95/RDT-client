@@ -1,3 +1,5 @@
+import { APIError } from "../../../classes/apiError";
+
 export default async function login(formData: any) {
     let result: any = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/auth/login`, {
         method: "POST",
@@ -9,7 +11,7 @@ export default async function login(formData: any) {
 
     result = await result.json();
 
-    if (!result.success) throw new Error(result.errors[0].message);
+    if (!result.success) throw new APIError("Login failed", result.errors, result.status);
 
     return result.data;
 }
