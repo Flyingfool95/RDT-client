@@ -15,11 +15,11 @@ export default function Login() {
             },
 
             onError: (err) => {
-                console.log(err);
                 setError(err.message);
             },
         });
     };
+
     return (
         <div>
             <h1>Login</h1>
