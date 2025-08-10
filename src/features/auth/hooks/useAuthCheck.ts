@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import authCheck from "../api/authCheck";
+import authCheck from "../api/authCheck.api";
 
 export default function useAuthCheck() {
     return useQuery({

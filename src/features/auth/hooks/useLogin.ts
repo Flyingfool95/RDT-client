@@ -1,9 +1,11 @@
+import { useMutation } from "@tanstack/react-query";
+import login from "../api/login.api.";
+
 export default function useLogin() {
-    /* Make login call to backend using ReactQuery */
-    /* Then make routeguard when user is in state */
-    function loginUser() {
-        console.log("loging in...");
-    }
+    const loginUser = useMutation({
+        mutationFn: login,
+        retry: false,
+    });
 
     return {
         loginUser,

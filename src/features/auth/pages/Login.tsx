@@ -5,7 +5,7 @@ export default function Login() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        loginUser();
+        loginUser.mutate();
     };
 
     return (
@@ -19,7 +19,7 @@ export default function Login() {
 function Form({ handleSubmit }: { handleSubmit: (e: React.FormEvent) => void }) {
     return (
         <form onSubmit={handleSubmit}>
-            <h2>My form...</h2>
+            <input type="submit" value="Login" />
         </form>
     );
 }
