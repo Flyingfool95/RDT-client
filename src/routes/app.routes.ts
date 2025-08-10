@@ -4,11 +4,10 @@ import AppLayout from "../layouts/AppLayout";
 
 export const appRoutes = [
     {
-        path: "/",
         Component: AppLayout,
         children: [
             {
-                index: true,
+                path: "/",
                 Component: Dashboard,
             },
             {
