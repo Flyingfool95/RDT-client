@@ -1,7 +1,12 @@
-import { Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router";
+import useAuthCheck from "../features/auth/hooks/useAuthCheck";
 
 export default function AuthLayout() {
-    /* Check if user is in cache, if so redirect to login */
+    const { data, isLoading } = useAuthCheck();
+
+    if (isLoading) return <h1>Loading...</h1>;
+
+    if (data.success) return <Navigate to={"/"} />;
     return (
         <div>
             <h1>Auth Layout</h1>
