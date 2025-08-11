@@ -6,6 +6,7 @@ export default async function login(formData: any) {
         headers: {
             "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(formData),
     });
 
@@ -13,5 +14,5 @@ export default async function login(formData: any) {
 
     if (!result.success) throw new APIError("Login failed", result.errors, result.status);
 
-    return result.data;
+    return result;
 }
