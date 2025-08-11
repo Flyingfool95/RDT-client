@@ -3,9 +3,10 @@ import useAuthCheck from "../features/auth/hooks/useAuthCheck";
 
 export default function AppLayout() {
     const { data, isLoading } = useAuthCheck();
-console.log(data)
+
     if (!data?.success) return <Navigate to={"/login"} />;
     if (isLoading) return <h1>Loading...</h1>;
+    
     return (
         <div>
             <h1>App Layout</h1>
