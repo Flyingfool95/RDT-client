@@ -1,11 +1,15 @@
 import { useState } from "react";
 import useLogin from "../hooks/useLogin";
-import { APIError } from "../../../classes/apiError";
+import { errorHandler } from "../../../helpers/errorHandler.helper";
+import { Link, useNavigate } from "react-router";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Login() {
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
 
+    const navigate = useNavigate();
+    const queryClient = useQueryClient();
     const { loginUser } = useLogin();
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -13,17 +17,12 @@ export default function Login() {
         loginUser.mutate(formData, {
             onSuccess: (result) => {
                 console.log(result);
+                queryClient.setQueryData(["current-user"], result);
+                navigate("/");
             },
 
             onError: (error: unknown) => {
-                if (error instanceof APIError) {
-                    console.log(error.errors);
-                    setError(error.errors.map(err => err.message).join(", "));
-                } else if (error instanceof Error) {
-                    setError(error.message);
-                } else {
-                    setError("An unknown error occurred");
-                }
+                setError(errorHandler(error));
             },
         });
     };
@@ -60,6 +59,8 @@ export default function Login() {
                 {/* Make FormError component */}
                 <p>{error}</p>
             </form>
+            <Link to={"/register"}>Register new account!</Link>
+            <Link to={"/"}>Dashboard</Link>
         </div>
     );
 }
