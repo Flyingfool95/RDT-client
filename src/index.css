@@ -74,6 +74,10 @@ form {
     .form-links {
         display: flex;
         flex-direction: column;
+
+        a{
+            display: block;
+        }
     }
 }
 
