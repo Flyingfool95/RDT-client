@@ -7,12 +7,12 @@ export default function Register() {
     const [formData, setFormData] = useState({ email: "", password: "", confirmPassword: "" });
     const [error, setError] = useState("");
 
-    const { registerUser } = useRegister();
+    const { mutation } = useRegister();
     const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        registerUser.mutate(formData, {
+        mutation.mutate(formData, {
             onSuccess: (result) => {
                 console.log(result);
                 navigate("/login");

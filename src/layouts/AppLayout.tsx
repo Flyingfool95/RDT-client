@@ -5,7 +5,7 @@ import useLogout from "../features/auth/hooks/useLogout";
 
 export default function AppLayout() {
     const { data, isLoading } = useAuthCheck();
-    const { logoutUser } = useLogout();
+    const { mutation } = useLogout();
 
     if (isLoading) return <h1>Loading...</h1>;
     if (!data?.success) return <Navigate to={"/login"} />;
@@ -19,7 +19,7 @@ export default function AppLayout() {
                     <NavLink to="/">Dashboard</NavLink>
                     <NavLink to="/profile">Profile</NavLink>
 
-                    <button onClick={() => logoutUser.mutate()}>Logout</button>
+                    <button onClick={() => mutation.mutate()}>Logout</button>
                 </nav>
             </header>
             <main>

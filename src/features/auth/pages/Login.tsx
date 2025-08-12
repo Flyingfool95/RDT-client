@@ -10,11 +10,11 @@ export default function Login() {
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
-    const { loginUser } = useLogin();
+    const { mutation } = useLogin();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        loginUser.mutate(formData, {
+        mutation.mutate(formData, {
             onSuccess: (result) => {
                 console.log(result);
                 queryClient.setQueryData(["current-user"], result);
