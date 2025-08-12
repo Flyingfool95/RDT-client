@@ -1,5 +1,5 @@
-import refreshTokens from "../../../helpers/refreshTokens.helper";
 import type { RDTResponse } from "../../../types/api";
+import refreshTokens from "./refreshTokens.api";
 
 export default async function authCheck(retries = 1): Promise<RDTResponse> {
     let result: any = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/auth/auth-check`, {

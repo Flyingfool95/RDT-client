@@ -7,8 +7,8 @@ export default function AppLayout() {
     const { data, isLoading } = useAuthCheck();
     const { logoutUser } = useLogout();
 
-    if (!data?.success) return <Navigate to={"/login"} />;
     if (isLoading) return <h1>Loading...</h1>;
+    if (!data?.success) return <Navigate to={"/login"} />;
 
     return (
         <div className={styles.appLayout}>
