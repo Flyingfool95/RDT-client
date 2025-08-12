@@ -1,0 +1,53 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    font-family: Verdana, sans-serif;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+main {
+    flex-basis: 100%;
+    max-width: 420px;
+}
+
+form {
+    display: grid;
+    gap: 1rem;
+
+    label {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    input {
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        border: none;
+        box-shadow: inset 1px 1px 3px 0 #22222260;
+        background-color: #fcfcfc60;
+
+        &:focus-visible {
+            outline: 2px solid lightcoral;
+        }
+    }
+
+    input[type="submit"] {
+        box-shadow: 1px 1px 3px 0 #22222260;
+    }
+}
+
+button,
+label,
+input,
+select,
+textarea,
+optgroup,
+option {
+    font-size: inherit;
+}

@@ -1,3 +1,4 @@
+import styles from "./styles/AuthLayout.module.css";
 import { Navigate, Outlet } from "react-router";
 import useAuthCheck from "../features/auth/hooks/useAuthCheck";
 
@@ -8,8 +9,7 @@ export default function AuthLayout() {
     if (isLoading) return <h1>Loading...</h1>;
 
     return (
-        <div>
-            <h1>Auth Layout</h1>
+        <div className={styles.authLayout}>
             <Outlet />
         </div>
     );

@@ -24,7 +24,7 @@ export default function Register() {
         });
     };
     return (
-        <div>
+        <main>
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -51,7 +51,7 @@ export default function Register() {
                     />
                 </label>
                 <label>
-                    Password
+                    Confirm Password
                     <input
                         type="text"
                         name="confirm-password"
@@ -66,6 +66,6 @@ export default function Register() {
                 <p>{error}</p>
             </form>
             <Link to={"/login"}>Login here!</Link>
-        </div>
+        </main>
     );
 }

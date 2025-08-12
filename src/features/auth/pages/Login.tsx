@@ -28,7 +28,7 @@ export default function Login() {
     };
 
     return (
-        <div>
+        <main>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -60,7 +60,6 @@ export default function Login() {
                 <p>{error}</p>
             </form>
             <Link to={"/register"}>Register new account!</Link>
-            <Link to={"/"}>Dashboard</Link>
-        </div>
+        </main>
     );
 }
