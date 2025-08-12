@@ -25,7 +25,7 @@ export default function Register() {
     };
     return (
         <>
-            <h1>Register</h1>
+            <h1>Register account</h1>
             <form onSubmit={handleSubmit}>
                 <label>
                     Email
