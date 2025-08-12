@@ -60,7 +60,7 @@ export default function Register() {
                         onChange={(e) => setFormData((prev) => ({ ...prev, confirmPassword: e.target.value }))}
                     />
                 </label>
-                <input type="submit" value="Login" />
+                <input type="submit" value="Register" />
 
                 {/* Make FormError component */}
                 <p>{error}</p>

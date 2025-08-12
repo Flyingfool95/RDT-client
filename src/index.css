@@ -9,11 +9,24 @@ html {
     font-family: Verdana, sans-serif;
     padding: 1rem;
     font-size: 1rem;
+    transition: 125ms ease-in-out;
+    color: #222222;
 }
 
 main {
     flex-basis: 100%;
     max-width: 420px;
+}
+
+button,
+label,
+input,
+select,
+textarea,
+optgroup,
+option {
+    font-size: inherit;
+    color: inherit;
 }
 
 form {
@@ -36,18 +49,15 @@ form {
             outline: 2px solid lightcoral;
         }
     }
-
-    input[type="submit"] {
-        box-shadow: 1px 1px 3px 0 #22222260;
-    }
 }
 
-button,
-label,
-input,
-select,
-textarea,
-optgroup,
-option {
-    font-size: inherit;
+input[type="submit"],
+button {
+    box-shadow: 1px 1px 3px 0 #22222260;
+    background-color: #eeeeee;
+
+    &:hover {
+        box-shadow: 2px 2px 4px 0 #22222260;
+        translate: -1px -1px;
+    }
 }
