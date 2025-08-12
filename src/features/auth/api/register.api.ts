@@ -10,8 +10,6 @@ export default async function register(formData: any) {
     });
 
     const result = await response.json();
-
     if (!result.success) throw new APIError("Register failed", result.errors, result.status);
-
     return result;
 }

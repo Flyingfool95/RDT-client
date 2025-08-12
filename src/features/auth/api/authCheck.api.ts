@@ -13,6 +13,5 @@ export default async function authCheck(retries = 1): Promise<RDTResponse> {
         await refreshTokens();
         return authCheck(retries - 1);
     }
-
     return result;
 }
