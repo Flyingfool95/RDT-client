@@ -2,6 +2,6 @@
     display: flex;
     gap: 1rem;
 
-    min-height: 100dvh;
+    min-height: calc(100dvh - 2rem);
     width: 100%;
 }

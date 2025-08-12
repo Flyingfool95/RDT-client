@@ -13,6 +13,10 @@ html {
     color: #222222;
 }
 
+header{
+    background-color: #f0808080;
+}
+
 main {
     flex-basis: 100%;
 }
