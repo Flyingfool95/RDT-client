@@ -1,3 +1,4 @@
+import logo from "../assets/RDT_logo.png";
 import styles from "./styles/AppLayout.module.css";
 import { Navigate, NavLink, Outlet } from "react-router";
 import useAuthCheck from "../features/auth/hooks/useAuthCheck";
@@ -14,7 +15,7 @@ export default function AppLayout() {
         <div className={styles.appLayout}>
             <header>
                 <nav>
-                    <img src="#" alt="Logo" />
+                    <img src={logo} alt="Logo" className="logo" />
 
                     <NavLink to="/">Dashboard</NavLink>
                     <NavLink to="/profile">Profile</NavLink>

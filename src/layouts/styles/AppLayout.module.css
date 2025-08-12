@@ -1,7 +1,6 @@
 .appLayout {
     display: flex;
-    gap: 1rem;
 
-    min-height: calc(100dvh - 2rem);
+    min-height: 100dvh;
     width: 100%;
 }

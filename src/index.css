@@ -7,18 +7,21 @@
 
 html {
     font-family: Verdana, sans-serif;
-    padding: 1rem;
     font-size: 1rem;
     transition: 125ms ease-in-out;
     color: #222222;
 }
 
-header{
+header {
+    max-width: 125px;
+    width: 100%;
+    padding: 1rem;
     background-color: #f0808080;
 }
 
 main {
     flex-basis: 100%;
+    padding: 1rem;
 }
 h1,
 h2,
@@ -75,7 +78,7 @@ form {
         display: flex;
         flex-direction: column;
 
-        a{
+        a {
             display: block;
         }
     }
@@ -109,11 +112,14 @@ input {
 nav {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
     height: 100%;
 
-    img {
+    .logo {
         margin-bottom: auto;
+        width: 100%;
+        aspect-ratio: 1;
     }
     a {
         text-decoration: none;
