@@ -10,13 +10,14 @@ html {
     font-size: 1rem;
     transition: 125ms ease-in-out;
     color: #222222;
+    background-color: #eeeeee;
 }
 
 header {
     max-width: 125px;
     width: 100%;
     padding: 1rem;
-    background-color: #f0808080;
+    background-color: #aaaaaa80;
 }
 
 main {
@@ -52,7 +53,26 @@ a {
     font-style: italic;
 
     &:hover {
-        color: hsl(0, 79%, 60%);
+        color: steelblue;
+    }
+}
+
+input[type="submit"],
+button {
+    padding: 0.33rem 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    box-shadow: 1px 1px 3px 0 #22222260;
+    
+
+    &:hover {
+        box-shadow: 3px 3px 5px 0 #22222260;
+        translate: -2px -2px;
+    }
+
+    &:active {
+        box-shadow: 1px 1px 3px 0 #22222260;
+        background-color: #eeeeee;
     }
 }
 
@@ -84,26 +104,9 @@ form {
     }
 }
 
-input[type="submit"],
-button {
-    box-shadow: 1px 1px 3px 0 #22222260;
-    background-color: #eeeeee;
-
-    &:hover {
-        box-shadow: 2px 2px 4px 0 #22222260;
-        translate: -1px -1px;
-    }
-
-    &:active {
-        box-shadow: 1px 1px 3px 0 #22222260;
-        background-color: #eeeeee;
-    }
-}
-
-a,
-input {
+* {
     &:focus-visible {
-        outline: 2px solid lightcoral;
+        outline: 2px solid steelblue;
         outline-offset: 0.1rem;
         border-radius: 0.1rem;
     }
@@ -130,7 +133,8 @@ nav {
         }
 
         &.active {
-            color: hsl(0, 79%, 60%);
+            color: steelblue;
+            font-weight: bold
         }
     }
 }
