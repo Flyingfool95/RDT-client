@@ -28,7 +28,7 @@ export default function Login() {
     };
 
     return (
-        <main>
+        <>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -59,7 +59,10 @@ export default function Login() {
                 {/* Make FormError component */}
                 <p>{error}</p>
             </form>
-            <Link to={"/register"}>Register new account!</Link>
-        </main>
+            <div className="form-links">
+                <Link to={"/register"}>Register new account!</Link>
+                {error.includes("Incorrect credentials") && <Link to={"/reset-password"}>Reset password</Link>}
+            </div>
+        </>
     );
 }

@@ -24,7 +24,7 @@ export default function Register() {
         });
     };
     return (
-        <main>
+        <>
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -65,7 +65,9 @@ export default function Register() {
                 {/* Make FormError component */}
                 <p>{error}</p>
             </form>
-            <Link to={"/login"}>Login here!</Link>
-        </main>
+            <div className="form-links">
+                <Link to={"/login"}>Login here!</Link>
+            </div>
+        </>
     );
 }

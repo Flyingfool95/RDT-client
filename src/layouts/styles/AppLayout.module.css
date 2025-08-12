@@ -1,0 +1,7 @@
+.appLayout {
+    display: flex;
+    gap: 1rem;
+
+    min-height: 100dvh;
+    width: 100%;
+}

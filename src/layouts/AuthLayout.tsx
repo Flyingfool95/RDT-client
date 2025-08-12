@@ -10,7 +10,9 @@ export default function AuthLayout() {
 
     return (
         <div className={styles.authLayout}>
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
         </div>
     );
 }

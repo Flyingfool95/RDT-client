@@ -5,4 +5,8 @@
 
     min-height: 100dvh;
     width: 100%;
+
+    main {
+        max-width: 420px;
+    }
 }

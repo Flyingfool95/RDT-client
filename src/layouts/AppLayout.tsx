@@ -1,4 +1,5 @@
-import { Navigate, Outlet } from "react-router";
+import styles from "./styles/AppLayout.module.css";
+import { Link, Navigate, NavLink, Outlet } from "react-router";
 import useAuthCheck from "../features/auth/hooks/useAuthCheck";
 
 export default function AppLayout() {
@@ -6,11 +7,20 @@ export default function AppLayout() {
 
     if (!data?.success) return <Navigate to={"/login"} />;
     if (isLoading) return <h1>Loading...</h1>;
-    
+
     return (
-        <div>
-            <h1>App Layout</h1>
-            <Outlet />
+        <div className={styles.appLayout}>
+            <header>
+                <nav>
+                    <img src="#" alt="Logo" />
+
+                    <NavLink to="/">Dashboard</NavLink>
+                    <NavLink to="/profile">Profile</NavLink>
+                </nav>
+            </header>
+            <main>
+                <Outlet />
+            </main>
         </div>
     );
 }
