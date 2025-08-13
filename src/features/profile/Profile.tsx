@@ -20,7 +20,11 @@ export default function Profile() {
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const cleanedFormData = objectToFormData(cleanObject(formData));
-        mutation.mutate(cleanedFormData);
+        mutation.mutate(cleanedFormData, {
+            onSuccess: async (result) => {
+                queryClient.setQueryData(["current-user"], result);
+            },
+        });
     }
 
     async function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
