@@ -101,7 +101,8 @@ button {
 /* Forms */
 form {
     display: grid;
-    gap: 0.5rem;
+    column-gap: 2rem;
+    row-gap: 1rem;
 
     label {
         display: flex;
