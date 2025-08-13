@@ -38,7 +38,7 @@ export default function ResetPassword() {
                     navigate("/login");
                 },
                 onError: (error) => {
-                    console.log(error);
+                    console.error(error);
                 },
             }
         );

@@ -16,7 +16,6 @@ export default function Login() {
         e.preventDefault();
         mutation.mutate(formData, {
             onSuccess: (result) => {
-                console.log(result);
                 queryClient.setQueryData(["current-user"], result);
                 navigate("/");
             },

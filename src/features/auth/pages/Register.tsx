@@ -14,7 +14,6 @@ export default function Register() {
         e.preventDefault();
         mutation.mutate(formData, {
             onSuccess: (result) => {
-                console.log(result);
                 navigate("/login");
             },
 

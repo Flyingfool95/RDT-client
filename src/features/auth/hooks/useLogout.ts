@@ -14,7 +14,7 @@ export default function useLogout() {
             navigate("/login");
         },
         onError: (error) => {
-            console.log(error);
+            console.error(error);
         },
     });
 
