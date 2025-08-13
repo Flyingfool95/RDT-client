@@ -4,6 +4,9 @@ import useUpdateProfile from "./hooks/useUpdateProfile";
 import { useState } from "react";
 import optimizeImage from "../../helpers/optimizeImage.helper";
 import type { ProfileFormDataType, UserQueryDataType } from "./types";
+import cleanObject from "../../helpers/cleanObject.helper";
+import { objectToFormData } from "../../helpers/objectToFormData.helper";
+import { arrayToBlobUrl } from "../../helpers/arrayToBlobURL.helper";
 
 export default function Profile() {
     const queryClient = useQueryClient();
@@ -12,12 +15,17 @@ export default function Profile() {
     const [formData, setFormData] = useState<ProfileFormDataType>({ email: "", name: "", image: undefined });
 
     const { data } = queryClient.getQueryData(["current-user"]) as UserQueryDataType;
-
-    const profileImage = data?.user.image != "" ? data?.user.image : defaultProfileImage;
+    const profileImage = data?.user.image != undefined ? arrayToBlobUrl(data?.user.image) : defaultProfileImage;
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        mutation.mutate(formData);
+        const cleanedFormData = objectToFormData(cleanObject(formData));
+        mutation.mutate(cleanedFormData);
+    }
+
+    async function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+        let image = e.target.files?.[0] as File;
+        return await optimizeImage(image);
     }
 
     return (
@@ -30,9 +38,7 @@ export default function Profile() {
                         type="file"
                         name="profile-image"
                         id="profile-image"
-                        onChange={async (e) =>
-                            setFormData({ ...formData, image: await optimizeImage(e.target.files?.[0]) })
-                        }
+                        onChange={async (e) => setFormData({ ...formData, image: await handleImageChange(e) })}
                     />
                     <img src={profileImage} alt="Profile Image " />
                 </label>

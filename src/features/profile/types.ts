@@ -2,7 +2,7 @@ export type UserType = {
     id: string;
     email: string;
     name: string;
-    image: string;
+    image: Uint8Array<ArrayBufferLike>;
 };
 
 export type UserQueryDataType = {
