@@ -2,36 +2,17 @@ import { useQueryClient } from "@tanstack/react-query";
 import defaultProfileImage from "../../assets/RDT_logo.png";
 import useUpdateProfile from "./hooks/useUpdateProfile";
 import { useState } from "react";
+import optimizeImage from "../../helpers/optimizeImage.helper";
+import type { ProfileFormDataType, UserQueryDataType } from "./types";
 
 export default function Profile() {
     const queryClient = useQueryClient();
     const { mutation } = useUpdateProfile();
 
-    type FormDataType = {
-        email: string;
-        name: string;
-        image: File | undefined;
-    };
-
-    const [formData, setFormData] = useState<FormDataType>({ email: "", name: "", image: undefined });
-
-    type UserType = {
-        id: string;
-        email: string;
-        name: string;
-        image: string;
-    };
-
-    type UserQueryDataType = {
-        data: {
-            user: UserType;
-        };
-    };
+    const [formData, setFormData] = useState<ProfileFormDataType>({ email: "", name: "", image: undefined });
 
     const { data } = queryClient.getQueryData(["current-user"]) as UserQueryDataType;
-    if (!data || !data.user) {
-        return <p>No user data available.</p>;
-    }
+
     const profileImage = data?.user.image != "" ? data?.user.image : defaultProfileImage;
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -49,7 +30,9 @@ export default function Profile() {
                         type="file"
                         name="profile-image"
                         id="profile-image"
-                        onChange={(e) => setFormData({ ...formData, image: e.target.files?.[0] })}
+                        onChange={async (e) =>
+                            setFormData({ ...formData, image: await optimizeImage(e.target.files?.[0]) })
+                        }
                     />
                     <img src={profileImage} alt="Profile Image " />
                 </label>
