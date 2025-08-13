@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import useUpdateProfile from "./hooks/useUpdateProfile";
 import defaultProfileImage from "../../assets/RDT_logo.png";
@@ -12,7 +12,9 @@ export default function Profile() {
     const queryClient = useQueryClient();
     const { mutation } = useUpdateProfile();
 
-    const [formData, setFormData] = useState<ProfileFormDataType>({ email: "", name: "", image: undefined });
+    const [formData, setFormData] = useState<ProfileFormDataType>({ email: "", name: "", image: "" });
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const [previewURL, setPreviewURL] = useState("");
 
     const { data } = queryClient.getQueryData(["current-user"]) as UserQueryDataType;
     const profileImage = data?.user.image != undefined ? arrayToBlobUrl(data?.user.image) : defaultProfileImage;
@@ -29,7 +31,16 @@ export default function Profile() {
 
     async function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
         let image = e.target.files?.[0] as File;
+        setPreviewURL(URL.createObjectURL(image));
         return await optimizeImage(image);
+    }
+
+    function handleClearImage() {
+        setFormData({ ...formData, image: "" });
+        setPreviewURL("");
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
     }
 
     return (
@@ -42,9 +53,15 @@ export default function Profile() {
                         type="file"
                         name="profile-image"
                         id="profile-image"
+                        ref={fileInputRef}
                         onChange={async (e) => setFormData({ ...formData, image: await handleImageChange(e) })}
                     />
-                    <img src={profileImage} alt="Profile Image " />
+                    <img src={previewURL || profileImage} alt="Profile Image " />
+                    {formData.image && (
+                        <button type="button" onClick={handleClearImage}>
+                            Clear Image
+                        </button>
+                    )}
                 </label>
                 <label htmlFor="email">
                     Email
@@ -67,7 +84,11 @@ export default function Profile() {
                     />
                 </label>
 
-                <input type="submit" value="Update" />
+                <input
+                    type="submit"
+                    value="Update"
+                    disabled={formData.email === "" && formData.name === "" && formData.image === ""}
+                />
             </form>
             <button>Reset Password</button>
         </>

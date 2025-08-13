@@ -14,5 +14,5 @@ export type UserQueryDataType = {
 export type ProfileFormDataType = {
     email: string;
     name: string;
-    image: File | undefined;
+    image: File | string;
 };
