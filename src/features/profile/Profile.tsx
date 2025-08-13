@@ -1,9 +1,9 @@
-import { useQueryClient } from "@tanstack/react-query";
-import defaultProfileImage from "../../assets/RDT_logo.png";
-import useUpdateProfile from "./hooks/useUpdateProfile";
 import { useState } from "react";
-import optimizeImage from "../../helpers/optimizeImage.helper";
+import { useQueryClient } from "@tanstack/react-query";
+import useUpdateProfile from "./hooks/useUpdateProfile";
+import defaultProfileImage from "../../assets/RDT_logo.png";
 import type { ProfileFormDataType, UserQueryDataType } from "./types";
+import optimizeImage from "../../helpers/optimizeImage.helper";
 import cleanObject from "../../helpers/cleanObject.helper";
 import { objectToFormData } from "../../helpers/objectToFormData.helper";
 import { arrayToBlobUrl } from "../../helpers/arrayToBlobURL.helper";
@@ -64,8 +64,8 @@ export default function Profile() {
                 </label>
 
                 <input type="submit" value="Update" />
-                {/* Reset password in seperate modal */}
             </form>
+            <button>Reset Password</button>
         </>
     );
 }
