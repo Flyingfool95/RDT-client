@@ -30,16 +30,18 @@ export default function ProfileImageInput({
     }
 
     return (
-        <label htmlFor="profile-image" className={styles.imageInput}>
-            Profile Image
-            <input
-                ref={fileInputRef}
-                type="file"
-                name="profile-image"
-                id="profile-image"
-                onChange={handleImageSelect}
-            />
+        <div className={styles.imageInput}>
+            <label htmlFor="profile-image">
+                Profile Image
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    name="profile-image"
+                    id="profile-image"
+                    onChange={handleImageSelect}
+                />
+            </label>
             <img src={previewURL || profileImage} alt="Profile" />
-        </label>
+        </div>
     );
 }

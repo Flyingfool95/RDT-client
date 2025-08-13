@@ -1,7 +1,7 @@
 .profileForm {
     max-width: 720px;
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
 
     .imageInput {
         grid-column: span 1;
@@ -10,6 +10,7 @@
 }
 
 .imageInput {
+    position: relative;
     font-size: 0 !important;
     width: fit-content;
 
@@ -19,16 +20,53 @@
         padding: 0 !important;
     }
 
-    img {
-        max-width: 200px;
+    label {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+
+        box-shadow: inset 3px 3px 5px #22222260;
         border-radius: 50rem;
         transition: 125ms ease-in-out;
-        position: relative;
 
         &:hover {
-            filter: brightness(0.5);
             cursor: pointer;
+            box-shadow: inset 150px 150px 5px #4682b480;
+
+            &::after {
+                content: "+";
+                font-size: 125px;
+                line-height: 1;
+                margin-bottom: 0.75rem;
+                color: #fefefe;
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                display: grid;
+                place-items: center;
+            }
         }
+
+        &:active {
+            box-shadow: inset 150px 150px 5px #4682b4;
+        }
+    }
+
+    img {
+        position: relative;
+        border-radius: 50rem;
+
+        max-width: 200px;
+        transition: 125ms ease-in-out;
+        position: relative;
+        z-index: 1;
     }
 }
 .formButtons {
