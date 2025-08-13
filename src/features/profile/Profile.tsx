@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import useUpdateProfile from "./hooks/useUpdateProfile";
 import defaultProfileImage from "../../assets/RDT_logo.png";
@@ -7,6 +7,8 @@ import optimizeImage from "../../helpers/optimizeImage.helper";
 import cleanObject from "../../helpers/cleanObject.helper";
 import { objectToFormData } from "../../helpers/objectToFormData.helper";
 import { arrayToBlobUrl } from "../../helpers/arrayToBlobURL.helper";
+
+/* NEEDS REFACTORING EVENTUALLY */
 
 export default function Profile() {
     const queryClient = useQueryClient();
