@@ -10,6 +10,7 @@ import ProfileImageInput from "./components/ProfileImageInput";
 /* TODO */
 // Add delete image
 // Add password inputs
+// Error handeling
 
 export default function Profile() {
     const queryClient = useQueryClient();
