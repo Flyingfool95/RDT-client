@@ -16,12 +16,7 @@ export default function Profile() {
     const queryClient = useQueryClient();
     const { mutation } = useUpdateProfile();
 
-    const initialFormData: ProfileFormDataType = {
-        email: "",
-        name: "",
-        image: "",
-    };
-    const [formData, setFormData] = useState(initialFormData);
+    const [formData, setFormData] = useState<ProfileFormDataType>({ email: "", name: "", image: "" });
     const formRef = useRef<HTMLFormElement>(null);
     const [previewURL, setPreviewURL] = useState("");
 
@@ -33,14 +28,13 @@ export default function Profile() {
         mutation.mutate(cleanedFormData, {
             onSuccess: async (result) => {
                 queryClient.setQueryData(["current-user"], result);
-
                 handleClearForm();
             },
         });
     }
 
     function handleClearForm() {
-        setFormData(initialFormData);
+        setFormData({ email: "", name: "", image: "" });
         setPreviewURL("");
         if (formRef.current) {
             formRef.current?.reset();
@@ -53,7 +47,8 @@ export default function Profile() {
             <form onSubmit={(e) => handleSubmit(e)} ref={formRef} className={styles.profileForm}>
                 <ProfileImageInput
                     existingImage={data?.user.image}
-                    onImageChange={(optimized) => setFormData({ ...formData, image: optimized })}
+                    formData={formData}
+                    setFormData={setFormData}
                     previewURL={previewURL}
                     setPreviewURL={setPreviewURL}
                 />

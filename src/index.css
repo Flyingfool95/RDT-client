@@ -69,7 +69,8 @@ a {
         color: steelblue;
     }
 }
-
+/* TODO */
+/* Make primary and secondary buttons style */
 /* Buttons */
 input[type="submit"],
 button {
@@ -91,7 +92,7 @@ button {
 
     &:disabled {
         box-shadow: inset 1px 1px 3px 0 #22222260 !important;
-        translate: -2px -2px !important;
+        translate: 0 0;
         cursor: default;
         background-color: #cccccc80;
         opacity: 0.75;

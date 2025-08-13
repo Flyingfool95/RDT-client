@@ -3,17 +3,20 @@ import styles from "../Profile.module.css";
 import defaultProfileImage from "../../../assets/RDT_logo.png";
 import { arrayToBlobUrl } from "../../../helpers/arrayToBlobURL.helper";
 import optimizeImage from "../../../helpers/optimizeImage.helper";
+import type { ProfileFormDataType } from "../types";
 
 type ProfileImageInputProps = {
     existingImage?: Uint8Array;
-    onImageChange: (optimizedImage: File | string) => void;
+    formData: ProfileFormDataType;
+    setFormData: any;
     previewURL: string;
     setPreviewURL: any;
 };
 
 export default function ProfileImageInput({
     existingImage,
-    onImageChange,
+    formData,
+    setFormData,
     previewURL,
     setPreviewURL,
 }: ProfileImageInputProps) {
@@ -26,7 +29,7 @@ export default function ProfileImageInput({
         if (!image) return;
         setPreviewURL(URL.createObjectURL(image));
         const optimized = await optimizeImage(image);
-        onImageChange(optimized);
+        setFormData({ ...formData, image: optimized });
     }
 
     return (
