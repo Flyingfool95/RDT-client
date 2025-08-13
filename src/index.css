@@ -110,7 +110,6 @@ button {
 form {
     display: grid;
     gap: var(--spacing-lg);
-    max-width: 420px;
 
     label {
         display: flex;

@@ -1,0 +1,53 @@
+.profileForm {
+    max-width: 720px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    .imageInput {
+        grid-column: span 1;
+        grid-row: span 3;
+    }
+}
+
+.imageInput {
+    font-size: 0 !important;
+    width: fit-content;
+
+    input {
+        height: 0 !important;
+        width: 0 !important;
+        padding: 0 !important;
+    }
+
+    img {
+        max-width: 200px;
+        border-radius: 50rem;
+        transition: 125ms ease-in-out;
+        position: relative;
+
+        &:hover {
+            filter: brightness(0.5);
+            cursor: pointer;
+        }
+    }
+}
+.formButtons {
+    display: flex;
+    gap: 1rem;
+
+    button,
+    input[type="submit"] {
+        display: block;
+    }
+
+    button,
+    input[type="submit"] {
+        &:disabled {
+            box-shadow: inset 1px 1px 3px 0 #22222260 !important;
+            translate: -2px -2px !important;
+            cursor: default;
+            background-color: #aaaaaa80;
+            opacity: 0.75;
+        }
+    }
+}
