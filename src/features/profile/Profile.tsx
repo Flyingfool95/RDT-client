@@ -7,6 +7,7 @@ import cleanObject from "../../helpers/cleanObject.helper";
 import { objectToFormData } from "../../helpers/objectToFormData.helper";
 import ProfileImageInput from "./components/ProfileImageInput";
 import useAuthCheck from "../auth/hooks/useAuthCheck";
+import useDeleteProfileImage from "./hooks/useDeleteProfileImage";
 
 /* TODO */
 // Add delete image
@@ -15,7 +16,8 @@ import useAuthCheck from "../auth/hooks/useAuthCheck";
 
 export default function Profile() {
     const queryClient = useQueryClient();
-    const { mutation } = useUpdateProfile();
+    const { mutation: updateProfile } = useUpdateProfile();
+    const { mutation: deleteProfileImage } = useDeleteProfileImage();
 
     const [formData, setFormData] = useState<ProfileFormDataType>({ email: "", name: "", image: "" });
     const formRef = useRef<HTMLFormElement>(null);
@@ -27,20 +29,31 @@ export default function Profile() {
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const cleanedFormData = objectToFormData(cleanObject(formData));
-        mutation.mutate(cleanedFormData, {
+        updateProfile.mutate(cleanedFormData, {
             onSuccess: async (result) => {
                 queryClient.setQueryData(["current-user"], result);
-                handleClearForm();
+                clearForm();
             },
         });
     }
 
-    function handleClearForm() {
+    function clearForm() {
         setFormData({ email: "", name: "", image: "" });
         setPreviewURL("");
         if (formRef.current) {
             formRef.current?.reset();
         }
+    }
+
+    function deleteImage() {
+        deleteProfileImage.mutate(
+            { image: "" },
+            {
+                onSuccess: async (result) => {
+                    queryClient.setQueryData(["current-user"], result);
+                },
+            }
+        );
     }
 
     return (
@@ -54,6 +67,8 @@ export default function Profile() {
                     previewURL={previewURL}
                     setPreviewURL={setPreviewURL}
                 />
+
+                <button onClick={deleteImage} type="button">Delete Image</button>
 
                 <label htmlFor="email">
                     Email
@@ -85,7 +100,7 @@ export default function Profile() {
 
                     <button
                         type="button"
-                        onClick={handleClearForm}
+                        onClick={clearForm}
                         disabled={formData.email === "" && formData.name === "" && formData.image === ""}
                     >
                         Cancel Changes
