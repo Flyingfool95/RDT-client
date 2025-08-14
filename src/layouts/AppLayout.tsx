@@ -24,7 +24,7 @@ export default function AppLayout() {
                     <NavLink to="/">
                         <HiHome />
                     </NavLink>
-                    <NavLink to="/profile">
+                    <NavLink to="/profile" className={styles.profileLink}>
                         <HiMiniUserCircle />
                     </NavLink>
 
