@@ -9,15 +9,16 @@ export default function AppLayout() {
     const { mutation } = useLogout();
 
     const { data } = useAuthCheck() as any;
+    console.log(data);
 
     if (!data) return <Navigate to={"/login"} />;
 
     return (
         <div className={styles.appLayout}>
-            <header>
+            <header className={styles.appHeader}>
                 <nav>
                     <Link to="/profile" className="logo-link">
-                        <img src={arrayToBlobUrl(data.image) ?? logo} alt="Logo" className="logo" />
+                        <img src={data.image != "" ? arrayToBlobUrl(data.image) : logo} alt="Logo" className="logo" />
                     </Link>
 
                     <NavLink to="/">Dashboard</NavLink>

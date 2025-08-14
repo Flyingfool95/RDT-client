@@ -62,7 +62,10 @@
     img {
         position: relative;
         border-radius: 50rem;
+        object-fit: cover;
+        object-position: 50% 25%;
 
+        width: 100%;
         max-width: 200px;
         transition: 125ms ease-in-out;
         position: relative;
@@ -72,10 +75,25 @@
 .formButtons {
     display: flex;
     gap: 1rem;
-    height: fit-content;
 
     button,
     input[type="submit"] {
         display: block;
+        height: fit-content;
+    }
+}
+
+@media (max-width: 720px) {
+    .profileForm {
+        grid-template-columns: 1fr;
+        > * {
+            width: 100%;
+        }
+    }
+
+    .imageInput,
+    .imageInput img {
+        max-width: 150px;
+        aspect-ratio: 1;
     }
 }
