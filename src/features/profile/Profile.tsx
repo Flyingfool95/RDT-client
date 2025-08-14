@@ -12,6 +12,7 @@ import useDeleteProfileImage from "./hooks/useDeleteProfileImage";
 /* TODO */
 // Add password inputs
 // Error handeling
+// Refactor into components DeleteProfileImageButton
 
 export default function Profile() {
     const queryClient = useQueryClient();
@@ -103,9 +104,11 @@ export default function Profile() {
                         Cancel Changes
                     </button>
                 </div>
-                { data.image !== "" && <button onClick={deleteImage} type="button">
-                    Delete Image
-                </button>}
+                {data.image !== "" && (
+                    <button onClick={deleteImage} type="button">
+                        Delete Image
+                    </button>
+                )}
             </form>
         </>
     );
