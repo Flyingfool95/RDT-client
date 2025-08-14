@@ -1,8 +1,12 @@
 import { RouterProvider } from "react-router";
 import { router } from "./routes/router";
+import useAuthCheck from "./features/auth/hooks/useAuthCheck";
 
 function App() {
-    /* Check if has token and authorize the token ot get valid user back to stroe in cache */
+    const { isLoading } = useAuthCheck();
+
+    if (isLoading) return <h1>Loading...</h1>;
+
     return <RouterProvider router={router} />;
 }
 

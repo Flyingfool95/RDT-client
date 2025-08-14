@@ -1,12 +1,13 @@
 import styles from "./styles/AuthLayout.module.css";
 import { Navigate, Outlet } from "react-router";
-import useAuthCheck from "../features/auth/hooks/useAuthCheck";
+import { useQueryClient } from "@tanstack/react-query";
+import type { UserQueryDataType } from "../features/profile/types";
 
 export default function AuthLayout() {
-    const { data, isLoading } = useAuthCheck();
+    const queryClient = useQueryClient();
+    const { data } = queryClient.getQueryData(["current-user"]) as UserQueryDataType;
 
-    if (isLoading) return <h1>Loading...</h1>;
-    if (data?.success) return <Navigate to={"/"} />;
+    if (data) return <Navigate to={"/"} />;
 
     return (
         <div className={styles.authLayout}>

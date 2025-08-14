@@ -1,24 +1,28 @@
+import { Link, Navigate, NavLink, Outlet } from "react-router";
 import logo from "../assets/RDT_logo.png";
 import styles from "./styles/AppLayout.module.css";
-import { Navigate, NavLink, Outlet } from "react-router";
-import useAuthCheck from "../features/auth/hooks/useAuthCheck";
 import useLogout from "../features/auth/hooks/useLogout";
+import { arrayToBlobUrl } from "../helpers/arrayToBlobURL.helper";
+import { useQueryClient } from "@tanstack/react-query";
+import type { UserQueryDataType } from "../features/profile/types";
 
 export default function AppLayout() {
-    const { data, isLoading } = useAuthCheck();
+    const queryClient = useQueryClient();
+    const { data } = queryClient.getQueryData(["current-user"]) as UserQueryDataType;
+    
     const { mutation } = useLogout();
 
-    if (isLoading) return <h1>Loading...</h1>;
-    if (!data?.success) return <Navigate to={"/login"} />;
+    if (!data) return <Navigate to={"/login"} />;
 
     return (
         <div className={styles.appLayout}>
             <header>
                 <nav>
-                    <img src={logo} alt="Logo" className="logo" />
+                    <Link to="/profile" className="logo-link">
+                        <img src={arrayToBlobUrl(data.user.image) ?? logo} alt="Logo" className="logo" />
+                    </Link>
 
                     <NavLink to="/">Dashboard</NavLink>
-                    <NavLink to="/profile">Profile</NavLink>
 
                     <button onClick={() => mutation.mutate()}>Logout</button>
                 </nav>
