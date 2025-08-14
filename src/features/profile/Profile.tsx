@@ -10,7 +10,6 @@ import useAuthCheck from "../auth/hooks/useAuthCheck";
 import useDeleteProfileImage from "./hooks/useDeleteProfileImage";
 
 /* TODO */
-// Add delete image
 // Add password inputs
 // Error handeling
 
