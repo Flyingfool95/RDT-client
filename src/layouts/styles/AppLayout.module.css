@@ -8,6 +8,24 @@
         object-fit: cover;
         object-position: 50% 25%;
     }
+
+    nav {
+        a,
+        button {
+            background: transparent;
+            box-shadow: none !important;
+            font-size: 2rem;
+
+            &.active {
+                color: steelblue;
+            }
+
+            &:hover {
+                translate: 0px 1px;
+                color: steelblue;
+            }
+        }
+    }
 }
 
 @media (max-width: 720px) {
@@ -24,9 +42,24 @@
             justify-content: space-evenly;
         }
 
-        a {
+        a,
+        button {
             margin-bottom: 0 !important;
-            flex-basis: 20%;
+            flex-basis: 25%;
+            flex-grow: 1;
+
+            display: grid;
+            place-items: center;
+
+            &:nth-of-type(1) {
+                order: 2;
+            }
+            &:nth-of-type(2) {
+                order: 1;
+            }
+            &:nth-of-type(3) {
+                order: 3;
+            }
         }
     }
 }

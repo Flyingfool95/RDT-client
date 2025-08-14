@@ -1,5 +1,6 @@
 import { Link, Navigate, NavLink, Outlet } from "react-router";
 import logo from "../assets/RDT_logo.png";
+import { HiHome, HiArrowLeftStartOnRectangle, HiMiniUserCircle } from "react-icons/hi2";
 import styles from "./styles/AppLayout.module.css";
 import useLogout from "../features/auth/hooks/useLogout";
 import { arrayToBlobUrl } from "../helpers/arrayToBlobURL.helper";
@@ -21,9 +22,16 @@ export default function AppLayout() {
                         <img src={data.image != "" ? arrayToBlobUrl(data.image) : logo} alt="Logo" className="logo" />
                     </Link>
 
-                    <NavLink to="/">Dashboard</NavLink>
+                    <NavLink to="/">
+                        <HiHome />
+                    </NavLink>
+                    <NavLink to="/profile">
+                        <HiMiniUserCircle />
+                    </NavLink>
 
-                    <button onClick={() => mutation.mutate()}>Logout</button>
+                    <button onClick={() => mutation.mutate()}>
+                        <HiArrowLeftStartOnRectangle />
+                    </button>
                 </nav>
             </header>
             <main>
