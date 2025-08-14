@@ -68,8 +68,6 @@ export default function Profile() {
                     setPreviewURL={setPreviewURL}
                 />
 
-                <button onClick={deleteImage} type="button">Delete Image</button>
-
                 <label htmlFor="email">
                     Email
                     <input
@@ -106,6 +104,9 @@ export default function Profile() {
                         Cancel Changes
                     </button>
                 </div>
+                { data.image !== "" && <button onClick={deleteImage} type="button">
+                    Delete Image
+                </button>}
             </form>
         </>
     );

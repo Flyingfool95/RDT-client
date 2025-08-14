@@ -10,7 +10,6 @@ export default function AppLayout() {
     const { mutation } = useLogout();
 
     const { data } = useAuthCheck() as any;
-    console.log(data);
 
     if (!data) return <Navigate to={"/login"} />;
 

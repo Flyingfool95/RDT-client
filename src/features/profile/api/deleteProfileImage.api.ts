@@ -12,8 +12,6 @@ export default async function deleteProfileImage(formData: any) {
 
     const result = await response.json();
 
-    console.log(result);
-
     if (!result.success) throw new APIError("Update failed", result.errors, result.status);
     return result;
 }
