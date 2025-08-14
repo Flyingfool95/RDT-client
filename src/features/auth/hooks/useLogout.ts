@@ -5,12 +5,12 @@ import { useNavigate } from "react-router";
 export default function useLogout() {
     const queryClient = useQueryClient();
     const navigate = useNavigate();
-    
+
     const mutation = useMutation({
         mutationFn: logout,
         retry: false,
-        onSuccess: () => {
-            queryClient.removeQueries({ queryKey: ["current-user"] });
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: ["current-user"] });
             navigate("/login");
         },
         onError: (error) => {

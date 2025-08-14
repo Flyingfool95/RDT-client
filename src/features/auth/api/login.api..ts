@@ -11,6 +11,7 @@ export default async function login(formData: any) {
     });
 
     const result = await response.json();
+
     if (!result.success) throw new APIError("Login failed", result.errors, result.status);
     return result;
 }

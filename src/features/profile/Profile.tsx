@@ -2,10 +2,11 @@ import { useRef, useState } from "react";
 import styles from "./Profile.module.css";
 import { useQueryClient } from "@tanstack/react-query";
 import useUpdateProfile from "./hooks/useUpdateProfile";
-import type { ProfileFormDataType, UserQueryDataType } from "./types";
+import type { ProfileFormDataType } from "./types";
 import cleanObject from "../../helpers/cleanObject.helper";
 import { objectToFormData } from "../../helpers/objectToFormData.helper";
 import ProfileImageInput from "./components/ProfileImageInput";
+import useAuthCheck from "../auth/hooks/useAuthCheck";
 
 /* TODO */
 // Add delete image
@@ -18,9 +19,10 @@ export default function Profile() {
 
     const [formData, setFormData] = useState<ProfileFormDataType>({ email: "", name: "", image: "" });
     const formRef = useRef<HTMLFormElement>(null);
+
     const [previewURL, setPreviewURL] = useState("");
 
-    const { data } = queryClient.getQueryData(["current-user"]) as UserQueryDataType;
+    const { data } = useAuthCheck() as any;
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -46,7 +48,7 @@ export default function Profile() {
             <h1>Profile</h1>
             <form onSubmit={(e) => handleSubmit(e)} ref={formRef} className={styles.profileForm}>
                 <ProfileImageInput
-                    existingImage={data?.user.image}
+                    existingImage={data?.image}
                     formData={formData}
                     setFormData={setFormData}
                     previewURL={previewURL}
@@ -59,8 +61,7 @@ export default function Profile() {
                         type="email"
                         name="email"
                         id="email"
-                        placeholder={data?.user.email}
-                        value={formData.email}
+                        placeholder={data?.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />
                 </label>
@@ -70,8 +71,7 @@ export default function Profile() {
                         type="text"
                         name="name"
                         id="name"
-                        placeholder={data?.user.name}
-                        value={formData.name}
+                        placeholder={data?.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     />
                 </label>

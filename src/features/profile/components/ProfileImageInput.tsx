@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import styles from "../Profile.module.css";
 import defaultProfileImage from "../../../assets/RDT_logo.png";
 import { arrayToBlobUrl } from "../../../helpers/arrayToBlobURL.helper";
@@ -20,8 +19,6 @@ export default function ProfileImageInput({
     previewURL,
     setPreviewURL,
 }: ProfileImageInputProps) {
-    const fileInputRef = useRef<HTMLInputElement>(null);
-
     const profileImage = existingImage ? arrayToBlobUrl(existingImage) : defaultProfileImage;
 
     async function handleImageSelect(e: React.ChangeEvent<HTMLInputElement>) {
@@ -36,13 +33,7 @@ export default function ProfileImageInput({
         <div className={styles.imageInput}>
             <label htmlFor="profile-image">
                 Profile Image
-                <input
-                    ref={fileInputRef}
-                    type="file"
-                    name="profile-image"
-                    id="profile-image"
-                    onChange={handleImageSelect}
-                />
+                <input type="file" name="profile-image" id="profile-image" onChange={handleImageSelect} />
             </label>
             <img src={previewURL || profileImage} alt="Profile" />
         </div>

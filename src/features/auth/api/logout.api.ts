@@ -7,5 +7,7 @@ export default async function logout() {
         },
     });
 
-    return response;
+    const result = await response.json();
+
+    return result;
 }

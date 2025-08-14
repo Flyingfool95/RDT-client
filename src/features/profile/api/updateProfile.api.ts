@@ -8,6 +8,7 @@ export default async function updateProfile(formData: any) {
     });
 
     const result = await response.json();
+
     if (!result.success) throw new APIError("Update failed", result.errors, result.status);
     return result;
 }

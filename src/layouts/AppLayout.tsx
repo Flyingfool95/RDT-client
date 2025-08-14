@@ -3,14 +3,12 @@ import logo from "../assets/RDT_logo.png";
 import styles from "./styles/AppLayout.module.css";
 import useLogout from "../features/auth/hooks/useLogout";
 import { arrayToBlobUrl } from "../helpers/arrayToBlobURL.helper";
-import { useQueryClient } from "@tanstack/react-query";
-import type { UserQueryDataType } from "../features/profile/types";
+import useAuthCheck from "../features/auth/hooks/useAuthCheck";
 
 export default function AppLayout() {
-    const queryClient = useQueryClient();
-    const { data } = queryClient.getQueryData(["current-user"]) as UserQueryDataType;
-    
     const { mutation } = useLogout();
+
+    const { data } = useAuthCheck() as any;
 
     if (!data) return <Navigate to={"/login"} />;
 
@@ -19,7 +17,7 @@ export default function AppLayout() {
             <header>
                 <nav>
                     <Link to="/profile" className="logo-link">
-                        <img src={arrayToBlobUrl(data.user.image) ?? logo} alt="Logo" className="logo" />
+                        <img src={arrayToBlobUrl(data.image) ?? logo} alt="Logo" className="logo" />
                     </Link>
 
                     <NavLink to="/">Dashboard</NavLink>

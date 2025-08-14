@@ -10,12 +10,10 @@ export default async function authCheck(retries = 1): Promise<RDTResponse<UserQu
 
     result = await result.json();
 
-    console.log(result)
-
     if (!result.success && result.errors?.[0]?.message === "Invalid access token" && retries > 0) {
         await refreshTokens();
         return authCheck(retries - 1);
     }
-    
+
     return result;
 }
