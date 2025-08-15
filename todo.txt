@@ -1,4 +1,5 @@
 /* TODO */
+// Migrate local state into zustand
 // Add password inputs
 // Doing any action and invalid accesstoken should auto refresh tokens
 // Refactor to handle custom styling for effected fields
