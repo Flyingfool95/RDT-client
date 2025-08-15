@@ -11,15 +11,12 @@ export default function useLogin() {
     const [password, setPassword] = useState<string | null>(null);
     const [isFormError, setIsFormError] = useState<boolean>(false);
 
-    const mutation = useMutation({
-        mutationFn: login,
-        retry: false,
-    });
-
-    const getInputData = () => ({
-        email,
-        password,
-    });
+    function getInputData() {
+        return {
+            email,
+            password,
+        };
+    }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -35,6 +32,11 @@ export default function useLogin() {
             },
         });
     };
+
+    const mutation = useMutation({
+        mutationFn: login,
+        retry: false,
+    });
 
     return { handleSubmit, isFormError, setEmail, setPassword };
 }

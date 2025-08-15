@@ -1,9 +1,9 @@
-export type ApiError = Array<{ message: string; path?: string }>;
+export type ResponseErrorType = Array<{ message: string; path?: string }>;
 
-export type RDTResponse<T = unknown> = {
+export type RDTResponseType<T = unknown> = {
     success: boolean;
     status: number;
     message: string;
     data?: T;
-    errors?: ApiError;
+    errors?: ResponseErrorType;
 };

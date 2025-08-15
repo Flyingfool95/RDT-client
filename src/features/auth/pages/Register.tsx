@@ -1,26 +1,9 @@
-import { useState } from "react";
 import useRegister from "../hooks/useRegister";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 
 export default function Register() {
-    const [formData, setFormData] = useState({ email: "", password: "", confirmPassword: "" });
-    const [error, setError] = useState("");
+    const { setEmail, setPassword, setConfirmPassword, handleSubmit, formErrors } = useRegister();
 
-    const { mutation } = useRegister();
-    const navigate = useNavigate();
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        mutation.mutate(formData, {
-            onSuccess: (result) => {
-                navigate("/login");
-            },
-
-            onError: (error: unknown) => {
-                console.log(error)
-            },
-        });
-    };
     return (
         <>
             <h1>Register account</h1>
@@ -31,22 +14,13 @@ export default function Register() {
                         type="email"
                         name="email"
                         id="email"
-                        value={formData.email}
                         placeholder="my@email.com"
-                        onChange={(e) =>
-                            setFormData((prev) => ({ ...prev, email: e.target.value.toLocaleLowerCase() }))
-                        }
+                        onChange={(e) => setEmail(e.target.value.toLocaleLowerCase())}
                     />
                 </label>
                 <label>
                     Password
-                    <input
-                        type="text"
-                        name="password"
-                        id="password"
-                        value={formData.password}
-                        onChange={(e) => setFormData((prev) => ({ ...prev, password: e.target.value }))}
-                    />
+                    <input type="text" name="password" id="password" onChange={(e) => setPassword(e.target.value)} />
                 </label>
                 <label>
                     Confirm Password
@@ -54,14 +28,10 @@ export default function Register() {
                         type="text"
                         name="confirm-password"
                         id="confirm-password"
-                        value={formData.confirmPassword}
-                        onChange={(e) => setFormData((prev) => ({ ...prev, confirmPassword: e.target.value }))}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </label>
                 <input type="submit" value="Register" />
-
-                {/* Make FormError component */}
-                <p>{error}</p>
             </form>
             <div className="form-links">
                 <Link to={"/login"}>Login here!</Link>
