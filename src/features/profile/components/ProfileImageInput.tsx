@@ -1,7 +1,6 @@
 import styles from "../Profile.module.css";
 import defaultProfileImage from "../../../assets/RDT_logo.png";
-import { arrayToBlobUrl } from "../../../helpers/arrayToBlobURL.helper";
-import optimizeImage from "../../../helpers/optimizeImage.helper";
+import optimizeImage, { arrayToBlobUrl } from "../../../helpers/image.helpers";
 
 type ProfileImageInputProps = {
     currentImage: Uint8Array | undefined;

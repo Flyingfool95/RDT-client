@@ -1,3 +1,12 @@
+export default function cleanObject(obj: Record<string, any>) {
+    Object.keys(obj).forEach((key) => {
+        if (obj[key] === null) {
+            delete obj[key];
+        }
+    });
+    return obj;
+}
+
 export function objectToFormData(obj: Record<string, any>): FormData {
     const fd = new FormData();
 

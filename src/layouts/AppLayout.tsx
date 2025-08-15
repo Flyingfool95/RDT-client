@@ -3,8 +3,8 @@ import logo from "../assets/RDT_logo.png";
 import { HiHome, HiArrowLeftStartOnRectangle, HiMiniUserCircle } from "react-icons/hi2";
 import styles from "./styles/AppLayout.module.css";
 import useLogout from "../features/auth/hooks/useLogout";
-import { arrayToBlobUrl } from "../helpers/arrayToBlobURL.helper";
 import useAuthCheck from "../features/auth/hooks/useAuthCheck";
+import { arrayToBlobUrl } from "../helpers/image.helpers";
 
 export default function AppLayout() {
     const { mutation } = useLogout();

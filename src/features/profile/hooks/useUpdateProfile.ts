@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import updateProfile from "../api/updateProfile.api";
-import { objectToFormData } from "../../../helpers/objectToFormData.helper";
-import cleanObject from "../../../helpers/cleanObject.helper";
+import cleanObject, { objectToFormData } from "../../../helpers/object.helpers";
 
 export default function useUpdateProfile() {
     const queryClient = useQueryClient();
