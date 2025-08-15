@@ -7,7 +7,7 @@ import cleanObject from "../../helpers/cleanObject.helper";
 import { objectToFormData } from "../../helpers/objectToFormData.helper";
 import ProfileImageInput from "./components/ProfileImageInput";
 import useAuthCheck from "../auth/hooks/useAuthCheck";
-import useDeleteProfileImage from "./hooks/useDeleteProfileImage";
+import DeleteProfileImage from "./components/DeleteProfileImage";
 
 /* TODO */
 // Add password inputs
@@ -17,7 +17,6 @@ import useDeleteProfileImage from "./hooks/useDeleteProfileImage";
 export default function Profile() {
     const queryClient = useQueryClient();
     const { mutation: updateProfile } = useUpdateProfile();
-    const { mutation: deleteProfileImage } = useDeleteProfileImage();
 
     const [formData, setFormData] = useState<ProfileFormDataType>({ email: "", name: "", image: "" });
     const formRef = useRef<HTMLFormElement>(null);
@@ -43,17 +42,6 @@ export default function Profile() {
         if (formRef.current) {
             formRef.current?.reset();
         }
-    }
-
-    function deleteImage() {
-        deleteProfileImage.mutate(
-            { image: "" },
-            {
-                onSuccess: async (result) => {
-                    queryClient.setQueryData(["current-user"], result);
-                },
-            }
-        );
     }
 
     return (
@@ -104,11 +92,7 @@ export default function Profile() {
                         Cancel Changes
                     </button>
                 </div>
-                {data.image !== "" && (
-                    <button onClick={deleteImage} type="button">
-                        Delete Image
-                    </button>
-                )}
+                {data.image !== "" && <DeleteProfileImage />}
             </form>
         </>
     );
