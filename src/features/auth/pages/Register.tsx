@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { errorHandler } from "../../../helpers/errorHandler.helper";
 import useRegister from "../hooks/useRegister";
 import { Link, useNavigate } from "react-router";
 
@@ -18,7 +17,7 @@ export default function Register() {
             },
 
             onError: (error: unknown) => {
-                setError(errorHandler(error));
+                console.log(error)
             },
         });
     };
