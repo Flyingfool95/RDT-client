@@ -46,7 +46,7 @@ export default function Profile() {
                         name="email"
                         id="email"
                         placeholder={data?.email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value === "" ? null : e.target.value)}
                     />
                 </label>
                 <label
@@ -59,7 +59,7 @@ export default function Profile() {
                         name="name"
                         id="name"
                         placeholder={data?.name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => setName(e.target.value === "" ? null : e.target.value)}
                     />
                 </label>
 

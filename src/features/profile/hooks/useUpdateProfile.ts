@@ -51,7 +51,7 @@ export default function useUpdateProfile() {
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const cleanedFormData = objectToFormData(cleanObject(getInputData()));
-        mutation.mutate(cleanedFormData, {});
+        mutation.mutate(cleanedFormData);
     }
 
     return {

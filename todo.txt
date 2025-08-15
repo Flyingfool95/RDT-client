@@ -1,7 +1,5 @@
 /* TODO */
-// Doing any action and invalid accesstoken should auto refresh tokens
 // Add password inputs to profile update
-// Refactor to handle custom styling for effected fields
-// Design and thinkthrough navbar
+// Design and think through navbar
 // Refactor navbar into component
 // Make primary and secondary buttons style
