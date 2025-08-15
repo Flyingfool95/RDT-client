@@ -11,9 +11,7 @@ import DeleteProfileImage from "./components/DeleteProfileImage";
 
 /* TODO */
 // Add password inputs
-// Error handeling
-
-//Doing any action and invalid accesstoken should auto refresh tokens
+// Doing any action and invalid accesstoken should auto refresh tokens
 
 export default function Profile() {
     const queryClient = useQueryClient();
