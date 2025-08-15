@@ -9,9 +9,7 @@ import useAuthCheck from "../auth/hooks/useAuthCheck";
 import useUpdateProfile from "./hooks/useUpdateProfile";
 import DeleteProfileImage from "./components/DeleteProfileImage";
 
-/* TODO */
-// Add password inputs
-// Doing any action and invalid accesstoken should auto refresh tokens
+
 
 export default function Profile() {
     const queryClient = useQueryClient();

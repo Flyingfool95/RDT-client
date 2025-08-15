@@ -6,11 +6,6 @@ import useLogout from "../features/auth/hooks/useLogout";
 import { arrayToBlobUrl } from "../helpers/arrayToBlobURL.helper";
 import useAuthCheck from "../features/auth/hooks/useAuthCheck";
 
-
-/* TODO */
-// Design and thinkthrough navbar
-//Refactor navbar into component
-
 export default function AppLayout() {
     const { mutation } = useLogout();
 

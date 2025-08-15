@@ -1,7 +1,6 @@
 import { APIError } from "../classes/apiError";
 
-/* TODO */
-// Refactor to handle custom styling for effected fields
+
 
 export function errorHandler(error: unknown) {
     if (error instanceof APIError) {
