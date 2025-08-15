@@ -2,31 +2,28 @@ import styles from "../Profile.module.css";
 import defaultProfileImage from "../../../assets/RDT_logo.png";
 import { arrayToBlobUrl } from "../../../helpers/arrayToBlobURL.helper";
 import optimizeImage from "../../../helpers/optimizeImage.helper";
-import type { ProfileFormDataType } from "../types";
 
 type ProfileImageInputProps = {
-    existingImage?: Uint8Array;
-    formData: ProfileFormDataType;
-    setFormData: any;
-    previewURL: string;
-    setPreviewURL: any;
+    currentImage: Uint8Array | undefined;
+    setImage: any;
+    imagePreviewURL: string | null;
+    setImagePreviewURL: any;
 };
 
 export default function ProfileImageInput({
-    existingImage,
-    formData,
-    setFormData,
-    previewURL,
-    setPreviewURL,
+    currentImage,
+    setImage,
+    imagePreviewURL,
+    setImagePreviewURL,
 }: ProfileImageInputProps) {
-    const profileImage = existingImage ? arrayToBlobUrl(existingImage) : defaultProfileImage;
+    const profileImage = currentImage ? arrayToBlobUrl(currentImage) : defaultProfileImage;
 
     async function handleImageSelect(e: React.ChangeEvent<HTMLInputElement>) {
         const image = e.target.files?.[0];
         if (!image) return;
-        setPreviewURL(URL.createObjectURL(image));
+        setImagePreviewURL(URL.createObjectURL(image));
         const optimized = await optimizeImage(image);
-        setFormData({ ...formData, image: optimized });
+        setImage(optimized);
     }
 
     return (
@@ -35,7 +32,7 @@ export default function ProfileImageInput({
                 Profile Image
                 <input type="file" name="profile-image" id="profile-image" onChange={handleImageSelect} />
             </label>
-            <img src={previewURL || profileImage} alt="Profile" />
+            <img src={imagePreviewURL || profileImage} alt="Profile" />
         </div>
     );
 }
