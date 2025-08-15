@@ -1,27 +1,29 @@
 import { useRef, useState } from "react";
-import styles from "./Profile.module.css";
 import { useQueryClient } from "@tanstack/react-query";
-import useUpdateProfile from "./hooks/useUpdateProfile";
+import styles from "./Profile.module.css";
 import type { ProfileFormDataType } from "./types";
 import cleanObject from "../../helpers/cleanObject.helper";
 import { objectToFormData } from "../../helpers/objectToFormData.helper";
 import ProfileImageInput from "./components/ProfileImageInput";
 import useAuthCheck from "../auth/hooks/useAuthCheck";
+import useUpdateProfile from "./hooks/useUpdateProfile";
 import DeleteProfileImage from "./components/DeleteProfileImage";
 
 /* TODO */
 // Add password inputs
 // Error handeling
-// Refactor into components DeleteProfileImageButton
+
+//Doing any action and invalid accesstoken should auto refresh tokens
 
 export default function Profile() {
     const queryClient = useQueryClient();
     const { mutation: updateProfile } = useUpdateProfile();
 
-    const [formData, setFormData] = useState<ProfileFormDataType>({ email: "", name: "", image: "" });
     const formRef = useRef<HTMLFormElement>(null);
 
+    const [formData, setFormData] = useState<ProfileFormDataType>({ email: "", name: "", image: "" });
     const [previewURL, setPreviewURL] = useState("");
+    const [formErrors, setFormErrors] = useState<{ message: string; path: string }[]>([]);
 
     const { data } = useAuthCheck() as any;
 
@@ -33,12 +35,17 @@ export default function Profile() {
                 queryClient.setQueryData(["current-user"], result);
                 clearForm();
             },
+
+            onError: (error: any) => {
+                setFormErrors(error.errors);
+            },
         });
     }
 
     function clearForm() {
         setFormData({ email: "", name: "", image: "" });
         setPreviewURL("");
+        setFormErrors([]);
         if (formRef.current) {
             formRef.current?.reset();
         }
@@ -56,7 +63,10 @@ export default function Profile() {
                     setPreviewURL={setPreviewURL}
                 />
 
-                <label htmlFor="email">
+                <label
+                    htmlFor="email"
+                    className={formErrors.some((error) => error.path === "email") ? "input-error" : ""}
+                >
                     Email
                     <input
                         type="email"
@@ -66,7 +76,10 @@ export default function Profile() {
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     />
                 </label>
-                <label htmlFor="name">
+                <label
+                    htmlFor="name"
+                    className={formErrors.some((error) => error.path === "name") ? "input-error" : ""}
+                >
                     Name
                     <input
                         type="text"
@@ -92,6 +105,7 @@ export default function Profile() {
                         Cancel Changes
                     </button>
                 </div>
+                {formErrors.length > 0 && formErrors.map((error) => <p key={error.message}>{error.message}</p>)}
                 {data.image !== "" && <DeleteProfileImage />}
             </form>
         </>

@@ -119,6 +119,14 @@ form {
         background-color: #fcfcfc60;
     }
 
+    .input-error {
+        color: red;
+        input {
+            outline-color: red;
+            background-color: #ff000020;
+        }
+    }
+
     .form-links {
         display: flex;
         flex-direction: column;
