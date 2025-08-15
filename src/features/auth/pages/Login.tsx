@@ -4,8 +4,6 @@ import { Link } from "react-router";
 export default function Login() {
     const { handleSubmit, isFormError, setEmail, setPassword } = useLogin();
 
-    console.log(isFormError);
-
     return (
         <>
             <h1>Welcome to RDT</h1>

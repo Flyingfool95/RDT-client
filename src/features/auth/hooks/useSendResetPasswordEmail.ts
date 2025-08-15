@@ -16,10 +16,11 @@ export default function useSendResetPasswordEmail() {
         retry: false,
         onSuccess: () => {
             setEmail(null);
+            setIsEmailFormError(false);
         },
 
         onError: (error) => {
-            console.log(error.errors);
+            console.log(error);
             setIsEmailFormError(true);
         },
     });
