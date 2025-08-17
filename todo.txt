@@ -1,5 +1,7 @@
-/* TODO */
-// Think through a unified error handelingfrom server
+/* TODO - Client */
 // Design and think through navbar
 // Refactor navbar into component
 // Make primary and secondary buttons style
+
+/* TODO - Server */
+// Figure out SMTP, doesnt work atm, not sure what changed
