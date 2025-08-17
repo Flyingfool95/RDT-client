@@ -40,6 +40,7 @@ header {
     width: 100%;
     padding: 1rem;
     background-color: #cfcfcf;
+    z-index: 5;
 }
 
 main {
@@ -65,7 +66,8 @@ a {
     font-style: italic;
     transition: color 125ms ease-in-out;
 
-    &:hover {
+    &:hover,
+    &.active {
         color: steelblue;
     }
 }

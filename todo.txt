@@ -1,6 +1,4 @@
 /* TODO - Client */
-// Design and think through navbar
-// Refactor navbar into component
 // Make primary and secondary buttons style
 
 /* TODO - Server */

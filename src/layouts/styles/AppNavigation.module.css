@@ -6,14 +6,10 @@
     height: 100%;
     font-size: 2rem;
 
-    a:not(:has(img)){
+    a:not(:has(img)) {
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    .active{
-        color: steelblue !important;
     }
 }
 
@@ -38,6 +34,7 @@
     box-shadow: none !important;
     background-color: transparent !important;
     aspect-ratio: 1;
+
     &:hover {
         translate: 0px 1px;
         color: steelblue;
