@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import login from "../api/login.api.";
+import type { ApiErrorType } from "../../../classes/ApiError.class";
 
 export default function useLogin() {
     const navigate = useNavigate();
@@ -24,8 +25,10 @@ export default function useLogin() {
                     navigate("/");
                 },
 
-                onError: (error: any) => {
-                    console.log(error);
+                onError: (error: Error) => {
+                    const apiError = error as ApiErrorType;
+                    console.error(apiError);
+                    setFormErrors(apiError.errors);
                 },
             }
         );
