@@ -1,4 +1,4 @@
-import Dashboard from "../features/dashboard/Dashboard";
+import Dashboard from "../features/dashboard/components/Dashboard";
 import Profile from "../features/profile/components/Profile";
 import AppLayout from "../layouts/AppLayout";
 

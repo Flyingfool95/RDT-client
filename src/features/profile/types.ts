@@ -2,17 +2,11 @@ export type UserType = {
     id: string;
     email: string;
     name: string;
-    image: Uint8Array<ArrayBufferLike>;
+    image: Uint8Array<ArrayBufferLike> | null;
 };
 
-export type UserQueryDataType = {
+export type UserResponseType = {
     data: {
         user: UserType;
     };
-};
-
-export type ProfileFormDataType = {
-    email: string;
-    name: string;
-    image: File | string;
 };
