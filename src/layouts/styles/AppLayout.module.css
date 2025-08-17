@@ -3,67 +3,19 @@
 
     min-height: 100dvh;
     width: 100%;
-
-    img {
-        object-fit: cover;
-        object-position: 50% 25%;
-    }
-
-    nav {
-        a,
-        button {
-            background: transparent;
-            box-shadow: none !important;
-            font-size: 2rem;
-
-            &.active {
-                color: steelblue;
-            }
-
-            &:hover {
-                translate: 0px 1px;
-                color: steelblue;
-            }
-        }
-    }
 }
 
 @media (max-width: 720px) {
     .appHeader {
-        position: absolute;
+        position: fixed;
         bottom: 0;
         right: 0;
         left: 0;
         max-width: 100%;
+        padding: 0.5rem;
+    }
 
-        nav {
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-evenly;
-        }
-
-        .profileLink {
-            display: none;
-        }
-
-        a,
-        button {
-            margin-bottom: 0 !important;
-            flex-basis: 25%;
-            flex-grow: 1;
-
-            display: grid;
-            place-items: center;
-
-            &:nth-of-type(1) {
-                order: 2;
-            }
-            &:nth-of-type(2) {
-                order: 1;
-            }
-            &:nth-of-type(3) {
-                order: 3;
-            }
-        }
+    main {
+        margin-bottom: 4rem;
     }
 }

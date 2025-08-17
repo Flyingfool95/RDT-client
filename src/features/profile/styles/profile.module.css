@@ -76,7 +76,12 @@
         grid-template-columns: 1fr;
         > * {
             width: 100%;
+            grid-column: span 1;
         }
+    }
+
+    .imageInput{
+        margin-bottom: 2rem;
     }
 
     .imageInput,

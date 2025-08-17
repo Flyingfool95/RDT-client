@@ -39,7 +39,7 @@ header {
     max-width: 125px;
     width: 100%;
     padding: 1rem;
-    background-color: #aaaaaa80;
+    background-color: #cfcfcf;
 }
 
 main {
@@ -132,44 +132,6 @@ form {
 
         a {
             display: block;
-        }
-    }
-}
-
-/* Navigation */
-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    height: 100%;
-
-    .logo-link {
-        margin-bottom: auto;
-        border-radius: 50rem;
-
-        display: flex;
-        justify-content: center;
-    }
-
-    .logo {
-        margin: auto;
-        width: 90%;
-        aspect-ratio: 1;
-        border-radius: 50rem;
-    }
-
-    a {
-        text-decoration: none;
-        font-style: normal;
-
-        &:last-of-type {
-            margin-bottom: auto;
-        }
-
-        &.active {
-            color: steelblue;
-            font-weight: bold;
         }
     }
 }

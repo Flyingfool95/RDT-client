@@ -1,0 +1,61 @@
+.appNavigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    height: 100%;
+    font-size: 2rem;
+
+    a:not(:has(img)){
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .active{
+        color: steelblue !important;
+    }
+}
+
+.logoLink {
+    display: flex;
+    justify-content: center;
+    margin-bottom: auto;
+    border-radius: 50rem;
+
+    img {
+        margin: auto;
+        width: 90%;
+        aspect-ratio: 1;
+        border-radius: 50rem;
+        object-fit: cover;
+        object-position: 50% 25%;
+    }
+}
+
+.logoutButton {
+    margin-top: auto;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    aspect-ratio: 1;
+    &:hover {
+        translate: 0px 1px;
+        color: steelblue;
+    }
+}
+
+@media (max-width: 720px) {
+    .appNavigation {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .logoLink {
+        display: none;
+    }
+
+    .logoutButton {
+        margin-top: 0;
+        padding: 0;
+    }
+}
