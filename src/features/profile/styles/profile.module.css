@@ -44,6 +44,7 @@
         border-radius: 50rem;
         object-fit: cover;
         object-position: 50% 25%;
+        aspect-ratio: 1;
 
         width: 100%;
         max-width: 200px;
