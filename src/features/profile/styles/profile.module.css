@@ -60,6 +60,18 @@
         font-size: 1rem;
     }
 }
+
+.fileErrorMessage{
+    font-size: 0.75rem !important;
+    text-align: center;
+    color: red;
+}
+
+.fileInputError{
+    outline: 4px solid red;
+    
+}
+
 .formButtons {
     display: flex;
     gap: 1rem;

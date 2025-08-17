@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import updateProfile from "../api/updateProfile.api";
 import cleanObject, { objectToFormData } from "../../../helpers/object.helpers";
+import type { ApiErrorType } from "../../../classes/ApiError.class";
 
 export default function useUpdateProfile() {
     const queryClient = useQueryClient();
@@ -24,8 +25,11 @@ export default function useUpdateProfile() {
             resetForm();
         },
 
-        onError: (error: any) => {
-            setFormErrors(error.errors);
+        onError: (error: Error) => {
+            const apiError = error as ApiErrorType;
+            console.error(apiError);
+            console.log(apiError.errors)
+            setFormErrors(apiError.errors);
         },
     });
 

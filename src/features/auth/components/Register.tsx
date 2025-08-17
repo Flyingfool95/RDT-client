@@ -30,7 +30,7 @@ export default function Register() {
                     Password
                     <input type="text" name="password" id="password" onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                <label className={checkFormErrors(formErrors, "confirme-password") ? "input-error" : ""}>
+                <label className={checkFormErrors(formErrors, "confirmePassword") ? "input-error" : ""}>
                     Confirm Password
                     <input
                         type="text"

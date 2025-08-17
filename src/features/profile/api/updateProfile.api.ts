@@ -1,3 +1,4 @@
+import { ApiError } from "../../../classes/ApiError.class";
 import refreshTokens from "../../auth/api/refreshTokens.api";
 
 export default async function updateProfile(formData: any, retries = 1) {
@@ -14,6 +15,6 @@ export default async function updateProfile(formData: any, retries = 1) {
         return updateProfile(formData, retries - 1);
     }
 
-    if (!result.success) throw new Error("Update failed");
+    if (!result.success) throw new ApiError("Update failed", result.status, result.errors);
     return result;
 }

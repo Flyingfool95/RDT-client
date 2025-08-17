@@ -1,3 +1,4 @@
+import { checkFormErrors } from "../../../helpers/form.helpers";
 import useAuthCheck from "../../auth/hooks/useAuthCheck";
 import useUpdateProfile from "../hooks/useUpdateProfile";
 import styles from "../styles/profile.module.css";
@@ -35,10 +36,7 @@ export default function Profile() {
                     setImagePreviewURL={setImagePreviewURL}
                 />
 
-                <label
-                    htmlFor="email"
-                    className={formErrors?.some((error) => error.path === "email") ? "input-error" : ""}
-                >
+                <label htmlFor="email" className={checkFormErrors(formErrors, "email") ? "input-error" : ""}>
                     Email
                     <input
                         type="email"
@@ -48,10 +46,7 @@ export default function Profile() {
                         onChange={(e) => setEmail(e.target.value === "" ? null : e.target.value)}
                     />
                 </label>
-                <label
-                    htmlFor="name"
-                    className={formErrors?.some((error) => error.path === "name") ? "input-error" : ""}
-                >
+                <label htmlFor="name" className={checkFormErrors(formErrors, "name") ? "input-error" : ""}>
                     Name
                     <input
                         type="text"
@@ -63,7 +58,7 @@ export default function Profile() {
                 </label>
                 <label
                     htmlFor="current-password"
-                    className={formErrors?.some((error) => error.path === "name") ? "input-error" : ""}
+                    className={checkFormErrors(formErrors, "currentPassword") ? "input-error" : ""}
                 >
                     Current Password
                     <input
@@ -75,7 +70,7 @@ export default function Profile() {
                 </label>
                 <label
                     htmlFor="new-password"
-                    className={formErrors?.some((error) => error.path === "name") ? "input-error" : ""}
+                    className={checkFormErrors(formErrors, "newPassword") ? "input-error" : ""}
                 >
                     New Password
                     <input
@@ -101,7 +96,7 @@ export default function Profile() {
                         Cancel Changes
                     </button>
                 </div>
-                {formErrors && formErrors.map((error) => <p key={error.message}>{error.message}</p>)}
+                {checkFormErrors(formErrors) && <p>{formErrors?.map((err) => err.message).join(", ")}</p>}
             </form>
         </>
     );
