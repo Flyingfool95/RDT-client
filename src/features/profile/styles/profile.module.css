@@ -3,74 +3,9 @@
     display: grid;
     grid-template-columns: 1fr 3fr;
 
-    .imageInput {
-        grid-column: span 1;
-        grid-row: span 3;
-    }
-
     > * {
         grid-column: 2 / 3;
     }
-}
-
-.imageInput {
-    position: relative;
-    font-size: 0 !important;
-    width: fit-content;
-
-    input {
-        height: 0 !important;
-        width: 0 !important;
-        padding: 0 !important;
-    }
-
-    label {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-
-        border-radius: 50rem;
-        transition: 125ms ease-in-out;
-        cursor: pointer;
-    }
-
-    img {
-        position: relative;
-        border-radius: 50rem;
-        object-fit: cover;
-        object-position: 50% 25%;
-        aspect-ratio: 1;
-
-        width: 100%;
-        max-width: 200px;
-        transition: 125ms ease-in-out;
-        position: relative;
-        z-index: 1;
-    }
-
-    button {
-        position: absolute;
-        bottom: -2.5rem;
-        left: 0;
-        right: 0;
-        font-size: 1rem;
-    }
-}
-
-.fileErrorMessage{
-    font-size: 0.75rem !important;
-    text-align: center;
-    color: red;
-}
-
-.fileInputError{
-    outline: 4px solid red;
-    
 }
 
 .formButtons {
@@ -91,15 +26,5 @@
             width: 100%;
             grid-column: span 1;
         }
-    }
-
-    .imageInput{
-        margin-bottom: 2rem;
-    }
-
-    .imageInput,
-    .imageInput img {
-        max-width: 150px;
-        aspect-ratio: 1;
     }
 }

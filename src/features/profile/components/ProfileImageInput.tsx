@@ -1,4 +1,4 @@
-import styles from "../styles/profile.module.css";
+import styles from "../styles/profileImageInput.module.css";
 import defaultProfileImage from "../../../assets/RDT_logo.png";
 import optimizeImage, { arrayToBlobUrl } from "../../../helpers/image.helpers";
 import DeleteProfileImage from "./DeleteProfileImage";
