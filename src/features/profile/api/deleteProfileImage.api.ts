@@ -1,4 +1,3 @@
-import { APIError } from "../../../classes/apiError";
 import refreshTokens from "../../auth/api/refreshTokens.api";
 
 export default async function deleteProfileImage(formData: any, retries = 1) {
@@ -18,6 +17,6 @@ export default async function deleteProfileImage(formData: any, retries = 1) {
         return deleteProfileImage(formData, retries - 1);
     }
 
-    if (!result.success) throw new APIError("Update failed", result.errors, result.status);
+    if (!result.success) throw new Error("Update failed");
     return result;
 }

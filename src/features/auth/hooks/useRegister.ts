@@ -2,7 +2,6 @@ import { useMutation } from "@tanstack/react-query";
 import register from "../api/register.api";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { APIError } from "../../../classes/apiError";
 
 export default function useRegister() {
     const navigate = useNavigate();
@@ -28,12 +27,7 @@ export default function useRegister() {
             },
 
             onError: (error) => {
-                if (error instanceof APIError) {
-                    console.log(error);
-                    setFormErrors(error.errors);
-                } else {
-                    console.error("Unexpected error", error);
-                }
+                console.log(error);
             },
         });
     };
