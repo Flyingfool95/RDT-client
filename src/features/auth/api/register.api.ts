@@ -1,3 +1,5 @@
+import { ApiError } from "../../../classes/ApiError.class";
+
 export default async function register(formData: any) {
     const response: any = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/auth/register`, {
         method: "POST",
@@ -8,6 +10,7 @@ export default async function register(formData: any) {
     });
 
     const result = await response.json();
-    if (!result.success) throw new Error("Register failed");
+    console.log(result)
+    if (!result.success) throw new ApiError("Register failed", result.status, result.errors);
     return result;
 }

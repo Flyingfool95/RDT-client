@@ -1,14 +1,22 @@
+import { useEffect } from "react";
+import { checkFormErrors } from "../../../helpers/form.helpers";
 import useRegister from "../hooks/useRegister";
 import { Link } from "react-router";
 
 export default function Register() {
     const { setEmail, setPassword, setConfirmPassword, handleSubmit, formErrors } = useRegister();
 
+    useEffect(() => {
+        console.log(formErrors);
+    }, [formErrors]);
+
     return (
         <>
             <h1>Register account</h1>
             <form onSubmit={handleSubmit}>
-                <label className={formErrors && formErrors.length > 0 ? "input-error" : ""}>
+                <label
+                    className={checkFormErrors(formErrors, "email") || checkFormErrors(formErrors) ? "input-error" : ""}
+                >
                     Email
                     <input
                         type="email"
@@ -18,11 +26,11 @@ export default function Register() {
                         onChange={(e) => setEmail(e.target.value.toLocaleLowerCase())}
                     />
                 </label>
-                <label className={formErrors && formErrors.length > 0 ? "input-error" : ""}>
+                <label className={checkFormErrors(formErrors, "password") ? "input-error" : ""}>
                     Password
                     <input type="text" name="password" id="password" onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                <label className={formErrors && formErrors.length > 0 ? "input-error" : ""}>
+                <label className={checkFormErrors(formErrors, "confirme-password") ? "input-error" : ""}>
                     Confirm Password
                     <input
                         type="text"
@@ -32,9 +40,11 @@ export default function Register() {
                     />
                 </label>
                 <input type="submit" value="Register" />
+                {checkFormErrors(formErrors) && <p>{formErrors?.map((err) => err.message).join(", ")}</p>}
             </form>
             <div className="form-links">
                 <Link to={"/login"}>Login here!</Link>
+                {checkFormErrors(formErrors) && <Link to={"/reset-password"}>Reset password</Link>}
             </div>
         </>
     );

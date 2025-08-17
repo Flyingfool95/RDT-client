@@ -42,7 +42,7 @@ export default function Login() {
             </form>
             <div className="form-links">
                 <Link to={"/register"}>Register new account!</Link>
-                {formErrors && formErrors.length > 0 && <Link to={"/reset-password"}>Reset password</Link>}
+                {checkFormErrors(formErrors) && <Link to={"/reset-password"}>Reset password</Link>}
             </div>
         </>
     );
