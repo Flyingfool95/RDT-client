@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import sendResetPasswordEmail from "../api/sendResetEmail.api";
-import { useState } from "react";
 
 export default function useSendResetPasswordEmail() {
     const [email, setEmail] = useState<string | null>(null);
-    const [isEmailFormError, setIsEmailFormError] = useState<boolean>(false);
+    const [formErrors, setFormErrors] = useState<Array<{ message: string; path: string }> | null>(null);
 
     function handleSendEmail(e: React.FormEvent) {
         e.preventDefault();
@@ -16,14 +16,12 @@ export default function useSendResetPasswordEmail() {
         retry: false,
         onSuccess: () => {
             setEmail(null);
-            setIsEmailFormError(false);
         },
 
         onError: (error) => {
             console.log(error);
-            setIsEmailFormError(true);
         },
     });
 
-    return { setEmail, handleSendEmail, isEmailFormError };
+    return { setEmail, handleSendEmail, formErrors };
 }

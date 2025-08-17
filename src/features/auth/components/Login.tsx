@@ -2,13 +2,13 @@ import useLogin from "../hooks/useLogin";
 import { Link } from "react-router";
 
 export default function Login() {
-    const { handleSubmit, isFormError, setEmail, setPassword } = useLogin();
+    const { handleSubmit, setEmail, setPassword, formErrors } = useLogin();
 
     return (
         <>
             <h1>Welcome to RDT</h1>
             <form onSubmit={handleSubmit}>
-                <label className={isFormError ? "input-error" : ""}>
+                <label className={formErrors && formErrors.length > 0 ? "input-error" : ""}>
                     Email
                     <input
                         type="email"
@@ -19,7 +19,7 @@ export default function Login() {
                         required
                     />
                 </label>
-                <label className={isFormError ? "input-error" : ""}>
+                <label className={formErrors && formErrors.length > 0 ? "input-error" : ""}>
                     Password
                     <input
                         type="password"
@@ -30,13 +30,10 @@ export default function Login() {
                     />
                 </label>
                 <input type="submit" value="Login" />
-
-                {/* Make FormError component */}
-                {isFormError && <p>{isFormError}</p>}
             </form>
             <div className="form-links">
                 <Link to={"/register"}>Register new account!</Link>
-                {isFormError && <Link to={"/reset-password"}>Reset password</Link>}
+                {formErrors && formErrors.length > 0 && <Link to={"/reset-password"}>Reset password</Link>}
             </div>
         </>
     );

@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import login from "../api/login.api.";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import login from "../api/login.api.";
 
 export default function useLogin() {
     const navigate = useNavigate();
@@ -9,28 +9,26 @@ export default function useLogin() {
 
     const [email, setEmail] = useState<string | null>(null);
     const [password, setPassword] = useState<string | null>(null);
-    const [isFormError, setIsFormError] = useState<boolean>(false);
-
-    function getInputData() {
-        return {
-            email,
-            password,
-        };
-    }
+    const [formErrors, setFormErrors] = useState<Array<{ message: string; path: string }> | null>(null);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        mutation.mutate(getInputData(), {
-            onSuccess: (result) => {
-                queryClient.setQueryData(["current-user"], result);
-                navigate("/");
+        mutation.mutate(
+            {
+                email,
+                password,
             },
+            {
+                onSuccess: (result) => {
+                    queryClient.setQueryData(["current-user"], result);
+                    navigate("/");
+                },
 
-            onError: (error: any) => {
-                console.log(error);
-                setIsFormError(true);
-            },
-        });
+                onError: (error: any) => {
+                    console.log(error);
+                },
+            }
+        );
     };
 
     const mutation = useMutation({
@@ -38,5 +36,5 @@ export default function useLogin() {
         retry: false,
     });
 
-    return { handleSubmit, isFormError, setEmail, setPassword };
+    return { handleSubmit, setEmail, setPassword, formErrors };
 }

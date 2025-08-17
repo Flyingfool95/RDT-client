@@ -3,7 +3,7 @@ import useSendResetEmail from "../hooks/useSendResetPasswordEmail";
 import useResetPassword from "../hooks/useResetPassword";
 
 export default function ResetPassword() {
-    const { handleSendEmail, setEmail, isEmailFormError } = useSendResetEmail();
+    const { handleSendEmail, setEmail, formErrors } = useSendResetEmail();
     const { token, handleResetPassword, setPassword } = useResetPassword();
 
     return (
@@ -12,7 +12,7 @@ export default function ResetPassword() {
                 <>
                     <h1>Send reset-password email</h1>
                     <form onSubmit={handleSendEmail}>
-                        <label className={isEmailFormError ? "input-error" : ""}>
+                        <label className={formErrors && formErrors.length > 0 ? "input-error" : ""}>
                             Email
                             <input
                                 type="email"

@@ -1,6 +1,6 @@
-import Login from "../features/auth/pages/Login";
-import Register from "../features/auth/pages/Register";
-import ResetPassword from "../features/auth/pages/ResetPassword";
+import Login from "../features/auth/components/Login";
+import Register from "../features/auth/components/Register";
+import ResetPassword from "../features/auth/components/ResetPassword";
 import AuthLayout from "../layouts/AuthLayout";
 
 export const authRoutes = [

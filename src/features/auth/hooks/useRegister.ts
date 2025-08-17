@@ -1,7 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
-import register from "../api/register.api";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useMutation } from "@tanstack/react-query";
+import register from "../api/register.api";
 
 export default function useRegister() {
     const navigate = useNavigate();
@@ -11,25 +11,24 @@ export default function useRegister() {
 
     const [formErrors, setFormErrors] = useState<Array<{ message: string; path: string }> | null>(null);
 
-    function getInputData() {
-        return {
-            email,
-            password,
-            confirmPassword,
-        };
-    }
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        mutation.mutate(getInputData(), {
-            onSuccess: () => {
-                navigate("/login");
+        mutation.mutate(
+            {
+                email,
+                password,
+                confirmPassword,
             },
+            {
+                onSuccess: () => {
+                    navigate("/login");
+                },
 
-            onError: (error) => {
-                console.log(error);
-            },
-        });
+                onError: (error) => {
+                    console.log(error);
+                },
+            }
+        );
     };
 
     const mutation = useMutation({

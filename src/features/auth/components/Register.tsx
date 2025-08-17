@@ -8,7 +8,7 @@ export default function Register() {
         <>
             <h1>Register account</h1>
             <form onSubmit={handleSubmit}>
-                <label>
+                <label className={formErrors && formErrors.length > 0 ? "input-error" : ""}>
                     Email
                     <input
                         type="email"
@@ -18,11 +18,11 @@ export default function Register() {
                         onChange={(e) => setEmail(e.target.value.toLocaleLowerCase())}
                     />
                 </label>
-                <label>
+                <label className={formErrors && formErrors.length > 0 ? "input-error" : ""}>
                     Password
                     <input type="text" name="password" id="password" onChange={(e) => setPassword(e.target.value)} />
                 </label>
-                <label>
+                <label className={formErrors && formErrors.length > 0 ? "input-error" : ""}>
                     Confirm Password
                     <input
                         type="text"
