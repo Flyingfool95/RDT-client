@@ -6,9 +6,11 @@ export default function ResetPassword() {
     const [searchParams] = useSearchParams();
     const token = searchParams.get("token");
 
+    const Form = !token ? <SendResetEmailForm /> : <ResetPasswordForm token={token} />;
+
     return (
         <>
-            {!token ? <SendResetEmailForm /> : <ResetPasswordForm token={token} />}
+            {Form}
             <div className="form-links">
                 <Link to={"/login"}>Login here!</Link>
             </div>
