@@ -1,6 +1,5 @@
 /* TODO */
-// Add password inputs to profile update
+// Think through a unified error handelingfrom server
 // Design and think through navbar
 // Refactor navbar into component
-// Think through a unified error handeling
 // Make primary and secondary buttons style
