@@ -1,5 +1,5 @@
 import type { RDTResponseType } from "../../../types/api";
-import type { UserResponseType } from "../../profile/types";
+import type { UserResponseType } from "../types";
 import refreshTokens from "./refreshTokens.api";
 
 export default async function authCheck(retries = 1): Promise<RDTResponseType<UserResponseType>> {
