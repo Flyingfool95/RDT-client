@@ -1,8 +1,7 @@
-import styles from "./Profile.module.css";
-import ProfileImageInput from "./components/ProfileImageInput";
-import useAuthCheck from "../auth/hooks/useAuthCheck";
-import useUpdateProfile from "./hooks/useUpdateProfile";
-import DeleteProfileImage from "./components/DeleteProfileImage";
+import useAuthCheck from "../../auth/hooks/useAuthCheck";
+import useUpdateProfile from "../hooks/useUpdateProfile";
+import styles from "../styles/profile.module.css";
+import ProfileImageInput from "./ProfileImageInput";
 
 export default function Profile() {
     const { data } = useAuthCheck() as any;
@@ -14,8 +13,8 @@ export default function Profile() {
         setName,
         image,
         setImage,
-        password,
-        setPassword,
+        currentPassword,
+        setCurrentPassword,
         newPassword,
         setNewPassword,
         formErrors,
@@ -62,24 +61,47 @@ export default function Profile() {
                         onChange={(e) => setName(e.target.value === "" ? null : e.target.value)}
                     />
                 </label>
+                <label
+                    htmlFor="current-password"
+                    className={formErrors?.some((error) => error.path === "name") ? "input-error" : ""}
+                >
+                    Current Password
+                    <input
+                        type="password"
+                        name="current-password"
+                        id="current-password"
+                        onChange={(e) => setCurrentPassword(e.target.value === "" ? null : e.target.value)}
+                    />
+                </label>
+                <label
+                    htmlFor="new-password"
+                    className={formErrors?.some((error) => error.path === "name") ? "input-error" : ""}
+                >
+                    New Password
+                    <input
+                        type="text"
+                        name="new-password"
+                        id="new-password"
+                        onChange={(e) => setNewPassword(e.target.value === "" ? null : e.target.value)}
+                    />
+                </label>
 
                 <div className={styles.formButtons}>
                     <input
                         type="submit"
                         value="Save Changes"
-                        disabled={email === null && name === null && image === null}
+                        disabled={!email && !name && !image && !currentPassword && !newPassword}
                     />
 
                     <button
                         type="button"
                         onClick={resetForm}
-                        disabled={email === null && name === null && image === null}
+                        disabled={!email && !name && !image && !currentPassword && !newPassword}
                     >
                         Cancel Changes
                     </button>
                 </div>
                 {formErrors && formErrors.map((error) => <p key={error.message}>{error.message}</p>)}
-                {data.image !== "" && <DeleteProfileImage />}
             </form>
         </>
     );

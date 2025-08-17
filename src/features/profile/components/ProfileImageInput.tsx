@@ -1,6 +1,7 @@
-import styles from "../Profile.module.css";
+import styles from "../styles/profile.module.css";
 import defaultProfileImage from "../../../assets/RDT_logo.png";
 import optimizeImage, { arrayToBlobUrl } from "../../../helpers/image.helpers";
+import DeleteProfileImage from "./DeleteProfileImage";
 
 type ProfileImageInputProps = {
     currentImage: Uint8Array | undefined;
@@ -31,7 +32,9 @@ export default function ProfileImageInput({
                 Profile Image
                 <input type="file" name="profile-image" id="profile-image" onChange={handleImageSelect} />
             </label>
+
             <img src={imagePreviewURL || profileImage} alt="Profile" />
+            {currentImage && <DeleteProfileImage />}
         </div>
     );
 }

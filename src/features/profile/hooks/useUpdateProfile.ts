@@ -11,7 +11,7 @@ export default function useUpdateProfile() {
     const [email, setEmail] = useState<string | null>(null);
     const [name, setName] = useState<string | null>(null);
     const [image, setImage] = useState<File | Blob | null>(null);
-    const [password, setPassword] = useState<string | null>(null);
+    const [currentPassword, setCurrentPassword] = useState<string | null>(null);
     const [newPassword, setNewPassword] = useState<string | null>(null);
 
     const [formErrors, setFormErrors] = useState<Array<{ message: string; path: string }> | null>(null);
@@ -29,19 +29,11 @@ export default function useUpdateProfile() {
         },
     });
 
-    const getInputData = () => ({
-        email,
-        name,
-        image,
-        password,
-        newPassword,
-    });
-
     const resetForm = () => {
         setEmail(null);
         setName(null);
         setImage(null);
-        setPassword(null);
+        setCurrentPassword(null);
         setNewPassword(null);
         setFormErrors(null);
         setImagePreviewURL(null);
@@ -50,7 +42,15 @@ export default function useUpdateProfile() {
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        const cleanedFormData = objectToFormData(cleanObject(getInputData()));
+        const cleanedFormData = objectToFormData(
+            cleanObject({
+                email,
+                name,
+                image,
+                currentPassword,
+                newPassword,
+            })
+        );
         mutation.mutate(cleanedFormData);
     }
 
@@ -62,8 +62,8 @@ export default function useUpdateProfile() {
         setName,
         image,
         setImage,
-        password,
-        setPassword,
+        currentPassword,
+        setCurrentPassword,
         newPassword,
         setNewPassword,
         formErrors,

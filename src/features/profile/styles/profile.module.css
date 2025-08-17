@@ -7,6 +7,10 @@
         grid-column: span 1;
         grid-row: span 3;
     }
+
+    > * {
+        grid-column: 2 / 3;
+    }
 }
 
 .imageInput {
@@ -30,33 +34,9 @@
         height: 100%;
         z-index: 2;
 
-        box-shadow: inset 2px 2px 4px #22222260;
         border-radius: 50rem;
         transition: 125ms ease-in-out;
-
-        &:hover {
-            cursor: pointer;
-            box-shadow: inset 150px 150px 5px #4682b480;
-
-            &::after {
-                content: "+";
-                font-size: 125px;
-                line-height: 1;
-                margin-bottom: 0.75rem;
-                color: #fefefe;
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                display: grid;
-                place-items: center;
-            }
-        }
-
-        &:active {
-            box-shadow: inset 150px 150px 5px #4682b4;
-        }
+        cursor: pointer;
     }
 
     img {
@@ -70,6 +50,14 @@
         transition: 125ms ease-in-out;
         position: relative;
         z-index: 1;
+    }
+
+    button {
+        position: absolute;
+        bottom: -2.5rem;
+        left: 0;
+        right: 0;
+        font-size: 1rem;
     }
 }
 .formButtons {
