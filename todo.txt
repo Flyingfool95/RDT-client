@@ -1,8 +1,5 @@
 /* TODO - Client */
 // Make primary and secondary buttons style
-// Fix SMTP
-// Fix reset password flow
 
 /* TODO - Server */
-// Figure out SMTP, doesnt work atm, not sure what changed
 // Update HttpError to have erros in shape of {message: string, path: string}
