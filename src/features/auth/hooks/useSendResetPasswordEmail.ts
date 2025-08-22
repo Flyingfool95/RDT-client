@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
-import sendResetPasswordEmail from "../api/sendResetEmail.api";
+import sendResetPasswordEmail from "../api/sendResetPasswordEmail.api";
+import type { ApiErrorType } from "../../../classes/ApiError.class";
 
 export default function useSendResetPasswordEmail() {
+    const navigate = useNavigate()
     const [email, setEmail] = useState<string | null>(null);
     const [formErrors, setFormErrors] = useState<Array<{ message: string; path: string }> | null>(null);
 
@@ -16,10 +19,13 @@ export default function useSendResetPasswordEmail() {
         retry: false,
         onSuccess: () => {
             setEmail(null);
+            navigate("/login")
         },
 
-        onError: (error) => {
-            console.log(error);
+        onError: (error: Error) => {
+            const apiError = error as ApiErrorType;
+            console.error(apiError);
+            setFormErrors(apiError.errors);
         },
     });
 

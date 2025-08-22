@@ -28,7 +28,6 @@ export default function useUpdateProfile() {
         onError: (error: Error) => {
             const apiError = error as ApiErrorType;
             console.error(apiError);
-            console.log(apiError.errors)
             setFormErrors(apiError.errors);
         },
     });

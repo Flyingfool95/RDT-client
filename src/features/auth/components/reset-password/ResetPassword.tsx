@@ -1,6 +1,6 @@
 import { Link, useSearchParams } from "react-router";
 import ResetPasswordForm from "./ResetPasswordForm";
-import SendResetEmailForm from "./SendResetEmail";
+import SendResetEmailForm from "./SendResetPasswordEmail";
 
 export default function ResetPassword() {
     const [searchParams] = useSearchParams();

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useMutation } from "@tanstack/react-query";
 import resetPassword from "../api/resetPassword.api";
+import type { ApiErrorType } from "../../../classes/ApiError.class";
 
 export default function useResetPassword({ token }: { token: string }) {
     const navigate = useNavigate();
@@ -17,8 +18,10 @@ export default function useResetPassword({ token }: { token: string }) {
                 onSuccess: () => {
                     navigate("/login");
                 },
-                onError: (error) => {
-                    console.error(error);
+                onError: (error: Error) => {
+                    const apiError = error as ApiErrorType;
+                    console.error(apiError);
+                    setFormErrors(apiError.errors);
                 },
             }
         );

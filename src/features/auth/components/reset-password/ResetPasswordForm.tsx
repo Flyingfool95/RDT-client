@@ -1,3 +1,4 @@
+import { checkFormErrors } from "../../../../helpers/form.helpers";
 import useResetPassword from "../../hooks/useResetPassword";
 
 export default function ResetPasswordForm({ token }: { token: string }) {
@@ -7,7 +8,9 @@ export default function ResetPasswordForm({ token }: { token: string }) {
         <>
             <h1>Reset password</h1>
             <form onSubmit={handleResetPassword}>
-                <label className={formErrors && formErrors.length > 0 ? "input-error" : ""}>
+                <label
+                    className={checkFormErrors(formErrors, "email") || checkFormErrors(formErrors) ? "input-error" : ""}
+                >
                     New Password
                     <input
                         type="text"
@@ -17,6 +20,7 @@ export default function ResetPasswordForm({ token }: { token: string }) {
                     />
                 </label>
                 <input type="submit" value="Reset" />
+                {checkFormErrors(formErrors) && <p>{formErrors?.map((err) => err.message).join(", ")}</p>}
             </form>
         </>
     );

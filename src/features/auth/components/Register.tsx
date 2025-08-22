@@ -1,14 +1,9 @@
-import { useEffect } from "react";
 import { checkFormErrors } from "../../../helpers/form.helpers";
 import useRegister from "../hooks/useRegister";
 import { Link } from "react-router";
 
 export default function Register() {
     const { setEmail, setPassword, setConfirmPassword, handleSubmit, formErrors } = useRegister();
-
-    useEffect(() => {
-        console.log(formErrors);
-    }, [formErrors]);
 
     return (
         <>
