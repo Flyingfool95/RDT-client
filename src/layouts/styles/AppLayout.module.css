@@ -1,3 +1,16 @@
+header {
+    max-width: 125px;
+    width: 100%;
+    padding: 1rem;
+    background-color: #cfcfcf;
+    z-index: 5;
+}
+
+main {
+    flex-basis: 100%;
+    padding: 1rem;
+}
+
 .appLayout {
     display: flex;
 

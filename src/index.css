@@ -1,3 +1,5 @@
+@import "./variables.css";
+
 /* Reset & Box Sizing */
 *,
 *::before,
@@ -6,15 +8,15 @@
     margin: 0;
 
     &:focus-visible {
-        outline: 2px solid steelblue;
+        outline: 2px solid var(--color-primary);
         outline-offset: 0.1rem;
-        border-radius: 0.1rem;
+        border-radius: var(--radius-sm);
     }
 }
 
 /* Base styles */
 html {
-    font-family: Verdana, sans-serif;
+    font-family: var(--font-sans);
     font-size: 1rem;
     color: #222222;
     background-color: #eeeeee;
@@ -24,28 +26,15 @@ html {
     h2,
     h3,
     h4 {
-        line-height: 1.2;
+        line-height: var(--line-height-sm);
         margin: 0.5em auto;
+        font-family: var(--font-serif);
     }
 
     p {
-        max-width: 720px;
-        line-height: 1.62;
+        max-width: var(--max-width-text);
+        line-height: var(--line-height-md);
     }
-}
-
-/* Layout */
-header {
-    max-width: 125px;
-    width: 100%;
-    padding: 1rem;
-    background-color: #cfcfcf;
-    z-index: 5;
-}
-
-main {
-    flex-basis: 100%;
-    padding: 1rem;
 }
 
 /* Typography & forms */
@@ -64,38 +53,38 @@ option {
 a {
     color: inherit;
     font-style: italic;
-    transition: color 125ms ease-in-out;
+    transition: var(--transition);
 
     &:hover,
     &.active {
-        color: steelblue;
+        color: var(--color-primary);
     }
 }
 
 /* Buttons */
 input[type="submit"],
 button {
-    padding: 0.33rem 0.5rem;
-    border-radius: 0.25rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
     border: none;
-    box-shadow: 1px 1px 3px 0 #22222260;
+    box-shadow: var(--box-shadow);
     cursor: pointer;
 
     &:hover {
-        box-shadow: 3px 3px 5px 0 #22222260;
+        box-shadow: var(--box-shadow-active);
         translate: -2px -2px;
     }
 
     &:active {
-        box-shadow: 1px 1px 3px 0 #22222260;
-        background-color: #eeeeee;
+        box-shadow: var(--box-shadow);
+        background-color: var(--color-surface);
     }
 
     &:disabled {
-        box-shadow: inset 1px 1px 3px 0 #22222260 !important;
+        box-shadow: inset var(--box-shadow) !important;
         translate: 0 0;
         cursor: default;
-        background-color: #cccccc80;
+        background-color: var(--color-disabled);
         opacity: 0.75;
     }
 }
@@ -103,28 +92,28 @@ button {
 /* Forms */
 form {
     display: grid;
-    column-gap: 2rem;
-    row-gap: 1rem;
+    column-gap: var(--spacing-lg);
+    row-gap: var(--spacing-md);
 
     label {
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
+        gap: var(--spacing-xs);
     }
 
     input {
-        padding: 0.33rem 0.5rem;
-        border-radius: 0.25rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: var(--radius-sm);
         border: none;
-        box-shadow: inset 1px 1px 3px 0 #22222260;
-        background-color: #fcfcfc60;
+        box-shadow: inset var(--box-shadow);
+        background-color: var(--color-bg-alt);
     }
 
     .input-error {
-        color: red;
+        color: var(--color-error);
         input {
-            outline-color: red;
-            background-color: #ff000020;
+            outline-color: var(--color-error);
+            background-color: var(--color-error-bg);
         }
     }
 
