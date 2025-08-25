@@ -1,69 +1,44 @@
-# React + TypeScript + Vite
+# React Deno Template – Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This template is designed to work out of the box with [RDT – Server](https://github.com/Flyingfool95/RDT-server).
 
-Currently, two official plugins are available:
+Its purpose is to provide a starting point for modern React web applications with the following features already set up:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **[React 19](https://react.dev/)** – Modern React with hooks and concurrent rendering  
+- **[Vite](https://vitejs.dev/)** – Fast build and dev server  
+- **[React Router v7](https://reactrouter.com/)** – Client-side routing  
+- **[Zustand](https://zustand-demo.pmnd.rs/)** – Lightweight state management  
+- **[TanStack Query](https://tanstack.com/query/latest)** – Data fetching and caching  
+- **[React Icons](https://react-icons.github.io/react-icons/)** – Icon library  
+- **Image compression** with [browser-image-compression](https://github.com/Donaldcwl/browser-image-compression)  
+- **TypeScript** support out of the box  
+- **Linting** with ESLint and TypeScript-ESLint  
+- **React Fast Refresh** for instant updates in development  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Scripts
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. `npm run dev` – Start development server ⚡  
+2. `npm run build` – Type check and build production bundle  
+3. `npm run preview` – Preview the production build locally  
+4. `npm run lint` – Run ESLint  
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Clone this repo and install dependencies:  
+   ```bash
+   npm install
+   ```
+2. Start development:  
+   ```bash
+   npm run dev
+   ```
+3. Open the app in your browser:  
+   ```
+   http://localhost:5173
+   ```
