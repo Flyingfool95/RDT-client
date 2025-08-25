@@ -1,5 +1,3 @@
 /* TODO - Client */
-// Make style system that is minimal but scalable
 
 /* TODO - Server */
-// Security headers
