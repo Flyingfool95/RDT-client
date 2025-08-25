@@ -1,5 +1,5 @@
 export default async function refreshTokens() {
-    const response = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/auth/refresh-tokens`, {
+    const response: Response = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/auth/refresh-tokens`, {
         method: "GET",
         credentials: "include",
     });

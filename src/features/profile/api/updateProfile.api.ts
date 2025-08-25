@@ -2,7 +2,7 @@ import { ApiError } from "../../../classes/ApiError.class";
 import refreshTokens from "../../auth/api/refreshTokens.api";
 
 export default async function updateProfile(formData: any, retries = 1) {
-    const response: any = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/profile/update`, {
+    const response: Response = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/profile/update`, {
         method: "PATCH",
         credentials: "include",
         body: formData,
