@@ -1,5 +1,5 @@
 .profileForm {
-    max-width: 720px;
+    max-width: var(--max-width-form);
     display: grid;
     grid-template-columns: 1fr 3fr;
 
@@ -10,7 +10,7 @@
 
 .formButtons {
     display: flex;
-    gap: 1rem;
+    gap: var(--spacing-md);
 
     button,
     input[type="submit"] {

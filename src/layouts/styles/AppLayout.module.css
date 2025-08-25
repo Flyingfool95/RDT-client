@@ -1,21 +1,20 @@
-header {
+.appLayout {
+    display: flex;
+    min-height: 100dvh;
+    width: 100%;
+}
+
+.appHeader {
     max-width: 125px;
     width: 100%;
-    padding: 1rem;
-    background-color: #cfcfcf;
-    z-index: 5;
+    padding: var(--spacing-md);
+    background-color: var(--color-primary-bg);
+    z-index: var(--z-mid);
 }
 
 main {
     flex-basis: 100%;
-    padding: 1rem;
-}
-
-.appLayout {
-    display: flex;
-
-    min-height: 100dvh;
-    width: 100%;
+    padding: var(--spacing-md);
 }
 
 @media (max-width: 720px) {
@@ -25,10 +24,10 @@ main {
         right: 0;
         left: 0;
         max-width: 100%;
-        padding: 0.5rem;
+        padding: var(--spacing-sm);
     }
 
     main {
-        margin-bottom: 4rem;
+        margin-bottom: var(--spacing-xl);
     }
 }

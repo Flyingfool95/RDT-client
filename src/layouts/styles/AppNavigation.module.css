@@ -2,14 +2,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: var(--spacing-md);
     height: 100%;
-    font-size: 2rem;
+    font-size: var(--font-size-xxl);
+    color: var(--color-primary-dark);
 
     a:not(:has(img)) {
         display: flex;
         justify-content: center;
         align-items: center;
+
+        &:hover{
+            color: var(--color-primary-hover);
+        }
     }
 }
 
@@ -36,8 +41,8 @@
     aspect-ratio: 1;
 
     &:hover {
-        translate: 0px 1px;
-        color: steelblue;
+        translate: 0px 0px !important;
+        color: var(--color-primary);
     }
 }
 

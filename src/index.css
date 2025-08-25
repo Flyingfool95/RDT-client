@@ -18,8 +18,8 @@
 html {
     font-family: var(--font-sans);
     font-size: 1rem;
-    color: #222222;
-    background-color: #eeeeee;
+    color: var(--color-primary-dark);
+    background-color: var(--color-bg);
     transition: 125ms ease-in-out;
 
     h1,
@@ -28,7 +28,6 @@ html {
     h4 {
         line-height: var(--line-height-sm);
         margin: 0.5em auto;
-        font-family: var(--font-serif);
     }
 
     p {
@@ -64,6 +63,7 @@ a {
 /* Buttons */
 input[type="submit"],
 button {
+    background-color: var(--color-bg-alt);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--radius-sm);
     border: none;
@@ -77,15 +77,15 @@ button {
 
     &:active {
         box-shadow: var(--box-shadow);
-        background-color: var(--color-surface);
+        translate: 0px 0px;
     }
 
     &:disabled {
         box-shadow: inset var(--box-shadow) !important;
-        translate: 0 0;
         cursor: default;
         background-color: var(--color-disabled);
         opacity: 0.75;
+        translate: 0px 0px;
     }
 }
 
@@ -102,11 +102,11 @@ form {
     }
 
     input {
+        background-color: var(--color-bg-alt);
         padding: var(--spacing-xs) var(--spacing-sm);
         border-radius: var(--radius-sm);
         border: none;
         box-shadow: inset var(--box-shadow);
-        background-color: var(--color-bg-alt);
     }
 
     .input-error {

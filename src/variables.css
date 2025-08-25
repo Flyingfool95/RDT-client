@@ -14,12 +14,13 @@
     --max-width-form: 540px;
 
     /* Colors */
-    --color-primary: #0070f3;
-    --color-primary-hover: #005bb5;
+    --color-primary: hsl(212, 90%, 48%);
+    --color-primary-dark: hsl(212, 90%, 12%);
+    --color-primary-hover: hsl(210, 95%, 35%);
+    --color-primary-bg: hsla(212, 25%, 48%, 0.125);
 
-    --color-bg: #ffffff;
-    --color-bg-alt: #f5f5f5;
-    --color-surface: #eaeaea;
+    --color-bg: #f7f7f7;
+    --color-bg-alt: #fefefe;
     --color-disabled: #cccccc80;
 
     --color-text: #111111;
@@ -34,7 +35,6 @@
 
     --color-error: #d32f2f;
     --color-error-bg: #d32f2f20;
-
 
     /* Fonts and text */
     --font-sans: "Inter", sans-serif;
