@@ -1,8 +1,8 @@
 import type { RDTResponseType } from "../../../types/api";
-import type { UserResponseType } from "../types";
+import type { UserType } from "../types";
 import refreshTokens from "./refreshTokens.api";
 
-export default async function authCheck(retries = 1): Promise<RDTResponseType<UserResponseType>> {
+export default async function authCheck(retries = 1): Promise<RDTResponseType<UserType>> {
     const response: Response = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/auth/auth-check`, {
         method: "GET",
         credentials: "include",

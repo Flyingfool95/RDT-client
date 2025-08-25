@@ -1,6 +1,11 @@
 import { ApiError } from "../../../classes/ApiError.class";
 
-export default async function login(formData: any) {
+type LoginFormData = {
+    email: string;
+    password: string;
+};
+
+export default async function login(formData: LoginFormData) {
     const response: Response = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/auth/login`, {
         method: "POST",
         headers: {

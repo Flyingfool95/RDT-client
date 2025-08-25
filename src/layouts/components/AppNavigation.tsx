@@ -7,13 +7,14 @@ import useLogout from "../../features/auth/hooks/useLogout";
 import { arrayToBlobUrl } from "../../helpers/image.helpers";
 
 export default function AppNavigation() {
-    const { data } = useAuthCheck() as any;
     const { mutation } = useLogout();
+    const { data, isLoading } = useAuthCheck();
+    if (!data || isLoading) return <h1>Loading...</h1>;
 
     return (
         <nav className={styles.appNavigation}>
             <Link to="/profile" className={styles.logoLink}>
-                <img src={data.image != "" ? arrayToBlobUrl(data.image) : logo} alt="Logo" className="logo" />
+                <img src={data.image ? arrayToBlobUrl(data.image) : logo} alt="Logo" className="logo" />
             </Link>
 
             <NavLink to="/">

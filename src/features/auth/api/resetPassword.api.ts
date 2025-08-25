@@ -1,6 +1,10 @@
 import { ApiError } from "../../../classes/ApiError.class";
 
-export default async function resetPassword(formData: any) {
+type ResetPasswordFormData = {
+    password: string;
+};
+
+export default async function resetPassword(formData: ResetPasswordFormData) {
     const response: Response = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/auth/reset-password`, {
         method: "POST",
         headers: {

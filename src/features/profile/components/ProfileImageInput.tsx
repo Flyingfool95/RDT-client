@@ -5,10 +5,10 @@ import DeleteProfileImage from "./DeleteProfileImage";
 import { useState } from "react";
 
 type ProfileImageInputProps = {
-    currentImage: Uint8Array | undefined;
-    setImage: any;
+    currentImage: Uint8Array | null | undefined;
+    setImage: React.Dispatch<React.SetStateAction<File | Blob | null>>;
     imagePreviewURL: string | null;
-    setImagePreviewURL: any;
+    setImagePreviewURL: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 export default function ProfileImageInput({
@@ -19,19 +19,24 @@ export default function ProfileImageInput({
 }: ProfileImageInputProps) {
     const profileImage = currentImage ? arrayToBlobUrl(currentImage) : defaultProfileImage;
 
-    const [fileError, setFileError] = useState(null);
+    const [fileError, setFileError] = useState<string | null>(null);
 
     async function handleImageSelect(e: React.ChangeEvent<HTMLInputElement>) {
         const image = e.target.files?.[0];
         if (!image) return;
         try {
             const optimized = await optimizeImage(image);
-            setFileError(null)
+            setFileError(null);
             setImage(optimized);
             setImagePreviewURL(URL.createObjectURL(image));
-        } catch (error: any) {
-            console.log(error);
-            setFileError(error.message);
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                console.log(error);
+                setFileError(error.message);
+            } else {
+                console.log(error);
+                setFileError(String(error));
+            }
         }
     }
 
@@ -51,7 +56,7 @@ export default function ProfileImageInput({
             <img
                 src={imagePreviewURL || profileImage}
                 alt="Profile"
-                className={!!fileError ? styles.fileInputError : ""}
+                className={fileError ? styles.fileInputError : ""}
             />
             {fileError && <p className={styles.fileErrorMessage}>{fileError}</p>}
             {currentImage && <DeleteProfileImage />}

@@ -4,8 +4,7 @@ import useAuthCheck from "../features/auth/hooks/useAuthCheck";
 import AppNavigation from "./components/AppNavigation";
 
 export default function AppLayout() {
-    const { data } = useAuthCheck() as any;
-
+    const { data } = useAuthCheck();
     if (!data) return <Navigate to={"/login"} />;
 
     return (

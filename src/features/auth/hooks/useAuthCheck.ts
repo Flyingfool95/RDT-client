@@ -10,6 +10,5 @@ export default function useAuthCheck() {
         staleTime: 1000 * 60 * 5, //5 minutes
     });
 
-
-    return { data: result.data?.data ?? null, isLoading: result.isLoading };
+    return { data: result.data?.data, isLoading: result.isLoading };
 }

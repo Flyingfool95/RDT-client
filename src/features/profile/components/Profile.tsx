@@ -5,7 +5,7 @@ import styles from "../styles/profile.module.css";
 import ProfileImageInput from "./ProfileImageInput";
 
 export default function Profile() {
-    const { data } = useAuthCheck() as any;
+    const { data } = useAuthCheck();
     const {
         formRef,
         email,

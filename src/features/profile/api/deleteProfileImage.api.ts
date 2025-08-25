@@ -1,14 +1,21 @@
 import refreshTokens from "../../auth/api/refreshTokens.api";
 
-export default async function deleteProfileImage(formData: any, retries = 1) {
-    const response: Response = await fetch(import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/profile/delete-profile-image`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-    });
+type DeleteProfileImageFormData = {
+    image: string;
+};
+
+export default async function deleteProfileImage(formData: DeleteProfileImageFormData, retries = 1) {
+    const response: Response = await fetch(
+        import.meta.env.VITE_RDT_SERVER_URL + `/api/v1/profile/delete-profile-image`,
+        {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        }
+    );
 
     const result = await response.json();
 
